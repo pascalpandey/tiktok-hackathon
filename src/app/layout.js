@@ -16,8 +16,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Navbar />
-      <body className={noto_sans.className}>{children}</body>
+      
+      <body className={noto_sans.className}>{children}<Navbar /></body>
         
     </html>
   )
