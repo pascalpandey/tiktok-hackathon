@@ -10,7 +10,7 @@ import liveSvg from "../../public/live.svg";
 export default function Navbar(){
     return (
       <div>
-        <div className="h-screen w-60 bg-transparent sticky top-0">
+        <div className="h-screen w-60 bg-transparent sticky top-16 left-0">
           <div className="container mx-auto px-4 h-full">
             <div className="flex justify-between items-start flex-col py-3 border-b border-b-slate-200 text-white">
               <ul className="gap-x-6 text-lg text-black font-bold">
