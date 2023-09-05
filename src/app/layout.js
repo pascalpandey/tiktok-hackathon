@@ -1,10 +1,11 @@
 import './globals.css'
 import { Noto_Sans } from 'next/font/google'
-
+import { Inter } from 'next/font/google'
 const noto_sans = Noto_Sans({ 
   weight:['100', '200', '300', '400', '500', '600', '700', '800'],
-  style:['normal', 'italic'],
-  subsets: ['latin'] })
+  subsets: ['latin'] 
+})
+
 
 export const metadata = {
   title: 'Create Next App',
