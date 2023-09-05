@@ -7,6 +7,17 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'ttred': '#FE2C55',
+        'ttblue': '#25F4EE'
+      },
+      width:{
+        '590':'590px',
+        '620':'620px',
+      },
+      height:{
+        '620':'620px',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
