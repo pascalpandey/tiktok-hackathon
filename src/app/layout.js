@@ -1,5 +1,7 @@
+import { Toaster } from 'react-hot-toast'
 import './globals.css'
 import { Noto_Sans } from 'next/font/google'
+import TanstackQueryProvider from "../components/tanstackQueryProvider"
 
 const noto_sans = Noto_Sans({ 
   weight:['100', '200', '300', '400', '500', '600', '700', '800'],
@@ -14,7 +16,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={noto_sans.className}>{children}</body>
+      <body className={noto_sans.className}>
+        <Toaster/>
+        <TanstackQueryProvider>
+        {children}
+        </TanstackQueryProvider>
+      </body>
     </html>
   )
 }
