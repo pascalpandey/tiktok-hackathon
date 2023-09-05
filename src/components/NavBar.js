@@ -65,7 +65,7 @@ export default function Navbar(){
 
             <div className="py-6 text-md border-b border-b-slate-200">
               <div className="pb-3 text-gray-400 font-light">Login to view comments and get more personalised product reviews</div>
-              <button className="bg-transparent border-solid border border-ttred px-5 py-2 rounded-md w-full text-ttred hover:bg-red-100">Login</button>
+              <button className="bg-transparent border-solid border border-ttred px-5 py-2 rounded-md w-full text-ttred hover:bg-red-200">Login</button>
             </div>
           </div>
         </div>
