@@ -1,8 +1,6 @@
 import './globals.css'
 import { Noto_Sans } from 'next/font/google'
 import Navbar from '../components/NavBar'
-
-
 import { Inter } from 'next/font/google'
 const noto_sans = Noto_Sans({ 
   weight:['100', '200', '300', '400', '500', '600', '700', '800'],
@@ -18,9 +16,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      
-      <body className={noto_sans.className}>{children}<Navbar /></body>
-        
+      <body className="flex flex-row">
+        <Navbar/>
+        {children}
+        </body>
     </html>
   )
 }

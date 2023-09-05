@@ -10,9 +10,9 @@ import liveSvg from "../../public/live.svg";
 export default function Navbar(){
     return (
       <div>
-        <div className="h-screen w-1/6 bg-transparent sticky top-0">
+        <div className="h-screen w-60 bg-transparent sticky top-0">
           <div className="container mx-auto px-4 h-full">
-            <div className="flex justify-between items-start flex-col py-3 border-b-2 border-b-solid border-b-slate-200 text-white">
+            <div className="flex justify-between items-start flex-col py-3 border-b border-b-slate-200 text-white">
               <ul className="gap-x-6 text-lg text-black font-bold">
                 <li className="py-3 px-3 inline-flex w-full hover:bg-gray-50">
                   <span className="w-1/6">
@@ -63,9 +63,9 @@ export default function Navbar(){
               </ul>
             </div>
 
-            <div className="py-6 text-md border-b-2 border-b-solid border-b-slate-200">
-              <div className="pb-3 text-slate-600 font-thin">Login to view comments and get more personalised shop reviews</div>
-              <button className="bg-transparent border-solid border-2 border-red-500 px-5 py-2 rounded-md w-full text-red-500 hover:bg-red-200">Login</button>
+            <div className="py-6 text-md border-b border-b-slate-200">
+              <div className="pb-3 text-gray-400 font-light">Login to view comments and get more personalised product reviews</div>
+              <button className="bg-transparent border-solid border border-ttred px-5 py-2 rounded-md w-full text-ttred hover:bg-red-200">Login</button>
             </div>
           </div>
         </div>
