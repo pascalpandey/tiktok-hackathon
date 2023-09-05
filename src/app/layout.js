@@ -2,6 +2,7 @@ import { Toaster } from 'react-hot-toast'
 import './globals.css'
 import { Noto_Sans } from 'next/font/google'
 import Navbar from '../components/NavBar'
+import SearchBar from '../components/SearchBar'
 import { Inter } from 'next/font/google'
 import TanstackQueryProvider from "../components/tanstackQueryProvider"
 
@@ -20,11 +21,20 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="flex flex-row">
-        <Toaster/>
-        <TanstackQueryProvider>
+      <body className="flex flex-col overflow-x-hidden">
+        {/* 
+            Need to fix: 
+            - Kalo di scroll ampe bawah, navbar sama seachbarnya collide (bnr bnr hrs infinite scroll?) 
+            - Searchbarnya ketumpuk sama tulisan tulisan dari PageFeed
+        */}
+        <SearchBar/>
+        <div className='flex flex-row'>
+          <Toaster/>
+          <TanstackQueryProvider>
         <Navbar/> 
-        {children}
+          {children}
+        </div>
+        
         </TanstackQueryProvider>
         </body>
     </html>
