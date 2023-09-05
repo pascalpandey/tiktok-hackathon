@@ -12,6 +12,7 @@ module.exports = {
         'ttblue': '#25F4EE'
       },
       width:{
+        '520':'520px',
         '590':'590px',
         '620':'620px',
       },

@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link";
 import { PiShareFatFill } from 'react-icons/pi';
 import { AiFillHeart } from 'react-icons/ai';
 import { BsFillBookmarkFill } from 'react-icons/bs';
@@ -17,7 +18,7 @@ const PageFeed = ({ username, name, desc, audio, like, bm, comments, shared }) =
           <div className="flex flex-col">
 
             <div className="flex items-baseline">
-              <p className="font-semibold mx-1">{username}</p>
+              <Link href={`/user/${username}`} className="font-semibold mx-1">{username}</Link>
               <p className="font-light text-sm mx-1">{name}</p>
             </div>
 
@@ -32,7 +33,7 @@ const PageFeed = ({ username, name, desc, audio, like, bm, comments, shared }) =
 
           </div>
 
-          <button className="absolute w-24 h-8 border-ttred border right-0 my-1 text-ttred rounded-sm">Follow</button>
+          <button className="absolute w-24 h-8 border-ttred hover:bg-red-100 border right-0 my-1 text-ttred rounded-sm">Follow</button>
         </div>
 
         <div className="flex flex-row w-full h-full">
