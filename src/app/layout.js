@@ -1,12 +1,8 @@
-import { Toaster } from 'react-hot-toast'
 import './globals.css'
 import { Noto_Sans } from 'next/font/google'
 import Navbar from '../components/NavBar'
 import SearchBar from '../components/SearchBar'
 import { Inter } from 'next/font/google'
-import TanstackQueryProvider from "../components/tanstackQueryProvider"
-
-
 const noto_sans = Noto_Sans({ 
   weight:['100', '200', '300', '400', '500', '600', '700', '800'],
   subsets: ['latin'] 
@@ -29,14 +25,10 @@ export default function RootLayout({ children }) {
         */}
         <SearchBar/>
         <div className='flex flex-row'>
-          <Toaster/>
-          <TanstackQueryProvider>
-        <Navbar/> 
+          <Navbar/>
           {children}
         </div>
-        
-        </TanstackQueryProvider>
-        </body>
+      </body>
     </html>
   )
 }
