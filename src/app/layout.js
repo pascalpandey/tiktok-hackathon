@@ -20,9 +20,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="flex flex-row">
-        <Navbar/> 
         <Toaster/>
         <TanstackQueryProvider>
+        <Navbar/> 
         {children}
         </TanstackQueryProvider>
         </body>

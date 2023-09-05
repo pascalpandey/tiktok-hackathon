@@ -13,7 +13,7 @@ const PageFeed = ({ username, name, desc, audio, like, bm, comments, shared }) =
       </div>
 
       <div className="flex flex-col w-full">
-        <div className="relative flex flex-row h-fit w-full ">
+        <div className="relative flex flex-row h-fit w-full -z-10">
           <div className="flex flex-col">
 
             <div className="flex items-baseline">
