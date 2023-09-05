@@ -6,6 +6,7 @@ import followingSvg from "../../public/following.svg";
 import shopSvg from "../../public/shop.svg";
 import reviewSvg from "../../public/review.svg";
 import liveSvg from "../../public/live.svg";
+import LoginSignup from "../components/loginSignup"
 
 export default function Navbar(){
     return (
@@ -65,7 +66,7 @@ export default function Navbar(){
 
             <div className="py-6 text-md border-b border-b-slate-200">
               <div className="pb-3 text-gray-400 font-light">Login to view comments and get more personalised product reviews</div>
-              <button className="bg-transparent border-solid border border-ttred px-5 py-2 rounded-md w-full text-ttred hover:bg-red-200">Login</button>
+              <LoginSignup/>
             </div>
           </div>
         </div>
