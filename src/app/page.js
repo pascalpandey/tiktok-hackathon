@@ -9,15 +9,7 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <UploadImage />
-      {images &&
-        images.reverse().map((image) => {
-          return (
-            <>
-              <Image src={image.url} width="300" height="300" alt="deleted"/>
-            </>
-          );
-        })}
+      
     </main>
   );
 }
