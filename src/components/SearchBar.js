@@ -7,10 +7,10 @@ import LoginSignup from "./loginSignup"
 
 export default function SearchBar(){
     return(
-        <div className="fixed w-[calc(100vw-18px)] h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
+        <div className="fixed w-screen h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
             <a href="/" className="h-full w-1/4 py-2 flex items-center">
                 <SiTiktok className="ml-7 mr-2" size={30}/> 
-                <p className="font-bold text-3xl "> Shop</p>
+                <p className="font-semibold text-3xl "> Shop</p>
             </a>
             <div className="h-full w-520 py-2">
                 <form className="h-full border-solid border-gray-100 border rounded-full bg-gray-100 flex justify-center items-center focus-within:border-gray-300">
@@ -27,9 +27,9 @@ export default function SearchBar(){
                 </form>
                 
             </div>
-            <div className="h-full w-60 flex items-center">
-                <button className="w-32 mx-1 border h-3/5 text-lg px-1 rounded" type="button">+ Upload</button>
-                <div className="w-24">
+            <div className="h-full w-120 flex items-center pr-5 ">
+                <button className="w-32 mx-1 border h-9 text-lg px-1 mr-4 rounded" type="button">+ Upload</button>
+                <div className="w-32">
                   <LoginSignup/>
                 </div>
                 <button type="button">

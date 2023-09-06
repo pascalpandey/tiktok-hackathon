@@ -54,7 +54,7 @@ export default function LoginSignup() {
   return (
     <>
       <button
-        className="bg-transparent border-solid border border-ttred px-5 py-2 rounded-md w-full text-ttred hover:bg-red-200"
+        className="bg-transparent border-solid border h-9 border-ttred px-5 py-1 rounded w-full text-ttred hover:bg-red-200"
         onClick={() => {
           setShow(true);
           setLogin(true);
