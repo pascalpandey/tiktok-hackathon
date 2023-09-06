@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         */}
         <TanstackQueryProvider>
             <SearchBar />
-            <div className="flex flex-row">
+            <div className="flex flex-row mt-16">
               <Toaster />
               <Navbar />
               {children}

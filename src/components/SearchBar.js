@@ -7,7 +7,7 @@ import LoginSignup from "./loginSignup"
 
 export default function SearchBar(){
     return(
-        <div className="sticky w-[calc(100vw-18px)] h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
+        <div className="fixed w-[calc(100vw-18px)] h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
             <a href="/" className="h-full w-1/4 py-2 flex items-center">
                 <SiTiktok className="ml-7 mr-2" size={30}/> 
                 <p className="font-bold text-3xl "> Shop</p>
