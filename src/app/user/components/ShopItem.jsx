@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,7 +9,7 @@ const ShopItem = ({ h, w, productName, price, rating, location }) => {
     const fullStar = new Array(Math.floor(rating)).fill(0);
     const noStar = new Array(5 - Math.floor(rating)).fill(0);
     return (
-        <Link href="/user/username/products">
+        <Link href="/user/username/products" className='z-0'>
             <div className={`w-${w} h-${h} border rounded-md my-1 mx-1 p-2 bg-gray-50 hover:bg-gray-100 transition duration-100 ease-in`}>
                 <div className='rounded-md border h-44 mb-1 bg-white'>
                     <Image src="" />
@@ -18,9 +19,9 @@ const ShopItem = ({ h, w, productName, price, rating, location }) => {
                         <p className='text-sm leading-4 font-light mb-2'>{productName}</p>
                         <p className='font-bold text-lg'>SGD {price}</p>
                     </div>
-                    <div className='mt-0.5 border-2 border-ttred w-8 h-8 rounded hover:bg-red-50 flex items-center '>
+                    <button onClick={(e)=>{e.preventDefault();}}className='mt-0.5 border-2 border-ttred w-8 h-8 rounded hover:bg-red-50 flex items-center z-10'>
                         <AiOutlineHeart className='mx-auto ' size={24} color="#FE2C55"/>
-                    </div>
+                    </button>
 
 
                 </div>
