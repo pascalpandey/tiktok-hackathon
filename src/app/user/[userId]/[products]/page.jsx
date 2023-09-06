@@ -48,7 +48,7 @@ const ProductsPage = () => {
                         <p className='text-sm'>{desc}</p>
 
                         <button className='h-8 w-48 bg-ttred text-white rounded-sm mt-5 px-5 flex justify-around items-center'>
-                            <AiFillHeart className="mt-1 mr-1" size={20} color="#FFF"></AiFillHeart>
+                            <AiFillHeart className="mt-1 mr-1" size={20} color="#FFF"/>
                             <p>Add to Wishlist</p>
                         </button>
 
