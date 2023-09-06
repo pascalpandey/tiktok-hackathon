@@ -1,9 +1,15 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { MdOutlineShoppingCart } from 'react-icons/md'
 import ShopItem from '../components/ShopItem'
+import ReviewMini from './[products]/components/ReviewMini'
 
 const UserPage = () => {
+  const [section, setSection] = useState("Videos")
+  const setSectionFn=(args)=>{
+    setSection(args);
+  }
   const userName = "testShopkeeper";
   const name = "user's name";
   const isShop = true;
@@ -45,28 +51,42 @@ const UserPage = () => {
         <p className='font-light'>{desc}</p>
       </div>
       <div className='flex flex-row'>
-        <a className=" hover:border-b-2 border-gray-700 text-gray-500 px-5 py-3 hover:text-gray-700" href="/">Videos</a>
-        <a className=" hover:border-b-2 border-gray-700 text-gray-500 px-5 py-3 hover:text-gray-700" href="/">Products</a>
-        <a className="hover:border-b-2 border-gray-700 text-gray-500 px-5 py-3 hover:text-gray-700" href="/">Reviews</a>
+        <button className={`${(section==="Videos")?"border-b-2 text-gray-700 border-gray-700":""} hover:text-gray-700 text-gray-500 px-5 py-3`} 
+        onClick={()=>setSectionFn("Videos")}>Videos</button>
+        <button className={`${(section==="Products")?"border-b-2 text-gray-700 border-gray-700":""} hover:text-gray-700 text-gray-500 px-5 py-3`} 
+        onClick={()=>setSectionFn("Products")}
+        >Products</button>
+        <button className={`${(section==="Reviews")?"border-b-2 text-gray-700 border-gray-700":""} hover:text-gray-700 text-gray-500 px-5 py-3`} 
+        onClick={()=>setSectionFn("Reviews")}
+        >Reviews</button>
 
       </div>
-      <div className='border-b max-w-full w-full'></div>
-      <div className='w-full flex-wrap max-w-full flex flex-row'>
+      <div className='border-b max-w-full w-full mb-1'></div>
+      {section==="Videos" && <div className='w-full flex-wrap max-w-full flex flex-row'>
+        <ReviewMini caption="Videos sample caption"/>
+        <ReviewMini caption="Videos sample caption"/>
+      </div>}
+      {section==="Products" && <div className='w-full flex-wrap max-w-full flex flex-row'>
         <ShopItem productName="2.0L water bote full metal al"
+          w={58}
+          h={72}
           price={123}
           location="singapore, singapore"
           rating={4.5} />
-        <ShopItem productName="2.0L water bottle full metal "
-          price={400}
-          location="Singapore"
-          rating={2} />
-        <ShopItem productName="2.0L water bottle full metal "
+        <ShopItem productName="2.0L water bote full metal al"
+          w={58}
+          h={72}
           price={123}
           location="singapore, singapore"
-          rating={5} />
-       
+          rating={4.5} />
+      </div>}
+      {section==="Reviews" && <div className='w-full flex-wrap max-w-full flex flex-row'>
+        <ReviewMini caption="Review sample caption"/>
+        <ReviewMini caption="Review sample caption"/>
+        <ReviewMini caption="Review sample caption"/>
+      </div>}
 
-      </div>
+      
 
     </div>
   )

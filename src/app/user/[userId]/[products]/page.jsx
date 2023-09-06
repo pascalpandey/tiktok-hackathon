@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import ShopNavbar from '../../../components/ShopNavbar'
+import ShopNavbar from './components/ShopNavbar'
 import ReviewMini from './components/ReviewMini'
 import { SlLocationPin } from 'react-icons/sl'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
@@ -27,7 +27,7 @@ const ProductsPage = () => {
                     <div className='ml-56 mx-12 w-320 h-320 border rounded-md'>
 
                     </div>
-                    <div className='w-480 h-620'>
+                    <div className='w-520 h-620'>
 
                         <div className='border-b mb-4 pb-1 border-t pt-4'>
                             <p className='font-semibold text-xl'>{name}</p>
@@ -51,7 +51,7 @@ const ProductsPage = () => {
                             <div className='flex flex-row'>
                                 <Image className='w-20 h-20 border rounded-full my-2' />
                                 <div className='my-4 mx-3'>
-                                    <p className='text-lg font-bold'>{userName}</p>
+                                    <a href={`/user/${userName}`}className='text-lg font-bold'>{userName}</a>
                                     <div className='flex flex-row'>
                                         <SlLocationPin className='mt-0.5 mr-1' size={20} />
                                         <p className='font-light'> {location}</p>
@@ -63,20 +63,21 @@ const ProductsPage = () => {
                         </div>
                         <p className='font-bold mb-1 pt-4 pb-1 border-t'>Reviews</p>
                         <div className='flex flex-row flex-wrap mb-4'>
-                            <ReviewMini />
-                            <ReviewMini />
-                            <ReviewMini />
-                            <ReviewMini />
-                            <ReviewMini />
-                            <ReviewMini />
+                            <ReviewMini caption="test caption"/>
+                            <ReviewMini caption="test caption"/>
+                            <ReviewMini caption="test caption"/>
+                            <ReviewMini caption="test caption"/>
+                            <ReviewMini caption="test caption"/>
+                            <ReviewMini caption="test caption"/>
+                       
                         </div>
 
                         <p className='font-bold mb-1 pt-4 pb-1 border-t'>Recommended</p>
-                        <div className='flex flex-row flex-wrap justify-between'>
+                        <div className='flex flex-row flex-wrap '>
                             {/* <div className='w-58 border h-2'></div> */}
                             <ShopItem
                                 h={72}
-                                w={58}
+                                w={60}
                                 productName="Nike Air Max 100"
                                 desc="industry. Lorem Ipsum has been the industry's standard dummy"
                                 price="$100.00"
@@ -85,7 +86,7 @@ const ProductsPage = () => {
                             />
                             <ShopItem
                                 h={72}
-                                w={58}
+                                w={60}
                                 productName="Nike Air Max 100"
                                 desc="industry. Lorem Ipsum has been the industry's standard dummy"
                                 price="$100.00"
@@ -94,7 +95,7 @@ const ProductsPage = () => {
                             />
                             <ShopItem
                                 h={72}
-                                w={58}
+                                w={60}
                                 productName="Nike Air Max 100"
                                 desc="industry. Lorem Ipsum has been the industry's standard dummy"
                                 price="$100.00"
@@ -103,7 +104,7 @@ const ProductsPage = () => {
                             />
                             <ShopItem
                                 h={72}
-                                w={58}
+                                w={60}
                                 productName="Nike Air Max 100"
                                 desc="industry. Lorem Ipsum has been the industry's standard dummy"
                                 price="$100.00"
