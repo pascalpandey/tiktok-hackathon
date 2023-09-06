@@ -37,7 +37,7 @@ export default function Avatar() {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute right-0 -translate-x-[320px] top-auto z-10 mt-3 w-[150px] shadow-lg h-[200px] rounded-md p-4">
+            <Popover.Panel className="absolute right-0 -translate-x-[320px] top-auto z-10 mt-3 w-[150px] shadow-lg h-[200px] rounded-md p-4 bg-white">
               <h1
                 onClick={() => {
                   mutate();

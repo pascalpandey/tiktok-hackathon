@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Avatar from "../components/avatar";
 
-export default function SearchBar() {
+export default function SearchBar(){
   const { data, error } = useQuery({
     queryFn: async () => {
       const data = await axios.get(
@@ -21,8 +21,6 @@ export default function SearchBar() {
     },
     queryKey: ["checkLogIn"],
   });
-
-export default function SearchBar(){
     return(
         <div className="fixed w-[calc(100vw-18px)] h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
             <a href="/" className="h-full w-1/4 py-2 flex items-center">
@@ -45,32 +43,34 @@ export default function SearchBar(){
                 
             </div>
             <div className="h-full w-120 flex items-center pr-5">
-        {!data || error ? (
-          <>
-            <LoginSignupGeneric>
+            {!data || error ? (
+              <>
+                <LoginSignupGeneric>
+                  <button
+                    className="w-32 mx-1 border h-9 text-lg px-1 mr-4 rounded"
+                    type="button"
+                  >
+                    + Upload
+                  </button>
+                  </LoginSignupGeneric>
+                <div className="w-32">
+                <LoginSignup />
+              </div>
+            </>
+            ) : (
+            <div>
               <button
                 className="w-32 mx-1 border h-9 text-lg px-1 mr-4 rounded"
                 type="button"
               >
                 + Upload
               </button>
-            </LoginSignupGeneric>
-            <div className="w-32">
-              <LoginSignup />
+              <div className="relative">
+                <Avatar />
+              </div>
             </div>
-          </>
-        ) : (
-          <div>
-            <button
-              className="w-32 mx-1 border h-9 text-lg px-1 mr-4 rounded"
-              type="button"
-            >
-              + Upload
-            </button>
-            <div className="relative">
-              <Avatar />
-          </div>
-        )}
+          )}
+        
         <button type="button">
           <Image className="ml-10" src={menuSvg} alt="menu" />
         </button>
