@@ -13,18 +13,20 @@ datasource db {
 model User {
   userId Int @id @default(autoincrement())
   username String @unique
+  name String?
   password String
   bio String?
   following User[] @relation("following")
   followers User[] @relation("following")
   comments Comment[]
+  likes Int @default(0)
   shop Shop?
 }
 
 model Shop {
   shopId Int @id @default(autoincrement())
-  location String
-  rating Float
+  location String?
+  rating Float?
   items Item[]
   userId Int @unique
   user User @relation(fields: [userId], references: [userId], onDelete: Cascade) 
@@ -43,16 +45,20 @@ model Item {
 
 model Review {
   reviewId Int @id @default(autoincrement())
+  likes Int @default(0)
   rating Float
   description String
   itemId Int
   videoUrl String
+  comments Comment[]
   item Item @relation(fields: [itemId], references: [itemId], onDelete: Cascade)
 }
 
 model Comment {
   commentId Int @id @default(autoincrement())
+  reviewId Int
   date DateTime
   userId Int
   user User @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  review Review @relation(fields: [reviewId], references: [reviewId], onDelete: Cascade)
 }
