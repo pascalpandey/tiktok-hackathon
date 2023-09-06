@@ -7,8 +7,8 @@ const ShopItem = ({ productName, desc, price, rating }) => {
     const noStar = new Array(5-Math.floor(rating)).fill(0);
     return (
         <div>
-            <div className='w-52 h-72 border m-2 rounded-md p-2 bg-gray-50'>
-                <div className='rounded-md border h-36 mb-1 bg-white'>
+            <div className='w-68 h-90 border m-2 rounded-md p-2 bg-gray-50'>
+                <div className='rounded-md border h-40 mb-1 bg-white'>
                     <Image src="" />
                 </div>
                 <p className='font-medium'>{productName}</p>
