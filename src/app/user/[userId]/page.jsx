@@ -22,7 +22,7 @@ const UserPage = () => {
           <div className='flex mx-6 flex-col'>
             <div className='flex flex-row'>
               <p className='mb-1 text-xl font-bold'>{userName}</p>
-              <MdOutlineShoppingCart className="ml-2 mt-1" size={23} />
+              {isShop && <MdOutlineShoppingCart className="ml-2 mt-1" size={23} />}
             </div>
             <p className='mb-2'>{name}</p>
             <button className='mt-4 w-44 h-8 bg-ttred text-white rounded-sm'>Follow</button>
