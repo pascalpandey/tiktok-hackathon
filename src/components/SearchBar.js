@@ -24,9 +24,10 @@ export default function SearchBar() {
     },
     queryKey: ["checkLogIn"],
   });
+  const [searchValue, setSearchValue] = useState("")
     return(
-        <div className="fixed w-[calc(100vw-18px)] h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
-            <Link href="/" className="h-full w-1/4 py-2 flex items-center">
+        <div className="fixed w-screen h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
+            <Link href="/" className="h-full w-[210px] py-2 flex items-center">
                 <SiTiktok className="ml-7 mr-2" size={30}/> 
                 <p className="font-bold text-3xl "> Shop</p>
             </Link>
@@ -45,7 +46,7 @@ export default function SearchBar() {
                 </form>
                 
             </div>
-            <div className="h-full w-120 flex items-center pr-5">
+            <div className="h-full w-[210px] flex items-center pr-5">
             {!data || error ? (
               <>
                 <LoginSignupGeneric>

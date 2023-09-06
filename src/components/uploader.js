@@ -84,7 +84,7 @@ export default function Uploader() {
   return (
     <>
       <button
-        className="w-32 mx-1 border h-3/5 text-lg px-1 rounded hover:bg-gray-100"
+        className="w-32 mx-1 border h-3/5 text-lg p-1 rounded hover:bg-gray-100"
         type="button"
         onClick={() => setShowUploadForm(true)}
       >
