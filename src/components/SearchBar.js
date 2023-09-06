@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Avatar from "../components/avatar";
 import Link from "next/link";
+import Uploader from "../components/uploader";
 
 export default function SearchBar(){
   const { data, error } = useQuery({
@@ -47,12 +48,7 @@ export default function SearchBar(){
             {!data || error ? (
               <>
                 <LoginSignupGeneric>
-                  <button
-                    className="w-32 mx-1 border h-9 text-lg px-1 mr-4 rounded"
-                    type="button"
-                  >
-                    + Upload
-                  </button>
+                  <Uploader/>
                   </LoginSignupGeneric>
                 <div className="w-32">
                 <LoginSignup />
@@ -60,12 +56,7 @@ export default function SearchBar(){
             </>
             ) : (
             <div>
-              <button
-                className="w-32 mx-1 border h-9 text-lg px-1 mr-4 rounded"
-                type="button"
-              >
-                + Upload
-              </button>
+              <Uploader/>
               <div className="relative">
                 <Avatar />
               </div>
