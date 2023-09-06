@@ -12,6 +12,7 @@ import axios from "axios";
 import Avatar from "../components/avatar";
 import Link from "next/link";
 import Uploader from "../components/uploader";
+import { useState } from "react";
 
 export default function SearchBar(){
   const { data, error } = useQuery({
@@ -23,28 +24,34 @@ export default function SearchBar(){
     },
     queryKey: ["checkLogIn"],
   });
+  const [searchValue, setSearchValue] = useState("");
+  const handleSearch = (e) => {
+    setSearchValue(e.target.value);
+    console.log(searchValue);
+  }
     return(
-        <div className="fixed w-[calc(100vw-18px)] h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
+        <div className="fixed w-[calc(100vw-16px)] h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
             <Link href="/" className="h-full w-1/4 py-2 flex items-center">
                 <SiTiktok className="ml-7 mr-2" size={30}/> 
                 <p className="font-bold text-3xl "> Shop</p>
             </Link>
             <div className="h-full w-520 py-2">
-                <form className="h-full border-solid border-gray-100 border rounded-full bg-gray-100 flex justify-center items-center focus-within:border-gray-300">
-                    <input className="h-3/5 bg-transparent w-3/4 focus:outline-none ml-4" type="text" placeholder="TikTok is the best company"></input>
+                <div className="h-full border-solid border-gray-100 border rounded-full bg-gray-100 flex justify-center items-center focus-within:border-gray-300">
+                    <input className="h-3/5 bg-transparent w-3/4 focus:outline-none ml-4" type="text" placeholder="TikTok is the best company"
+                      onInput={(e) => handleSearch(e)} value={searchValue}></input>
                     <span className="mx-2 border-r-solid border-r border-r-slate-300 h-1/2 px-2">
                         {/* Ini buat ngedelete search barnya kalo di pencet */}
-                        <div>
+                        <div onClick={() => setSearchValue("")}>
                             <Image src={deleteSvg} alt="del"/>
                         </div>
                     </span>
-                    <button type="submit">
+                    <button type="button">
                         <Image src={searchSvg} alt="search"/>
                     </button>
-                </form>
+                </div>
                 
             </div>
-            <div className="h-full w-120 flex items-center pr-5">
+            <div className="h-full w-[250px] flex items-center pr-5">
             {!data || error ? (
               <>
                 <LoginSignupGeneric>
@@ -57,15 +64,15 @@ export default function SearchBar(){
             ) : (
             <div>
               <Uploader/>
-              <div className="relative">
+              <div className="relative w-8">
                 <Avatar />
               </div>
             </div>
           )}
         
-        <button type="button">
+        {/* <button type="button">
           <Image className="ml-10" src={menuSvg} alt="menu" />
-        </button>
+        </button> */}
       </div>
 
       {/* <div class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
