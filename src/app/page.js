@@ -4,10 +4,10 @@ import PageFeed from './components/PageFeed'
 
 export default async function Home() {
   return (
-    <main className="mx-auto">
+    <main className="w-full">
       <PageFeed username="bestUser" 
                 name="best test name" 
-                desc="lorem lorem lorem lorem dolores sit es celupin kontol lolollol #iseptititd #plsplspls"
+                desc="lorem  lorem lorem loremlorem lorem loremlorem lorem loremlorem lorem loremlorem lorem"
                 audio="original sound - best name"
                 shared={100}
                 comments={123}
@@ -15,7 +15,7 @@ export default async function Home() {
                 bm={13}/>
       <PageFeed username="bestUser" 
                 name="best test name" 
-                desc="lorem lorem lorem lorem dolores sit es celupin kontol lolollol #iseptititd #plsplspls"
+                desc="lorem lorem loremlorem lorem loremlorem loreem lorem loremlorem lorem loremlorem lorem lorem"
                 audio="original sound - best name"
                 shared={100}
                 comments={123}
@@ -23,7 +23,7 @@ export default async function Home() {
                 bm={13}/>
       <PageFeed username="bestUser" 
                 name="best test name" 
-                desc="lorem lorem lorem lorem dolores sit es celupin kontol lolollol #iseptititd #plsplspls"
+                desc="lorem lorem lorem loremlorem lorem loremlorem lorem lorem"
                 audio="original sound - best name"
                 shared={100}
                 comments={123}

@@ -52,38 +52,19 @@ const UserPage = () => {
       </div>
       <div className='border-b max-w-full w-full'></div>
       <div className='w-full flex-wrap max-w-full flex flex-row'>
-        <ShopItem productName="water bottel"
+        <ShopItem productName="2.0L water bote full metal al"
           price={123}
-          desc="perfectly holds water for u and family togeteher"
+          location="singapore, singapore"
           rating={4.5} />
-        <ShopItem productName="water bottel"
-          price={123}
-          desc="perfectly holds water for u and family togeteher"
+        <ShopItem productName="2.0L water bottle full metal "
+          price={400}
+          location="Singapore"
           rating={2} />
-        <ShopItem productName="water bottel"
+        <ShopItem productName="2.0L water bottle full metal "
           price={123}
-          desc="perfectly holds water for u and family togeteher"
-          rating={4.5} />
-        <ShopItem productName="water bottel"
-          price={123}
-          desc="perfectly holds water for u and family togeteher"
+          location="singapore, singapore"
           rating={5} />
-        <ShopItem productName="water bottel"
-          price={123}
-          desc="perfectly holds water for u and family togeteher"
-          rating={1} />
-        <ShopItem productName="water bottel"
-          price={123}
-          desc="perfectly holds water for u and family togeteher"
-          rating={4.5} />
-        <ShopItem productName="water bottel"
-          price={123}
-          desc="perfectly holds water for u and family togeteher"
-          rating={4.5} />
-        <ShopItem productName="water bottel"
-          price={123}
-          desc="perfectly holds water for u and family togeteher"
-          rating={4.5} />
+       
 
       </div>
 

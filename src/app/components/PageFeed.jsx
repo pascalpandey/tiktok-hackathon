@@ -8,17 +8,17 @@ import { FaCommentDots, FaItunesNote} from 'react-icons/fa';
 const PageFeed = ({ username, name, desc, audio, like, bm, comments, shared }) => {
   return (
 
-    <div className="flex h-620 w-620 border-b pb-4 mt-6 mx-3">
+    <div className="flex h-620 w-620 border-b pb-4 mt-6 mx-auto">
       <div className="h-full w-20">
         <Image className="rounded-full w-14 h-14"></Image>
       </div>
 
       <div className="flex flex-col w-full">
-        <div className="relative flex flex-row h-fit w-full -z-10">
+        <div className="relative flex flex-row h-fit w-full">
           <div className="flex flex-col">
 
             <div className="flex items-baseline">
-              <Link href={`/user/${username}`} className="font-semibold mx-1">{username}</Link>
+              <a href={`/user/${username}`} className="font-semibold mx-1">{username}</a>
               <p className="font-light text-sm mx-1">{name}</p>
             </div>
 
