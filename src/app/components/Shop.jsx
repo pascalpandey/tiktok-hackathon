@@ -5,7 +5,7 @@ import Products from './Products'
 export default function Shop() {
     return (
         <main>
-            <ShopNavbar />
+            {/* <ShopNavbar /> */}
             <Products />
         </main>
     )
