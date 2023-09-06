@@ -8,11 +8,11 @@ import { toast } from "react-hot-toast";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-export default function LoginSignup() {
+export default function LoginSignupGeneric({ children }) {
   const [show, setShow] = useState(false);
   const [login, setLogin] = useState(true);
   const { register, handleSubmit, watch } = useForm();
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (show) {
@@ -41,7 +41,7 @@ export default function LoginSignup() {
       toast.success(
         login ? "Successfully logged in!" : "Successfully signed up!"
       );
-      queryClient.invalidateQueries(['checkLogIn'])
+      queryClient.invalidateQueries(["checkLogIn"]);
       setShow(false);
     },
     onError: (err) => {
@@ -55,15 +55,14 @@ export default function LoginSignup() {
 
   return (
     <>
-      <button
-        className="bg-transparent border-solid border border-ttred px-5 py-2 rounded-md w-full text-ttred hover:bg-red-200"
+      <a
         onClick={() => {
           setShow(true);
           setLogin(true);
         }}
       >
-        Log in
-      </button>
+        {children}
+      </a>
       <Transition appear show={show} as={Fragment}>
         <Dialog
           as="div"

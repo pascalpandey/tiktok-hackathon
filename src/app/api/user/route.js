@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../helpers";
 
 export async function POST(req) {
-  const prisma = new PrismaClient();
   const { data } = await req.json();
   
   const existingUser = await prisma.user.findUnique({
