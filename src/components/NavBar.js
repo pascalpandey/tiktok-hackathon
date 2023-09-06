@@ -8,6 +8,7 @@ import followingSvg from "../../public/following.svg";
 import shopSvg from "../../public/shop.svg";
 import reviewSvg from "../../public/review.svg";
 import liveSvg from "../../public/live.svg";
+import heartSvg from "../../public/heart.svg";
 import LoginSignup from "../components/loginSignup";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -69,6 +70,16 @@ export default function Navbar() {
 
                 <Link href="/Live">
                   <div className="pl-2">Live</div>
+                </Link>
+              </li>
+
+              <li className="py-3 px-3 inline-flex w-full hover:bg-gray-50">
+                <span className="w-1/6">
+                  <Image src={heartSvg} alt="live" />
+                </span>
+
+                <Link href="/wishlist">
+                  <div className="pl-2">Wishlist</div>
                 </Link>
               </li>
             </ul>

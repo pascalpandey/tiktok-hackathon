@@ -12,6 +12,7 @@ export default function Products() {
                 price="$100.00"
                 location="Singapore"
                 rating={4.6}
+                inWishlist={true}
             />
             <ShopItem
                 h={72}
@@ -21,6 +22,7 @@ export default function Products() {
                 price="$100.00"
                 location="Singapore"
                 rating={4.6}
+                inWishlist={true}
             /><ShopItem
                 h={72}
                 w={56}
@@ -29,6 +31,7 @@ export default function Products() {
                 price="$100.00"
                 location="Singapore"
                 rating={4.6}
+                inWishlist={true}
             /><ShopItem
                 h={72}
                 w={56}

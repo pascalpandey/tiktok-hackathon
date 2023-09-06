@@ -1,10 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { AiFillStar, AiOutlineStar, AiOutlineHeart} from 'react-icons/ai'
+import { AiFillStar, AiOutlineStar, AiOutlineHeart, AiFillHeart} from 'react-icons/ai'
 
 
-const ShopItem = ({ h, w, productName, price, rating, location }) => {
+const ShopItem = ({ h, w, productName, price, rating, location, inWishlist }) => {
     const fullStar = new Array(Math.floor(rating)).fill(0);
     const noStar = new Array(5 - Math.floor(rating)).fill(0);
     return (
@@ -19,7 +19,7 @@ const ShopItem = ({ h, w, productName, price, rating, location }) => {
                         <p className='font-bold text-lg'>SGD {price}</p>
                     </div>
                     <div className='mt-0.5 border-2 border-ttred w-8 h-8 rounded hover:bg-red-50 flex items-center '>
-                        <AiOutlineHeart className='mx-auto ' size={24} color="#FE2C55"/>
+                        { inWishlist ? <AiFillHeart className='mx-auto ' size={24} color="#FE2C55"/> : <AiOutlineHeart className='mx-auto ' size={24} color="#FE2C55"/>}
                     </div>
 
 
