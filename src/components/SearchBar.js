@@ -10,12 +10,13 @@ import LoginSignup from "./loginSignup";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Avatar from "../components/avatar";
+import Link from "next/link";
 
 export default function SearchBar(){
   const { data, error } = useQuery({
     queryFn: async () => {
       const data = await axios.get(
-        `api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`
+        `http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`
       );
       return data;
     },
@@ -23,10 +24,10 @@ export default function SearchBar(){
   });
     return(
         <div className="fixed w-[calc(100vw-18px)] h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
-            <a href="/" className="h-full w-1/4 py-2 flex items-center">
+            <Link href="/" className="h-full w-1/4 py-2 flex items-center">
                 <SiTiktok className="ml-7 mr-2" size={30}/> 
                 <p className="font-bold text-3xl "> Shop</p>
-            </a>
+            </Link>
             <div className="h-full w-520 py-2">
                 <form className="h-full border-solid border-gray-100 border rounded-full bg-gray-100 flex justify-center items-center focus-within:border-gray-300">
                     <input className="h-3/5 bg-transparent w-3/4 focus:outline-none ml-4" type="text" placeholder="TikTok is the best company"></input>

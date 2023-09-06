@@ -25,11 +25,11 @@ export default function LoginSignupGeneric({ children }) {
   const { mutate, isLoading } = useMutation({
     mutationFn: async (data) => {
       if (login) {
-        return await axios.post("/api/user/login", {
+        return await axios.post("http://localhost:3000/api/user/login", {
           data,
         });
       } else {
-        return await axios.post("/api/user", {
+        return await axios.post("http://localhost:3000/api/user", {
           data,
         });
       }
