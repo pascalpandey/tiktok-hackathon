@@ -4,7 +4,7 @@ import { Noto_Sans } from "next/font/google";
 import Navbar from "../components/NavBar";
 import SearchBar from "../components/SearchBar";
 import { Inter } from "next/font/google";
-import TanstackQueryProvider from "../components/tanstackQueryProvider";
+import Providers from "../components/providers";
 
 const noto_sans = Noto_Sans({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
@@ -25,14 +25,14 @@ export default function RootLayout({ children }) {
             - Kalo di scroll ampe bawah, navbar sama seachbarnya collide (bnr bnr hrs infinite scroll?) 
             - Searchbarnya ketumpuk sama tulisan tulisan dari PageFeed
         */}
-        <TanstackQueryProvider>
+        <Providers>
             <SearchBar />
             <div className="flex flex-row mt-16 ml-60">
               <Toaster />
               <Navbar />
               {children}
             </div>
-        </TanstackQueryProvider>
+        </Providers>
       </body>
     </html>
   );
