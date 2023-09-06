@@ -50,16 +50,14 @@ const ProductsPage = () => {
                         <p className='font-bold w-fit mb-1'>Details</p>
                         <p className='text-sm'>{desc}</p>
 
-<<<<<<< HEAD
+
                         <button className='h-8 w-48 bg-ttred text-white rounded-sm mt-5 px-5 flex justify-around items-center'>
                             <AiFillHeart className="mt-1 mr-1" size={20} color="#FFF"/>
                             <p>Add to Wishlist</p>
                         </button>
 
-                        <div className='border-t py-3 mt-4 flex flex-row justify-between'>
-=======
                         <div id="Reviews-tag"  className='border-t py-3 mt-4 flex flex-row justify-between'>
->>>>>>> main
+
                             <div className='flex flex-row'>
                                 <Image className='w-20 h-20 border rounded-full my-2' />
                                 <div className='my-4 mx-3'>
