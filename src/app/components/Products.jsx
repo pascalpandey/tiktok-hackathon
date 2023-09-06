@@ -3,7 +3,7 @@ import ShopItem from '../user/components/ShopItem'
 
 export default function Products() {
     return (
-        <div className='px-4 py-3 grid grid-cols-7 gap-1'>
+        <div className='px-4 py-3 flex gap-1 flex-wrap  '>
             <ShopItem
                 h={72}
                 w={56}

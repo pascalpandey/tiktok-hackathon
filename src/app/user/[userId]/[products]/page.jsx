@@ -23,8 +23,8 @@ const ProductsPage = () => {
         <div className='w-full '>
             <div className='mx-auto'>
                 <ShopNavbar />
-                <div className='flex flex-row w-full'>
-                    <div className='ml-56 mx-12 w-320 h-320 border rounded-md'>
+                <div className='flex flex-row w-fit mx-auto'>
+                    <div className='mr-12 w-320 h-320 border rounded-md'>
 
                     </div>
                     <div className='w-520 h-620'>
@@ -117,7 +117,7 @@ const ProductsPage = () => {
 
                     </div>
 
-                    <div className='mx-12 w-64 h-80 border-2 border-gray-300 rounded-md'>
+                    <div className='ml-12 w-64 h-80 border-2 border-gray-300 rounded-md'>
 
                     </div>
 
