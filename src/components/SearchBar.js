@@ -3,10 +3,11 @@ import searchSvg from "../../public/search.svg"
 import deleteSvg from "../../public/delete.svg"
 import {SiTiktok} from 'react-icons/si'
 import menuSvg from "../../public/menu.svg"
+import LoginSignup from "./loginSignup"
 
 export default function SearchBar(){
     return(
-        <div className="sticky w-screen h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
+        <div className="sticky w-[calc(100vw-18px)] h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
             <a href="/" className="h-full w-1/4 py-2 flex items-center">
                 <SiTiktok className="ml-7 mr-2" size={30}/> 
                 <p className="font-bold text-3xl "> Shop</p>
@@ -26,10 +27,12 @@ export default function SearchBar(){
                 </form>
                 
             </div>
-            <div className="h-full w-1/5 flex items-center">
+            <div className="h-full w-60 flex items-center">
                 <button className="w-32 mx-1 border h-3/5 text-lg px-1 rounded" type="button">+ Upload</button>
-                <button className="w-32 mx-1 h-3/5 text-lg px-2 rounded bg-ttred text-white" type="button">Log in</button>
-                <button classNam="border" type="button">
+                <div className="w-24">
+                  <LoginSignup/>
+                </div>
+                <button type="button">
                     <Image className="ml-3"src={menuSvg} alt="menu"/>
                 </button>
             </div>
