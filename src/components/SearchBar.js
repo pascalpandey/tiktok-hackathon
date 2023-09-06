@@ -1,16 +1,18 @@
 import Image from "next/image"
 import searchSvg from "../../public/search.svg"
 import deleteSvg from "../../public/delete.svg"
-import logoSvg from "../../public/logo.svg"
+import {SiTiktok} from 'react-icons/si'
 import menuSvg from "../../public/menu.svg"
+import LoginSignup from "./loginSignup"
 
 export default function SearchBar(){
     return(
-        <div className="sticky w-screen h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden">
-            <div className="h-full w-1/4 py-2 flex items-center">
-                <Image className="h-3/4" src={logoSvg} alt="logo"/>
-            </div>
-            <div className="h-full w-1/3 py-2">
+        <div className="fixed w-screen h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
+            <a href="/" className="h-full w-1/4 py-2 flex items-center">
+                <SiTiktok className="ml-7 mr-2" size={30}/> 
+                <p className="font-semibold text-3xl "> Shop</p>
+            </a>
+            <div className="h-full w-520 py-2">
                 <form className="h-full border-solid border-gray-100 border rounded-full bg-gray-100 flex justify-center items-center focus-within:border-gray-300">
                     <input className="h-3/5 bg-transparent w-3/4 focus:outline-none ml-4" type="text" placeholder="TikTok is the best company"></input>
                     <span className="mx-2 border-r-solid border-r border-r-slate-300 h-1/2 px-2">
@@ -25,10 +27,12 @@ export default function SearchBar(){
                 </form>
                 
             </div>
-            <div className="h-full w-1/5 flex items-center">
-                <button className="w-2/5 mx-1 border h-3/5 text-lg px-2 rounded" type="button">+ Upload</button>
-                <button className="w-1/3 mx-1 border h-3/5 text-lg px-2 rounded bg-rose-500 text-white" type="button">Log in</button>
-                <button classNam="border" type="button">
+            <div className="h-full w-120 flex items-center pr-5 ">
+                <button className="w-32 mx-1 border h-9 text-lg px-1 mr-4 rounded" type="button">+ Upload</button>
+                <div className="w-32">
+                  <LoginSignup/>
+                </div>
+                <button type="button">
                     <Image className="ml-3"src={menuSvg} alt="menu"/>
                 </button>
             </div>
