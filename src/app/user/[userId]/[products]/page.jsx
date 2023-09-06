@@ -25,7 +25,7 @@ const ProductsPage = () => {
             <ShopNavbar />
             <div className='mx-auto'>
                 
-                <div className='flex flex-row w-fit mx-auto mt-[49px]'>
+                <div className='flex flex-row w-fit mx-auto mt-[49px] '>
                     <div className='mr-12 w-320 h-320 border rounded-md'>
 
                     </div>
