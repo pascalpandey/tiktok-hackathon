@@ -61,7 +61,14 @@ const ProductsPage = async ({ params }) => {
 
             <div id="Reviews-tag" className='border-t py-3 mt-4 flex flex-row justify-between'>
               <div className='flex flex-row'>
-                <Image className='w-20 h-20 border rounded-full my-2' />
+                <div className='w-20 h-20 border rounded-full my-2 relative'>
+                  <Image
+                    className='w-20 h-20 border rounded-full'
+                    layout={'fill'}
+                    objectFit={'contain'}
+                    alt="product image"
+                    src={user.imgUrl} />
+                </div>
                 <div className='my-4 mx-3'>
                   <Link href={`/user/${user.username}`} className='text-lg font-bold'>{user.username}</Link>
                   <div className='flex flex-row'>
@@ -75,7 +82,7 @@ const ProductsPage = async ({ params }) => {
             </div>
             <div className='flex items-center border-t pt-4 mb-4'>
               <p className='font-bold mr-auto'>Reviews</p>
-              <ReviewUploader itemId={itemId}/>
+              <ReviewUploader itemId={itemId} />
             </div>
             <div className='flex flex-row flex-wrap mb-4'>
               <ReviewMini caption="test caption" />

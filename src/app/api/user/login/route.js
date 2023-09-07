@@ -41,7 +41,7 @@ export async function GET(req) {
 
       if (!user) return new Response("Username not found!", { status: 404 });
 
-      return new Response(JSON.stringify(user.username), { status: 200 }); 
+      return new Response(JSON.stringify({name: user.name, bio: user.bio, imgUrl: user.imgUrl, username: user.username}), { status: 200 }); 
     } else {
       return new Response("Wrong token!", { status: 404 });
     }

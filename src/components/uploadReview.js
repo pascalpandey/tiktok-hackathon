@@ -10,8 +10,9 @@ import axios from "axios";
 
 import ReviewForm from "../components/reviewForm";
 import { useRouter } from "next/navigation";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
-export default function ReviewUploader({itemId}) {
+export default function ReviewUploader({ itemId }) {
   // state for showing form
   const [showUploadForm, setShowUploadForm] = useState(false);
   const [showPreviewForm, setShowPreviewForm] = useState(false);
@@ -25,7 +26,7 @@ export default function ReviewUploader({itemId}) {
   // state for backend
   const [loading, setLoading] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   // unable scroll while form is open
@@ -50,8 +51,10 @@ export default function ReviewUploader({itemId}) {
       toast.error(err.message);
     },
     onClientUploadComplete: () => {
-      toast.success("Video upload successful! Uploading review data...")
-    }
+      toast.success("Video upload successful! Uploading review data...", {
+        duration: 4000,
+      });
+    },
   });
 
   const handleSubmit = async (e) => {
@@ -151,13 +154,38 @@ export default function ReviewUploader({itemId}) {
                               <video
                                 autoPlay
                                 controls
-                                style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                                style={{
+                                  width: "100%",
+                                  height: "100%",
+                                  objectFit: "contain",
+                                }}
                               >
                                 <source src={reviewVideoUrl} />
                               </video>
                             </div>
                           </div>
                           <div className="mx-8 w-72">
+                            <h2 className="text-md font-bold">Rating: </h2>
+                            <div className="flex items-center justify-center mb-4">
+                            {Array(reviewRating)
+                              .fill(0)
+                              .map((_, i) => (
+                                <AiFillStar
+                                  className="mt-1 mr-1"
+                                  size={25}
+                                  color="#FE2C55"
+                                />
+                              ))}
+                            {Array(5 - reviewRating)
+                              .fill(0)
+                              .map((_, i) => (
+                                <AiOutlineStar
+                                  className="mt-1 mr-1"
+                                  color="#FE2C55"
+                                  size={25}
+                                />
+                              ))}
+                            </div>
                             <h2 className="text-md font-bold">Description: </h2>
                             <div className="text-sm italic mb-4">
                               {reviewDescription}
@@ -182,7 +210,7 @@ export default function ReviewUploader({itemId}) {
                           disabled={loading}
                           onClick={(e) => handleSubmit(e)}
                         >
-                          {loading ? 'Loading...' : 'Submit'}
+                          {loading ? "Loading..." : "Submit"}
                         </button>
                       </div>
                     </div>

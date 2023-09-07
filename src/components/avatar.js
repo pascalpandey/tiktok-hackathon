@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Popover, Transition } from "@headlessui/react";
 import axios from "axios";
@@ -12,15 +12,20 @@ export default function Avatar() {
   const queryClient = useQueryClient();
   const { data, error } = useQuery({
     queryFn: async () => {
-      const data = await axios.get(`http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
-      return data
+      const data = await axios.get(
+        `http://localhost:3000/api/user/login?token=${
+          localStorage?.getItem("JWT_TOKEN") ?? ""
+        }`
+      );
+      return data;
     },
-    queryKey: ["checkLogIn"]
-  })
+    queryKey: ["checkLogIn"],
+  });
+  console.log(data, data?.data?.imgUrl)
   const { mutate, isLoading } = useMutation({
     mutationFn: () => {
       localStorage.clear("JWT_TOKEN");
-      return
+      return;
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries(["checkLogIn"]);
@@ -29,38 +34,54 @@ export default function Avatar() {
   });
 
   return (
-    <div className="fixed w-full max-w-sm px-4 translate-x-[130px] -translate-y-[34px]">
-    <Popover className="relative">
-      {() => (
-        <>
-          <Popover.Button>
-            <Image className="rounded-full w-8 h-8"></Image>
-          </Popover.Button>
-          <Popover.Overlay className="fixed inset-0 backdrop-filter z-10" />
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-200"
-            enterFrom="opacity-0 translate-y-1"
-            enterTo="opacity-100 translate-y-0"
-            leave="transition ease-in duration-150"
-            leaveFrom="opacity-100 translate-y-0"
-            leaveTo="opacity-0 translate-y-1"
-          >
-            <Popover.Panel className="absolute right-0 -translate-x-[320px] top-auto z-10 mt-3 w-[150px] shadow-lg h-[200px] rounded-md p-4 bg-white">
-              <h1
-                onClick={() => {
-                  mutate();
-                }}
-                className="cursor-pointer font-semibold text-lg"
-              >
-                {isLoading? 'Loading...' : 'Log out'}
-              </h1>
-              <Link href={`/user/${data?.data}/editProfile`} className="my-1 font-semibold text-lg" >Edit Profile</Link>
-            </Popover.Panel>
-          </Transition>
-        </>
-      )}
-    </Popover>
+    <div className="fixed w-full max-w-sm px-4 translate-x-[130px] -translate-y-[40px]">
+      <Popover className="relative">
+        {() => (
+          <>
+            <Popover.Button>
+              <div className="rounded-full w-10 h-10 relative">
+                <Image
+                  className="rounded-full w-10 h-10"
+                  layout={'fill'} 
+                  objectFit={'contain'} 
+                  alt="product image"
+                  src={data?.data?.imgUrl}
+                />
+              </div>
+            </Popover.Button>
+            <Popover.Overlay className="fixed inset-0 backdrop-filter z-10" />
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-200"
+              enterFrom="opacity-0 translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-150"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 translate-y-1"
+            >
+              <Popover.Panel className="absolute right-0 -translate-x-[320px] top-auto z-10 mt-3 w-[150px] shadow-lg h-[130px] rounded-md p-4 bg-white">
+                <Link href={`/user/${data?.data?.username}`} className="font-semibold">
+                  <h1 className="mb-2 text-lg">My Profile</h1>
+                </Link>
+                <Link
+                  href={`/user/${data?.data?.username}/editProfile`}
+                  className="font-semibold"
+                >
+                  <h1 className="mb-2 text-lg">Edit Profile</h1>
+                </Link>
+                <h1
+                  onClick={() => {
+                    mutate();
+                  }}
+                  className="cursor-pointer font-semibold text-lg -translate-y-[3px]"
+                >
+                  {isLoading ? "Loading..." : "Log out"}
+                </h1>
+              </Popover.Panel>
+            </Transition>
+          </>
+        )}
+      </Popover>
     </div>
   );
 }
