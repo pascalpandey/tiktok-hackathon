@@ -6,6 +6,7 @@ import { SlLocationPin } from 'react-icons/sl'
 import Link from 'next/link'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import ShopItem from '../../components/ShopItem'
+import ReviewUploader from '../../../../components/uploadReview'
 
 const ProductsPage = () => {
     {/* hardcoded values: */ }
@@ -63,7 +64,11 @@ const ProductsPage = () => {
                             <button id="FollowButton" className='h-7 w-24 bg-ttred text-white rounded-sm mt-5'> Follow</button>
 
                         </div>
-                        <p className='font-bold mb-1 pt-4 pb-1 border-t'>Reviews</p>
+                        <p className='font-bold mb-1 pt-4 pb-1 border-t'>
+                            Reviews
+                            <span className='ml-[69.1%]'><ReviewUploader/></span>
+                        </p>
+                        
                         <div className='flex flex-row flex-wrap mb-4'>
                             <ReviewMini caption="test caption"/>
                             <ReviewMini caption="test caption"/>
