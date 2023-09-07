@@ -35,7 +35,7 @@ export default function Products() {
   const items = data?.pages.flatMap((page) => page.data)
 
   return (
-    <div className='px-4 py-3 flex gap-3 flex-wrap  '>
+    <div className='px-4 py-3 flex gap-4 flex-wrap'>
       {items?.map((item, i) => {
         if (i === items.length - 1) return (
           <div ref={ref}>
@@ -48,6 +48,8 @@ export default function Products() {
             location="Singapore"
             rating={item.rating}
             imageUrl={item.imageUrl}
+            username={item.shop.user.username}
+            itemId={item.itemId}
           />
           </div>
         )
@@ -60,7 +62,8 @@ export default function Products() {
           location="Singapore"
           rating={item.rating}
           imageUrl={item.imageUrl}
-          ref={ref}
+          username={item.shop.user.username}
+          itemId={item.itemId}
         />
       })}
     </div>
