@@ -74,11 +74,11 @@ export default function ReviewUploader(){
     return(
         <>
         <button
-          className="w-32 mx-1 border h-3/5 text-lg p-1 rounded hover:bg-gray-100"
+          className="w-24 h-8 border h-3/5 text-sm px-4 rounded bg-ttred text-white hover:bg-rose-600 font-normal"
           type="button"
           onClick={() => setShowUploadForm(true)}
         >
-          + Upload
+          + Review
         </button>
         <Transition appear show={showUploadForm || showPreviewForm} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={() => resetForm()}>
