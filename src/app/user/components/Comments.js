@@ -46,7 +46,7 @@ const Comments = () => {
 
             {
                 showComment && 
-                <div className=''>
+                <div className='w-[0px] h-[0px]'>
                     <div className='relative bg-black w-[345px] h-[525px] right-[366px] bottom-[338px] rounded opacity-20'
                         onClick={() => setShowComment(false)}>
                     </div>
