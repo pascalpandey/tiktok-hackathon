@@ -16,9 +16,11 @@ model User {
   name String?
   password String
   bio String?
+  imgUrl String?
   following User[] @relation("following")
   followers User[] @relation("following")
   comments Comment[]
+  reviews Review[]
   likes Int @default(0)
   shop Shop?
 }
@@ -26,7 +28,6 @@ model User {
 model Shop {
   shopId Int @id @default(autoincrement())
   location String?
-  rating Float?
   items Item[]
   userId Int @unique
   user User @relation(fields: [userId], references: [userId], onDelete: Cascade) 
@@ -39,6 +40,7 @@ model Item {
   name String
   price Float
   shopId Int
+  rating Float?
   shop Shop @relation(fields: [shopId], references: [shopId], onDelete: Cascade)
   reviews Review[]
 }
@@ -46,11 +48,13 @@ model Item {
 model Review {
   reviewId Int @id @default(autoincrement())
   likes Int @default(0)
+  userId Int
   rating Float
   description String
   itemId Int
   videoUrl String
   comments Comment[]
+  user User @relation(fields: [userId], references: [userId], onDelete: Cascade)
   item Item @relation(fields: [itemId], references: [itemId], onDelete: Cascade)
 }
 
