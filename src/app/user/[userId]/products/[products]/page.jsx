@@ -4,7 +4,7 @@ import ShopNavbar from './components/ShopNavbar'
 import ReviewMini from './components/ReviewMini'
 import { SlLocationPin } from 'react-icons/sl'
 import Link from 'next/link'
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
+import { AiFillStar, AiOutlineStar, AiFillHeart } from 'react-icons/ai'
 import ShopItem from '../../../components/ShopItem'
 import { prisma } from '../../../../api/helpers'
 import ReviewUploader from '../../../../../components/uploadReview'
@@ -58,6 +58,11 @@ const ProductsPage = async ({ params }) => {
 
             <p className='font-bold w-fit mb-1'>Details</p>
             <p className='text-sm'>{item.description}</p>
+
+            <button className='h-8 w-48 bg-ttred text-white rounded-sm mt-5 px-5 flex justify-around items-center'>
+              <AiFillHeart className="mt-1 mr-1" size={20} color="#FFF"/>
+              <p>Add to Wishlist</p>
+            </button>
 
             <div id="Reviews-tag" className='border-t py-3 mt-4 flex flex-row justify-between'>
               <div className='flex flex-row'>
