@@ -7,9 +7,10 @@ import axios from 'axios';
 import { useMutation } from "@tanstack/react-query";
 import { MdPhotoCamera } from 'react-icons/md';
 import { Switch } from '@mui/material';
+import { toast } from "react-hot-toast";
 import { pink } from '@mui/material/colors';
 import { alpha, styled } from '@mui/material/styles';
-import {usePathname} from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 const PinkSwitch = styled(Switch)(({ theme }) => ({
     '& .MuiSwitch-switchBase.Mui-checked': {
@@ -72,15 +73,6 @@ const EditProfile = () => {
                         <div className='ml-10 flex flex-col'>
                             <div className='my-1 flex flex-row gap-4'>
                                 <div className='flex flex-col'>
-                                    <label className='text-sm'>Username</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Username"
-                                        className="p-2 w-56 bg-gray-50 text-black mb-4 rounded"
-                                        {...register("userName")}
-                                    />
-                                </div>
-                                <div className='flex flex-col'>
                                     <label className='text-sm'>Name</label>
                                     <input
                                         type="text"
@@ -89,9 +81,6 @@ const EditProfile = () => {
                                         {...register("name")}
                                     />
                                 </div>
-
-                            </div>
-                            <div className='mt-2 mb-1 '>
                                 <div className='flex flex-col'>
                                     <label className='text-sm'>Password</label>
                                     <input
@@ -101,6 +90,11 @@ const EditProfile = () => {
                                         {...register("password")}
                                     />
                                 </div>
+
+
+                            </div>
+                            <div className='mt-2 mb-1 '>
+
 
                             </div>
                             <div className='mt-2 mb-1 '>

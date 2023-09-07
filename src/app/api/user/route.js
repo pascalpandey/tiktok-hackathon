@@ -29,7 +29,6 @@ export async function PATCH(req) {
       username: data.sender,
     },
     data:{
-      username: data.userName,
       password: data.password,
       bio: data.bio,
       name: data.name,
