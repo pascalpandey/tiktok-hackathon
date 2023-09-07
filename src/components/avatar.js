@@ -44,8 +44,8 @@ export default function Avatar() {
                   className="rounded-full w-10 h-10"
                   layout={'fill'} 
                   objectFit={'contain'} 
-                  alt="product image"
-                  src={data?.data?.imgUrl}
+                  alt="profile image"
+                  src={data?.data?.imgUrl ?? ""}
                 />
               </div>
             </Popover.Button>
