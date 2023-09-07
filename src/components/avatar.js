@@ -1,13 +1,22 @@
 "use client"
 
 import { Popover, Transition } from "@headlessui/react";
+import axios from "axios";
 import { Fragment } from "react";
 import { toast } from "react-hot-toast";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import Link from "next/link";
 import Image from "next/image";
 
 export default function Avatar() {
   const queryClient = useQueryClient();
+  const { data, error } = useQuery({
+    queryFn: async () => {
+      const data = await axios.get(`http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
+      return data
+    },
+    queryKey: ["checkLogIn"]
+  })
   const { mutate, isLoading } = useMutation({
     mutationFn: () => {
       localStorage.clear("JWT_TOKEN");
@@ -46,6 +55,7 @@ export default function Avatar() {
               >
                 {isLoading? 'Loading...' : 'Log out'}
               </h1>
+              <Link href={`/user/${data?.data}/editProfile`} className="my-1 font-semibold text-lg" >Edit Profile</Link>
             </Popover.Panel>
           </Transition>
         </>

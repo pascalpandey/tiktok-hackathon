@@ -24,7 +24,7 @@ const UserPage = () => {
     },
     queryKey: [""]
   })
-  console.log('wow')
+
   const { data: LoginData, data: LoginError } = useQuery({
     queryFn: async () => {
  
@@ -36,8 +36,7 @@ const UserPage = () => {
     },
     queryKey: ["checkLogIn"]
   })
-  console.log(LoginData?.data.userName===path[path.length-1])
-  console.log(LoginData)
+
   const userName = data?.data.username;
   const name = data?.data.name;
   const isShop = data?.data.shop;

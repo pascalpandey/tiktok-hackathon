@@ -41,7 +41,7 @@ const Review = ({ username, shop, desc, audio, like, bm, comments, shared }) => 
         </div>
         <div className="flex flex-row w-full h-full">
 
-          <div className="h-full w-2/3 border mx-1 rounded-lg bg-red">
+          <div className="h-full w-2/3 mx-1 rounded-lg bg-red">
             {/* insert image tiktok content link */}
           </div>
 
