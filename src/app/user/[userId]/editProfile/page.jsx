@@ -89,7 +89,7 @@ const EditProfile = () => {
                   <div className='w-28 h-28 rounded-full mt-1 relative'>
                     <Image
                       className='w-28 h-28 rounded-full mt-1 relative'
-                      src={getValues("frontImgUrl") ?? data?.data?.imgUrl}
+                      src={getValues("frontImgUrl") ?? data?.data?.imgUrl ?? ""}
                       layout={'fill'}
                       objectFit={'contain'} />
                   </div>
