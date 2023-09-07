@@ -19,3 +19,32 @@ export async function POST(req) {
 
   return new Response("OK", { status: 200 });
 }
+
+export async function GET(req) {
+  try {
+    const userName = await req.nextUrl.searchParams.get('userName');
+      
+      const user = await prisma.user.findUnique({
+        where: {
+          username: userName,
+        },
+      });
+      console.log(user);
+
+      if (!user) return new Response("Username not found!", { status: 404 });
+
+      return new Response(JSON.stringify({
+        "username":user.username,
+        "name":user.name,
+        "bio":user.bio,
+        "following":user.following,
+        "followers":user.followers,
+        "reviews":user.reviews,
+        "likes":user.likes,
+        "shop":user.shop,
+      }), { status: 200 }); 
+    
+  } catch (err) {
+    return new Response(err, { status: 500 });
+  }
+}

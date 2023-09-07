@@ -5,8 +5,8 @@ import ReviewMini from './components/ReviewMini'
 import { SlLocationPin } from 'react-icons/sl'
 import Link from 'next/link'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
-import ShopItem from '../../components/ShopItem'
-import { prisma } from '../../../api/helpers'
+import ShopItem from '../../../components/ShopItem'
+import { prisma } from '../../../../api/helpers'
 
 const ProductsPage = async ({params}) => {
   const username = params.userId

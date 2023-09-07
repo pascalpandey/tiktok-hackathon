@@ -19,6 +19,7 @@ model User {
   following User[] @relation("following")
   followers User[] @relation("following")
   comments Comment[]
+  reviews Review[]
   likes Int @default(0)
   shop Shop?
 }
@@ -46,11 +47,13 @@ model Item {
 model Review {
   reviewId Int @id @default(autoincrement())
   likes Int @default(0)
+  userId Int
   rating Float
   description String
   itemId Int
   videoUrl String
   comments Comment[]
+  user User @relation(fields: [userId], references: [userId], onDelete: Cascade)
   item Item @relation(fields: [itemId], references: [itemId], onDelete: Cascade)
 }
 
