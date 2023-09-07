@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import ShopItem from '../../components/ShopItem'
 import { prisma } from '../../../api/helpers'
+import ReviewUploader from '../../../../components/uploadReview'
 
 const ProductsPage = async ({params}) => {
   const username = params.userId
@@ -71,17 +72,21 @@ const ProductsPage = async ({params}) => {
               </div>
               <button id="FollowButton" className='h-7 w-24 bg-ttred text-white rounded-sm mt-5'> Follow</button>
 
-            </div>
-            <p className='font-bold mb-1 pt-4 pb-1 border-t'>Reviews</p>
-            <div className='flex flex-row flex-wrap mb-4'>
-              <ReviewMini caption="test caption" />
-              <ReviewMini caption="test caption" />
-              <ReviewMini caption="test caption" />
-              <ReviewMini caption="test caption" />
-              <ReviewMini caption="test caption" />
-              <ReviewMini caption="test caption" />
-
-            </div>
+                        </div>
+                        <p className='font-bold mb-1 pt-4 pb-1 border-t'>
+                            Reviews
+                            <span className='ml-[69.1%]'><ReviewUploader/></span>
+                        </p>
+                        
+                        <div className='flex flex-row flex-wrap mb-4'>
+                            <ReviewMini caption="test caption"/>
+                            <ReviewMini caption="test caption"/>
+                            <ReviewMini caption="test caption"/>
+                            <ReviewMini caption="test caption"/>
+                            <ReviewMini caption="test caption"/>
+                            <ReviewMini caption="test caption"/>
+                       
+                        </div>
 
             <p id="Recommended-tag" className='font-bold mb-1 pt-4 pb-1 border-t'>Recommended</p>
             <div className='flex flex-row flex-wrap gap-2'>
