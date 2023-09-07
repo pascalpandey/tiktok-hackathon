@@ -18,7 +18,6 @@ const UserPage = () => {
   const path = usePathname().split('/');
   const { data, error, isLoading } = useQuery({
     queryFn: async () => {
-      console.log('wow123')
       const data = await axios.get(`http://localhost:3000/api/user?userName=${path[path.length-1]}`)
       return data
     },
@@ -27,11 +26,7 @@ const UserPage = () => {
 
   const { data: LoginData, data: LoginError } = useQuery({
     queryFn: async () => {
- 
-      console.log('test')
       const data = await axios.get(`http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
-      console.log(data)
-
       return data
     },
     queryKey: ["checkLogIn"]

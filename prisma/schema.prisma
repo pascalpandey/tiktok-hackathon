@@ -11,58 +11,59 @@ datasource db {
 }
 
 model User {
-  userId Int @id @default(autoincrement())
-  username String @unique
-  name String?
-  password String
-  bio String?
-  imgUrl String?
-  following User[] @relation("following")
-  followers User[] @relation("following")
-  comments Comment[]
-  reviews Review[]
-  likes Int @default(0)
-  shop Shop?
+  userId    Int       @id @default(autoincrement())
+  username  String    @unique
+  name      String?
+  password  String
+  bio       String?
+  imgUrl    String?
+  following User[]    @relation("following")
+  followers User[]    @relation("following")
+  comments  Comment[]
+  reviews   Review[]
+  likes     Int       @default(0)
+  shop      Shop?
 }
 
 model Shop {
-  shopId Int @id @default(autoincrement())
+  shopId   Int     @id @default(autoincrement())
   location String?
-  items Item[]
-  userId Int @unique
-  user User @relation(fields: [userId], references: [userId], onDelete: Cascade) 
+  items    Item[]
+  userId   Int     @unique
+  user     User    @relation(fields: [userId], references: [userId], onDelete: Cascade)
 }
 
 model Item {
-  itemId Int @id @default(autoincrement())
-  imageUrl String
+  itemId      Int      @id @default(autoincrement())
+  imageUrl    String
   description String
-  name String
-  price Float
-  shopId Int
-  rating Float?
-  shop Shop @relation(fields: [shopId], references: [shopId], onDelete: Cascade)
-  reviews Review[]
+  name        String
+  price       Float
+  shopId      Int
+  rating      Float?
+  shop        Shop     @relation(fields: [shopId], references: [shopId], onDelete: Cascade)
+  reviews     Review[]
 }
 
 model Review {
-  reviewId Int @id @default(autoincrement())
-  likes Int @default(0)
-  userId Int
-  rating Float
+  reviewId    Int       @id @default(autoincrement())
+  likes       Int       @default(0)
+  userId      Int
+  rating      Float
   description String
-  itemId Int
-  videoUrl String
-  comments Comment[]
-  user User @relation(fields: [userId], references: [userId], onDelete: Cascade)
-  item Item @relation(fields: [itemId], references: [itemId], onDelete: Cascade)
+  itemId      Int
+  videoUrl    String
+  comments    Comment[]
+  user        User      @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  item        Item      @relation(fields: [itemId], references: [itemId], onDelete: Cascade)
 }
 
 model Comment {
-  commentId Int @id @default(autoincrement())
-  reviewId Int
-  date DateTime
-  userId Int
-  user User @relation(fields: [userId], references: [userId], onDelete: Cascade)
-  review Review @relation(fields: [reviewId], references: [reviewId], onDelete: Cascade)
+  commentId Int      @id @default(autoincrement())
+  reviewId  Int
+  date      DateTime @default(now())
+  comment   String
+  userId    Int
+  user      User     @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  review    Review   @relation(fields: [reviewId], references: [reviewId], onDelete: Cascade)
 }

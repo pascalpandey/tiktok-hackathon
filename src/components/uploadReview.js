@@ -74,7 +74,7 @@ export default function ReviewUploader(){
     return(
         <>
         <button
-          className="w-24 h-8 border h-3/5 text-sm px-4 rounded bg-ttred text-white hover:bg-rose-600 font-normal"
+          className="w-24 h-8 border text-sm px-4 rounded bg-ttred text-white hover:bg-rose-600 font-normal"
           type="button"
           onClick={() => setShowUploadForm(true)}
         >
