@@ -23,6 +23,14 @@ model User {
   reviews Review[]
   likes Int @default(0)
   shop Shop?
+  wishlist Wishlist?
+}
+
+model Wishlist {
+  WishlistId Int @id @default(autoincrement())
+  items Item[]
+  userId Int @unique
+  user User @relation(fields: [userId], references: [userId], onDelete: Cascade)
 }
 
 model Shop {

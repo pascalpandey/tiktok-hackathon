@@ -73,15 +73,16 @@ export default function Navbar() {
                 </Link>
               </li>
 
+              {(data && !error) && (
               <li className="py-3 px-3 inline-flex w-full hover:bg-gray-50">
                 <span className="w-1/6">
                   <Image src={heartSvg} alt="live" />
                 </span>
 
-                <Link href="/wishlist">
+                <Link href={`/user/${data.data}/wishlist`}>
                   <div className="pl-2">Wishlist</div>
                 </Link>
-              </li>
+              </li>)}
             </ul>
           </div>
           {(!data || error) && (
