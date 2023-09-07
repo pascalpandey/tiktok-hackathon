@@ -39,6 +39,11 @@ export async function POST(req) {
           itemId: data.itemId,
         },
       },
+      user: {
+        connect: {
+          userId: user.userId
+        }
+      }
     },
   });
 

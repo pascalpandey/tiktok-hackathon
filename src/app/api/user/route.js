@@ -29,9 +29,9 @@ export async function PATCH(req) {
       username: data.sender,
     },
     data:{
-      password: data.password,
       bio: data.bio,
       name: data.name,
+      imgUrl: data.imgUrl
     }
   })
 
