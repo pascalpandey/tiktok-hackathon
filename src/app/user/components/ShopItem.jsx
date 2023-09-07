@@ -1,11 +1,14 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { AiFillStar, AiOutlineStar, AiOutlineHeart} from 'react-icons/ai'
+import { AiFillStar, AiOutlineStar, AiOutlineHeart, AiFillHeart} from 'react-icons/ai'
 
 
-const ShopItem = ({ h, w, productName, price, rating, location, imageUrl, username, itemId }) => {
+
+const ShopItem = ({ h, w, productName, price, rating, location, imageUrl, username, itemId, inWishlist }) => {
+    const [wishlist, setWishlist] = useState(inWishlist ? true : false);
+
     const fullStar = new Array(Math.floor(rating ?? 0)).fill(0);
     const noStar = new Array(5 - Math.floor(rating ?? 0)).fill(0);
     return (
@@ -19,9 +22,13 @@ const ShopItem = ({ h, w, productName, price, rating, location, imageUrl, userna
                         <p className='text-sm leading-4 font-light mb-1'>{productName}</p>
                         <p className='font-bold text-lg'>SGD {price}</p>
                     </div>
-                    <button onClick={(e)=>{e.preventDefault();}}className='mt-0.5 border-2 border-ttred w-8 h-8 rounded hover:bg-red-50 flex items-center z-10'>
-                        <AiOutlineHeart className='mx-auto ' size={24} color="#FE2C55"/>
+
+                    <button onClick={(e)=>{e.preventDefault(); setWishlist((prev) => !prev)}}className='mt-0.5 border-2 border-ttred w-8 h-8 rounded hover:bg-red-50 flex items-center z-10'>
+                        { wishlist
+                        ? <AiFillHeart className='mx-auto ' size={24} color="#FE2C55"/> 
+                        : <AiOutlineHeart className='mx-auto ' size={24} color="#FE2C55"/>}
                     </button>
+
 
 
                 </div>
