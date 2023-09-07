@@ -11,7 +11,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Avatar from "../components/avatar";
 import Link from "next/link";
-import Uploader from "../components/uploader";
+import ProductUploader from "../components/uploader";
+import ReviewUploader from "./uploadReview";
 import { useState } from "react";
 
 export default function SearchBar() {
@@ -50,7 +51,7 @@ export default function SearchBar() {
             {!data || error ? (
               <>
                 <LoginSignupGeneric>
-                  <Uploader/>
+                  <ProductUploader/>
                   </LoginSignupGeneric>
                 <div className="w-32">
                 <LoginSignup />
@@ -58,7 +59,9 @@ export default function SearchBar() {
             </>
             ) : (
             <div>
-              <Uploader/>
+              <ProductUploader/>
+              {/* Ngetes review uploader */}
+              {/* <ReviewUploader /> */}
               <div className="relative">
                 <Avatar />
               </div>
