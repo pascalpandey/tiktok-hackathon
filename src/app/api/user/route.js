@@ -20,6 +20,27 @@ export async function POST(req) {
   return new Response("OK", { status: 200 });
 }
 
+export async function PATCH(req) {
+  const { data } = await req.json();
+
+  console.log(data);
+  const updateUser = await prisma.user.update({
+    where:{
+      username: data.sender,
+    },
+    data:{
+      username: data.userName,
+      password: data.password,
+      bio: data.bio,
+      name: data.name,
+    }
+  })
+
+  return new Response("OK", { status: 200 });
+}
+
+
+
 export async function GET(req) {
   try {
     const userName = await req.nextUrl.searchParams.get('userName');

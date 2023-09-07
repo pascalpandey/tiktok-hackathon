@@ -12,7 +12,6 @@ import axios from "axios";
 import Avatar from "../components/avatar";
 import Link from "next/link";
 import ProductUploader from "../components/uploader";
-import ReviewUploader from "./uploadReview";
 import { useState } from "react";
 
 export default function SearchBar() {
@@ -27,7 +26,7 @@ export default function SearchBar() {
   });
   const [searchValue, setSearchValue] = useState("")
     return(
-        <div className="fixed w-screen h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
+        <div className="fixed w-screen  h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
             <Link href="/" className="h-full w-[210px] py-2 flex items-center">
                 <SiTiktok className="ml-7 mr-2" size={30}/> 
                 <p className="font-bold text-3xl "> Shop</p>
@@ -47,7 +46,7 @@ export default function SearchBar() {
                 </form>
                 
             </div>
-            <div className="h-full w-[210px] flex items-center pr-5">
+            <div className="h-full flex items-center pr-5">
             {!data || error ? (
               <>
                 <LoginSignupGeneric>

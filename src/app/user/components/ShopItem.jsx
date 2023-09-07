@@ -16,7 +16,7 @@ const ShopItem = ({ h, w, productName, price, rating, location, imageUrl, userna
                 </div>
                 <div className='flex flex-row justify-between w-full'>
                     <div className='flex flex-col'>
-                        <p className='text-sm leading-4 font-light mb-2'>{productName}</p>
+                        <p className='text-sm leading-4 font-light mb-1'>{productName}</p>
                         <p className='font-bold text-lg'>SGD {price}</p>
                     </div>
                     <button onClick={(e)=>{e.preventDefault();}}className='mt-0.5 border-2 border-ttred w-8 h-8 rounded hover:bg-red-50 flex items-center z-10'>
