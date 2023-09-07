@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import ShopItem from '../../../components/ShopItem'
 import { prisma } from '../../../../api/helpers'
-import ReviewUploader from '../../../../components/uploadReview'
+import ReviewUploader from '../../../../../components/uploadReview'
 
 const ProductsPage = async ({ params }) => {
   const username = params.userId
