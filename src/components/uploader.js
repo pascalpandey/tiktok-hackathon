@@ -49,6 +49,9 @@ export default function ProductUploader(){
         onUploadError: (err) => {
             toast.error(err.message);
         },
+        onClientUploadComplete: () => {
+          toast.success("Image upload successful! Uploading item data...")
+        }
     });
 
     const handleSubmit = async (e) => {

@@ -7,8 +7,9 @@ import Link from 'next/link'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import ShopItem from '../../../components/ShopItem'
 import { prisma } from '../../../../api/helpers'
+import ReviewUploader from '../../../../components/uploadReview'
 
-const ProductsPage = async ({params}) => {
+const ProductsPage = async ({ params }) => {
   const username = params.userId
   const itemId = params.products
   const user = await prisma.user.findUnique({
@@ -36,7 +37,7 @@ const ProductsPage = async ({params}) => {
 
         <div className='flex flex-row w-fit mx-auto mt-[49px] '>
           <div className='mr-12 w-320 h-320 border rounded-md relative'>
-                <Image src={item.imageUrl} layout={'fill'} objectFit={'contain'} alt="product image"/>
+            <Image src={item.imageUrl} layout={'fill'} objectFit={'contain'} alt="product image" />
           </div>
           <div className='w-520 h-620'>
 
@@ -72,7 +73,10 @@ const ProductsPage = async ({params}) => {
               <button id="FollowButton" className='h-7 w-24 bg-ttred text-white rounded-sm mt-5'> Follow</button>
 
             </div>
-            <p className='font-bold mb-1 pt-4 pb-1 border-t'>Reviews</p>
+            <div className='flex items-center border-t pt-4 mb-4'>
+              <p className='font-bold mr-auto'>Reviews</p>
+              <ReviewUploader itemId={itemId}/>
+            </div>
             <div className='flex flex-row flex-wrap mb-4'>
               <ReviewMini caption="test caption" />
               <ReviewMini caption="test caption" />
