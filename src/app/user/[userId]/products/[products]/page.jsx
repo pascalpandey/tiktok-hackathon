@@ -72,7 +72,7 @@ const ProductsPage = async ({ params }) => {
                     layout={'fill'}
                     objectFit={'contain'}
                     alt="product image"
-                    src={user.imgUrl} />
+                    src={user?.imgUrl ?? ""} />
                 </div>
                 <div className='my-4 mx-3'>
                   <Link href={`/user/${user.username}`} className='text-lg font-bold'>{user.username}</Link>
