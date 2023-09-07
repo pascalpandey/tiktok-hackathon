@@ -60,10 +60,10 @@ const Comments = () => {
                             })
                         }
                     </div>
-                    <div className='relative w-[345px] h-[40px] right-[366px] bottom-[738px] bg-white border-t rounded-s     flex items-center px-2 shadow-[0px_-5px_15px_-10px_rgba(0,0,0,0.3)]'>
+                    <div className='relative w-[345px] h-[40px] right-[366px] bottom-[738px] bg-white border-t rounded-s flex items-center px-2 shadow-[0px_-5px_15px_-10px_rgba(0,0,0,0.3)]'>
                         <input className='w-5/6 mx-2 focus:outline-none text-[10px]' placeholder='Add comment' value={commentDesc}
                             onInput={(e) => {setCommentDesc(e.target.value)}}></input>
-                        <button className='mx-auto bg-ttred text-white w-[24px] rounded-full'
+                        <button className='mx-auto bg-ttred text-white w-[24px] rounded-full hover:bg-rose-600' disabled={!commentDesc}
                             onClick={() => {handleSubmit()}}>{'>'}</button>
                     </div>
                 </div>
