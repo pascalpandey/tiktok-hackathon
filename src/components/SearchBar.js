@@ -27,6 +27,12 @@ export default function SearchBar() {
     queryKey: ["checkLogIn"],
   });
   const [searchValue, setSearchValue] = useState("");
+  const handleSearch = (e) => {
+    setSearchValue(e.target.value);
+  }
+  const searchItem = (e) => {
+    e.preventDefault();
+  }
   return (
     <div className="fixed w-screen  h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
       <Link href="/" className="h-full w-[210px] py-2 flex items-center">
@@ -48,7 +54,7 @@ export default function SearchBar() {
               <Image src={deleteSvg} alt="del" />
             </div>
           </span>
-          <button type="submit">
+          <button type="submit" onClick={(e) => searchItem(e)}>
             <Image src={searchSvg} alt="search" />
           </button>
         </form>
@@ -71,8 +77,6 @@ export default function SearchBar() {
         ) : (
           <div className="ml-12">
             <ProductUploader />
-            {/* Ngetes review uploader */}
-            {/* <ReviewUploader /> */}
             <div className="relative">
               <Avatar />
             </div>

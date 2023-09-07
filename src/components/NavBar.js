@@ -27,24 +27,6 @@ export default function Navbar() {
         <div className="container mx-auto px-4 h-full">
           <div className="flex justify-between items-start flex-col py-3 border-b border-b-slate-200 text-white">
             <ul className="gap-x-6 text-lg text-black font-bold">
-              {/* <li className="py-3 px-3 inline-flex w-full hover:bg-gray-50">
-                <span className="w-1/6">
-                  <Image src={homeSvg} alt="foryou" />
-                </span>
-                <Link href="/foryou">
-                  <div className="pl-2">For You</div>
-                </Link>
-              </li> */}
-
-                {/* <li className="py-3 px-3 inline-flex w-full hover:bg-gray-50">
-                  <span className="w-1/6">
-                    <Image src={followingSvg} alt="following"/>
-                  </span>
-                  <Link href="/following">
-                    <div className="pl-2">Following</div>
-                  </Link>
-                </li> */}
-
                 <li className="py-3 px-3 inline-flex w-full hover:bg-gray-50">
                   <span className="w-1/6">
                     <Image src={shopSvg} alt="shop"/>
@@ -60,16 +42,6 @@ export default function Navbar() {
                 </span>
                 <Link href="/reviews">
                   <div className="pl-2">Reviews</div>
-                </Link>
-              </li>
-
-              <li className="py-3 px-3 inline-flex w-full hover:bg-gray-50">
-                <span className="w-1/6">
-                  <Image src={liveSvg} alt="live" />
-                </span>
-
-                <Link href="/Live">
-                  <div className="pl-2">Live</div>
                 </Link>
               </li>
 

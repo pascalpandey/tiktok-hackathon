@@ -46,16 +46,16 @@ export default function Avatar() {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute right-0 -translate-x-[320px] top-auto z-10 mt-3 w-[150px] shadow-lg h-[200px] rounded-md p-4 bg-white">
-              <h1
+            <Popover.Panel className="absolute right-0 -translate-x-[320px] top-auto z-10 mt-3 w-[150px] shadow-lg rounded-md p-6 bg-white h-[100px]">
+              <Link href={`/user/${data?.data}`} className="w-full my-4 font-semibold text-md hover:text-ttred" >Profile</Link>
+              <div
                 onClick={() => {
                   mutate();
                 }}
-                className="cursor-pointer font-semibold text-lg"
+                className="cursor-pointer font-semibold text-md my-4 hover:text-ttred"
               >
                 {isLoading? 'Loading...' : 'Log out'}
-              </h1>
-              <Link href={`/user/${data?.data}/editProfile`} className="my-1 font-semibold text-lg" >Edit Profile</Link>
+              </div>
             </Popover.Panel>
           </Transition>
         </>
