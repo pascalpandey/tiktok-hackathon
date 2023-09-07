@@ -5,6 +5,7 @@ import { PiShareFatFill } from 'react-icons/pi';
 import { AiFillHeart } from 'react-icons/ai';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 import { FaCommentDots, FaItunesNote} from 'react-icons/fa';
+import Comments from './Comments';
 
 const Review = ({ username, shop, desc, audio, like, bm, comments, shared }) => {
   return (
@@ -54,9 +55,8 @@ const Review = ({ username, shop, desc, audio, like, bm, comments, shared }) => 
               <BsFillBookmarkFill className="m-auto" size={22} />
             </button>
             <p className="mx-auto text-sm font-semibold text-gray-500">{comments}</p>
-            <button className="bg-gray-100 w-12 h-12 mx-auto my-2 rounded-full">
-              <FaCommentDots className="m-auto" size={22} />
-            </button>
+            <Comments />
+
             <p className="mx-auto text-sm font-semibold text-gray-500">{like}</p>
             <button className="bg-gray-100 w-12 h-12 mx-auto my-2 rounded-full">
               <AiFillHeart className="m-auto" size={25} />
