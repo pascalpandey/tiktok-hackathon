@@ -10,7 +10,7 @@ import axios from 'axios';
 
 
 
-const Comments = () => {
+const Comments = ({reviewId}) => {
     const [showComment, setShowComment] = useState(false);
     const [commentDesc, setCommentDesc] = useState("");
     const [commentList, setCommentList] = useState([]);
@@ -27,8 +27,8 @@ const Comments = () => {
     }
     const { data: commentData, error } = useQuery({
         queryFn: async () => {
-            const data = await axios.get(`http://localhost:3000/api/user/comments?reviewId=${reviewId}}`)
-            return data;
+            const data = await axios.get(`http://localhost:3000/api/comments?reviewId=${reviewId}`)
+            return data
         },
 
         queryKey: [""]

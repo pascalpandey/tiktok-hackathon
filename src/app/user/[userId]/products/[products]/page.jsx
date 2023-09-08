@@ -60,7 +60,7 @@ const ProductsPage = async ({ params }) => {
             <p className='text-sm'>{item.description}</p>
 
             <button className='h-8 w-48 bg-ttred text-white rounded-sm mt-5 px-5 flex justify-around items-center'>
-              <AiFillHeart className="mt-1 mr-1" size={20} color="#FFF"/>
+              <AiFillHeart className="mt-1 mr-1" size={20} color="#FFF" />
               <p>Add to Wishlist</p>
             </button>
 
@@ -96,58 +96,10 @@ const ProductsPage = async ({ params }) => {
               <ReviewMini caption="test caption" />
               <ReviewMini caption="test caption" />
               <ReviewMini caption="test caption" />
-
             </div>
-
-            <p id="Recommended-tag" className='font-bold mb-1 pt-4 pb-1 border-t'>Recommended</p>
-            <div className='flex flex-row flex-wrap gap-2'>
-              {/* <div className='w-58 border h-2'></div> */}
-              <ShopItem
-                h={72}
-                w={60}
-                productName="Nike Air Max 100"
-                desc="industry. Lorem Ipsum has been the industry's standard dummy"
-                price="$100.00"
-                location="Singapore"
-                rating={4.6}
-              />
-              <ShopItem
-                h={72}
-                w={60}
-                productName="Nike Air Max 100"
-                desc="industry. Lorem Ipsum has been the industry's standard dummy"
-                price="$100.00"
-                location="Singapore"
-                rating={4.6}
-              />
-              <ShopItem
-                h={72}
-                w={60}
-                productName="Nike Air Max 100"
-                desc="industry. Lorem Ipsum has been the industry's standard dummy"
-                price="$100.00"
-                location="Singapore"
-                rating={4.6}
-              />
-              <ShopItem
-                h={72}
-                w={60}
-                productName="Nike Air Max 100"
-                desc="industry. Lorem Ipsum has been the industry's standard dummy"
-                price="$100.00"
-                location="Singapore"
-                rating={4.6}
-              />
-
-
-            </div>
-
           </div>
-
           <div className='ml-12 w-64 h-80 border-2 border-gray-300 rounded-md'>
-
           </div>
-
         </div>
       </div>
     </div>

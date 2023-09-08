@@ -4,15 +4,23 @@ import Link from "next/link";
 import { PiShareFatFill } from 'react-icons/pi';
 import { AiFillHeart } from 'react-icons/ai';
 import { BsFillBookmarkFill } from 'react-icons/bs';
-import { FaCommentDots, FaItunesNote} from 'react-icons/fa';
+import { FaCommentDots, FaItunesNote } from 'react-icons/fa';
 import Comments from './Comments';
 
-const Review = ({ username, shop, desc, audio, like, bm, comments, shared }) => {
+const Review = ({ username, shop, desc, audio, like, bm, comments, shared, reviewId, videoUrl, userImgUrl }) => {
   return (
 
     <div className="flex h-620 w-590 border-b pb-4 mt-6 mx-auto">
       <div className="h-full w-20">
-        <Image className="rounded-full w-14 h-14"></Image>
+        <div className="rounded-full w-14 h-14 relative">
+          <Image
+            className="rounded-full w-14 h-14"
+            layout={'fill'}
+            objectFit={'contain'}
+            alt="profile image"
+            src={userImgUrl ?? ""}
+          />
+        </div>
       </div>
 
       <div className="flex flex-col w-full">
@@ -28,9 +36,9 @@ const Review = ({ username, shop, desc, audio, like, bm, comments, shared }) => 
               <p className="text-base font-light mx-1">{desc}</p>
             </div>
             <div className="flex flex-row ">
-              
-            <FaItunesNote className="mt-2 mr-1" size={14}/>
-            <p className="text-sm font-light mx-1 my-1">{audio}</p>
+
+              <FaItunesNote className="mt-2 mr-1" size={14} />
+              <p className="text-sm font-light mx-1 my-1">{audio}</p>
             </div>
 
           </div>
@@ -42,7 +50,19 @@ const Review = ({ username, shop, desc, audio, like, bm, comments, shared }) => 
         <div className="flex flex-row w-full h-full">
 
           <div className="h-full w-2/3 mx-1 rounded-lg bg-red">
-            {/* insert image tiktok content link */}
+            <div className="w-full h-full relative ">
+              <video
+                autoPlay
+                controls
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                }}
+              >
+                <source src={videoUrl} />
+              </video>
+            </div>
           </div>
 
           <div className="flex flex-col-reverse w-20 ">
@@ -55,7 +75,7 @@ const Review = ({ username, shop, desc, audio, like, bm, comments, shared }) => 
               <BsFillBookmarkFill className="m-auto" size={22} />
             </button>
             <p className="mx-auto text-sm font-semibold text-gray-500">{comments}</p>
-            <Comments />
+            <Comments reviewId={reviewId} />
 
             <p className="mx-auto text-sm font-semibold text-gray-500">{like}</p>
             <button className="bg-gray-100 w-12 h-12 mx-auto my-2 rounded-full">
