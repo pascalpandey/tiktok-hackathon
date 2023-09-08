@@ -33,12 +33,12 @@ export default function ReviewPage() {
 
   const reviews = data?.pages.flatMap((page) => page.data)
   const skeletonArray = Array.from({ length: 1 });
-  console.log(reviews)
+
   return (
-    <main className="mx-auto px-40 gap-4">
+    <main className="mx-auto pr-[170px] gap-4">
       {isLoading ?
         skeletonArray.map((_, i) => (
-          <div className="mt-4">
+          <div className="mt-4 pr-[65px]">
             <div className="h-620 w-590 flex flex-row">
               <div className="h-full w-20">
                 <Skeleton variant="circular" animation="wave" width={56} height={56} />
@@ -67,10 +67,12 @@ export default function ReviewPage() {
                 username={review.user.username}
                 shop={review?.user?.name ?? ""}
                 desc={review.description}
-                audio="Original Audio"
+                itemName={review.item.name}
+                rating={review.rating}
                 reviewId={review.reviewId}
                 videoUrl={review.videoUrl}
                 userImgUrl={review.user?.imgUrl ?? ""}
+                itemId={review.item.itemId}
                 shared={100}
                 comments={123}
                 like={5232}
@@ -79,10 +81,15 @@ export default function ReviewPage() {
             </div>
           )
           return <Review
-            username="Kevin JK"
-            shop="BigBallBrand"
-            desc="Good quality, definitely buy again!"
-            audio="Industry Baby"
+            username={review.user.username}
+            shop={review?.user?.name ?? ""}
+            desc={review.description}
+            itemName={review.item.name}
+            rating={review.rating}
+            reviewId={review.reviewId}
+            videoUrl={review.videoUrl}
+            userImgUrl={review.user?.imgUrl ?? ""}
+            itemId={review.item.itemId}
             shared={100}
             comments={123}
             like={5232}
