@@ -52,7 +52,7 @@ export async function GET(req) {
       console.log(user);
 
       if (!user) return new Response("Username not found!", { status: 404 });
-
+      
       return new Response(JSON.stringify({
         "username":user.username,
         "name":user.name,

@@ -24,6 +24,15 @@ const UserPage = () => {
     queryKey: [""]
   })
 
+  const { data: productData, error: productError, isLoading: productLoad } = useQuery({
+    queryFn: async () => {
+      const data = await axios.get(`http://localhost:3000/api/user/products?userName=${path[path.length - 1]}`)
+      return data
+    },
+    queryKey: ["productKey"]
+  })
+
+console.log(productData?.data.shop.items)
   const { data: LoginData, data: LoginError } = useQuery({
     queryFn: async () => {
       const data = await axios.get(`http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
@@ -48,7 +57,7 @@ const UserPage = () => {
         <div className='flex flex-row'>
           {isLoading ? <Skeleton variant="circular" animation="wave" width={110} height={110} /> :
             <div className='w-28 h-28 rounded-full relative'>
-              <Image className='w-28 h-28 rounded-full' 
+              <Image className='w-28 h-28 rounded-full'
                 layout={'fill'}
                 objectFit={'contain'}
                 alt="profile image"
@@ -60,14 +69,14 @@ const UserPage = () => {
                 <Skeleton variant='text' animation="wave" height={30} width={120} /> : (error) ? "User Not Found" : userName}</p>
               {isShop && <MdOutlineShoppingCart className="ml-2 mt-1" size={23} />}
             </div>
-            <p className='mb-2'>{isLoading?<Skeleton className='-mt-1 -mb-1' animation="wave" variant='text' sx={{fontSize:'4rem'}} height={30} width={70}/>:name}</p>
-            
-            {LoginData?.data?.username===path[path.length-1]?
-            <Link href={`/user/${userName}/editProfile`} 
-            className='mt-4 w-44 h-8 transition flex items-center bg-ttred rounded hover:bg-[#e61942]'>
-              <p className=' text-white mx-auto'>Edit Profile</p>
-            </Link>:
-            <button className='mt-4 w-44 h-8 transition bg-ttred text-white rounded hover:bg-[#e61942]'>Follow</button>
+            <p className='mb-2'>{isLoading ? <Skeleton className='-mt-1 -mb-1' animation="wave" variant='text' sx={{ fontSize: '4rem' }} height={30} width={70} /> : name}</p>
+
+            {LoginData?.data?.username === path[path.length - 1] ?
+              <Link href={`/user/${userName}/editProfile`}
+                className='mt-4 w-44 h-8 transition flex items-center bg-ttred rounded hover:bg-[#e61942]'>
+                <p className=' text-white mx-auto'>Edit Profile</p>
+              </Link> :
+              <button className='mt-4 w-44 h-8 transition bg-ttred text-white rounded hover:bg-[#e61942]'>Follow</button>
             }
           </div>
         </div>
@@ -106,19 +115,16 @@ const UserPage = () => {
         <ReviewMini caption="Videos sample caption" />
         <ReviewMini caption="Videos sample caption" />
       </div>}
-      {data?.data?.shop?.items ? section === "Products" && <div className='w-full flex-wrap max-w-full flex flex-row'>
-        <ShopItem productName="2.0L water bote full metal al"
-          w={58}
-          h={72}
-          price={123}
-          location="singapore, singapore"
-          rating={4.5} />
-        <ShopItem productName="2.0L water bote full metal al"
-          w={58}
-          h={72}
-          price={123}
-          location="singapore, singapore"
-          rating={4.5} />
+      {productData ? section === "Products" && <div className='w-full flex-wrap max-w-full flex gap-2 pt-1 flex-row'>
+        {productData?.data?.shop?.items.map((item) =>
+          <ShopItem productName={item.name}
+            w={58}
+            h={72}
+            imageUrl={item.imageUrl}
+            price={item.price}
+            location="singapore, singapore"
+            rating={item.rating}
+          />)}
       </div> : section === "Products" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} isn't selling anything right now...`}</p>}
       {data?.data?.reviews ? section === "Reviews" && <div className='w-full flex-wrap max-w-full flex flex-row'>
         <ReviewMini caption="Review sample caption" />
