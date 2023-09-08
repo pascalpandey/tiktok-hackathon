@@ -16,14 +16,22 @@ const Comments = ({reviewId}) => {
     const [commentList, setCommentList] = useState([]);
 
     const clientUpdate = (userData) => {
-
-        const newComment = {
+        const serverComment = {
+            reviewId:reviewId,
             userId:userData?.data?.userId,
-            username: userData?.data?.username,
+            username:userData?.data?.username,
             comment: commentDesc,
         }
-        mutate(newComment);
-        setCommentList([...commentList, newComment]);
+        const clientComment = { 
+            comment: commentDesc,
+            user:{
+                imgUrl: userData?.data?.imgUrl,
+                username: userData?.data?.username,
+            }
+        }
+        console.log(clientComment);
+        mutate(serverComment);
+        setCommentList([...commentList, clientComment]);
     }
     const { data: commentData, error } = useQuery({
         queryFn: async () => {
@@ -36,7 +44,8 @@ const Comments = ({reviewId}) => {
 
     useEffect(() => {
         if (commentData) {
-            setCommentList(commentData);
+            console.log(commentData.data.comments)
+            setCommentList(commentData.data.comments);
         }
     }, [commentData]);
 
@@ -85,7 +94,9 @@ const Comments = ({reviewId}) => {
                             onInput={(e) => { setCommentDesc(e.target.value) }}
                         ></input>
                         <button type="submit" className=' bg-ttred rounded p-1 hover:bg-rose-600' disabled={!commentDesc}
-                            onClick={() => { clientUpdate(userData) }}>
+                            onClick={() => { 
+                                clientUpdate(userData)
+                                setCommentDesc("") }}>
                             <IoSend color="white" size={18} />
                         </button>
                     </div>
