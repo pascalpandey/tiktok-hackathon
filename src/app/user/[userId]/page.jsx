@@ -1,12 +1,12 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
 import Image from 'next/image'
 import { MdOutlineShoppingCart } from 'react-icons/md'
 import ShopItem from '../components/ShopItem'
 import ReviewMini from './products/[products]/components/ReviewMini'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, } from '@tanstack/react-query'
 import { usePathname } from 'next/navigation'
 import { Skeleton } from '@mui/material';
 import Follow from '../components/Follow';
@@ -52,18 +52,11 @@ const UserPage = () => {
   const desc = data?.data.bio;
   const reviews = data?.data.reviews;
   const skeletonArray = Array.from({ length: 5 });
-
-  const [dummyUser1, setDummyUser1] = useState({
-    userName: "noob_master_69",
-    followers: ["bebekjk_real"],
-    following: [],
-  })
-  const [dummyUser2, setDummyUser2] = useState({
-    userName: "bebekjk_real",
-    followers: [],
-    following: ["noob_master_69"],
-  })
-  
+  const isFollowing = followers?.some(obj => obj.username === LoginData?.data.username)
+  useEffect(() =>
+    {console.log(followers)
+    console.log(followers?.some(obj => obj.username === LoginData?.data.username)
+    )}, [followers])
   return (
     <div className='p-9 w-full'>
       <div className='w-590 h-fit flex flex-col mb-14'>
@@ -82,16 +75,16 @@ const UserPage = () => {
                 <Skeleton variant='text' animation="wave" height={30} width={120} /> : (error) ? "User Not Found" : userName}</p>
               {isShop && <MdOutlineShoppingCart className="ml-2 mt-1" size={23} />}
             </div>
-            <p className='mb-2'>{isLoading?<Skeleton className='-mt-1 -mb-1' animation="wave" variant='text' sx={{fontSize:'4rem'}} height={30} width={70}/>:name}</p>
-            
-            {LoginData?.data?.username===path[path.length-1]?
-            <Link href={`/user/${userName}/editProfile`} 
-            className='mt-4 w-44 h-8 transition flex items-center bg-ttred rounded hover:bg-[#e61942]'>
-              <p className=' text-white mx-auto'>Edit Profile</p>
-            </Link>:
-            
-            // FOLLOW FOLLOWAN
-            <Follow currUser={dummyUser1} myUser={dummyUser2} setCurrUser={setDummyUser1} setMyUser={setDummyUser2}/>
+            <p className='mb-2'>{isLoading ? <Skeleton className='-mt-1 -mb-1' animation="wave" variant='text' sx={{ fontSize: '4rem' }} height={30} width={70} /> : name}</p>
+
+            {LoginData?.data?.username === path[path.length - 1] ?
+              <Link href={`/user/${userName}/editProfile`}
+                className='mt-4 w-44 h-8 transition flex items-center bg-ttred rounded hover:bg-[#e61942]'>
+                <p className=' text-white mx-auto'>Edit Profile</p>
+              </Link> :
+
+              // FOLLOW FOLLOWAN
+              <Follow isFollowed={isFollowing} />
             }
           </div>
         </div>
