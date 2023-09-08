@@ -18,16 +18,17 @@ const Comments = () => {
     const clientUpdate = (userData) => {
 
         const newComment = {
+            userId:userData?.data?.userId,
             username: userData?.data?.username,
             comment: commentDesc,
         }
-        mutate(newComment)
+        mutate(newComment);
         setCommentList([...commentList, newComment]);
     }
     const { data: commentData, error } = useQuery({
         queryFn: async () => {
             const data = await axios.get(`http://localhost:3000/api/user/comments?reviewId=${reviewId}}`)
-            return data
+            return data;
         },
 
         queryKey: [""]
@@ -35,21 +36,21 @@ const Comments = () => {
 
     useEffect(() => {
         if (commentData) {
-            setCommentList(commentData)
+            setCommentList(commentData);
         }
     }, [commentData]);
 
     const { data: userData } = useQuery({
         queryFn: async () => {
             const data = await axios.get(`http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
-            return data
+            return data;
         },
         queryKey: ["checkLogIn"]
     })
     const { mutate, isLoading } = useMutation({
         mutationFn: async (data) => {
             const res = await axios.post(`http://localhost:3000/api/comments`, { data })
-            return res
+            return res;
         },
         mutationKey: [""]
     })
@@ -70,7 +71,7 @@ const Comments = () => {
                     <div className='relative bg-white w-[345px] h-[360px] right-[366px] bottom-[698px] rounded-md shadow-[0px_-10px_15px_-10px_rgba(0,0,0,0.3)] overflow-y-scroll px-2 pb-6'>
                         <h2 className='text-center text-sm mt-1.5 border-b pt-1 pb-2'>Comments</h2>
                         {
-                            commentList.map((commentItem) => {
+                            commentList?.map((commentItem) => {
                                 return (
                                     <CommentItem comment={commentItem} />
                                 )
