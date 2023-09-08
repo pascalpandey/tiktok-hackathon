@@ -21,7 +21,6 @@ export default function Avatar() {
     },
     queryKey: ["checkLogIn"],
   });
-  console.log(data, data?.data?.imgUrl)
   const { mutate, isLoading } = useMutation({
     mutationFn: () => {
       localStorage.clear("JWT_TOKEN");
