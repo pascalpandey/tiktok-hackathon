@@ -7,6 +7,7 @@ import { AiFillStar, AiOutlineStar, AiFillHeart } from 'react-icons/ai'
 import { prisma } from '../../../../api/helpers'
 import ReviewUploader from '../../../../../components/uploadReview'
 import Follow from '../../../components/Follow'
+import WishlistButtonText from '../../../../../components/wishlistButtonText'
 import LoginSignupGeneric from '../../../../../components/loginSignupGeneric'
 
 const ProductsPage = async ({ params }) => {
@@ -65,10 +66,7 @@ const ProductsPage = async ({ params }) => {
             <p className='font-bold w-fit mb-1'>Details</p>
             <p className='text-sm'>{item.description}</p>
             <LoginSignupGeneric>
-              <button className='h-8 w-[170px] bg-ttred text-white rounded-sm mt-5 px-3 flex justify-around items-center'>
-                <AiFillHeart className="mr-2" size={25} color="#FFF" />
-                <p>Add to Wishlist</p>
-              </button>
+            <WishlistButtonText/>
             </LoginSignupGeneric>
 
             <div id="Reviews-tag" className='border-t py-3 mt-4 flex flex-row justify-between'>

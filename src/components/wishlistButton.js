@@ -3,11 +3,14 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Context } from "./disableProgressBarContext";
+import { toast } from "react-hot-toast";
 
 export default function WishlistButton({ itemId }) {
   const queryClient = useQueryClient()
   const [added, setAdded] = useState(false)
+  const [ hideBar, setHideBar ] = useContext(Context);
 
   const { data: alreadyAdded, isLoading } = useQuery({
     queryFn: async () => {
@@ -41,8 +44,14 @@ export default function WishlistButton({ itemId }) {
   });
 
   const handleClick = (e) => {
+    setHideBar(true)
     setAdded(!added)
     mutate();
+    if (!added) {
+      toast.success("Successfully added to wishlist!")
+    } else {
+      toast.success("Successfully removed from wishlist!")
+    }
     e.stopPropagation();
     e.preventDefault();
   };
