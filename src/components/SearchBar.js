@@ -45,11 +45,10 @@ export default function SearchBar() {
             className="h-3/5 bg-transparent w-3/4 focus:outline-none ml-4"
             type="text"
             placeholder="TikTok is the best company"
-            onInput={(e) => handleSearch(e)}
+            onInput={(e) => {setSearchValue(e.target.value)}}
             value={searchValue}
           ></input>
           <span className="mx-2 border-r-solid border-r border-r-slate-300 h-1/2 px-2">
-            {/* Ini buat ngedelete search barnya kalo di pencet */}
             <div onClick={() => setSearchValue("")}>
               <Image src={deleteSvg} alt="del" />
             </div>
