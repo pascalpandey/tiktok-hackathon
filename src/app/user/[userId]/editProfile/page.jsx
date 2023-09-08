@@ -43,8 +43,11 @@ const EditProfile = () => {
 
   const { mutate, isLoading } = useMutation({
     mutationFn: async (data) => {
-      const res = await startUpload([data.imgUrl]);
-      const url = res[0].url;
+      let url = null;
+      if (data.imgUrl) {
+        const res = await startUpload([data.imgUrl]);
+        url = res[0].url;
+      }
       return await axios.patch("http://localhost:3000/api/user/", {
         data: { ...data, imgUrl: url },
       });
@@ -68,7 +71,7 @@ const EditProfile = () => {
     queryKey: ["checkLogIn"],
   });
 
-  const { register, handleSubmit, setValue, getValues } = useForm();
+  const { register, handleSubmit, setValue, getValues, watch } = useForm();
   const label = { inputProps: { "isPublic": true } };
 
   return (
