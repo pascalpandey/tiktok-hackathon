@@ -7,6 +7,7 @@ import { AiFillStar, AiOutlineStar, AiFillHeart } from 'react-icons/ai'
 import { prisma } from '../../../../api/helpers'
 import ReviewUploader from '../../../../../components/uploadReview'
 import Follow from '../../../components/Follow'
+import LoginSignupGeneric from '../../../../../components/loginSignupGeneric'
 
 const ProductsPage = async ({ params }) => {
   const username = params.userId
@@ -63,11 +64,12 @@ const ProductsPage = async ({ params }) => {
 
             <p className='font-bold w-fit mb-1'>Details</p>
             <p className='text-sm'>{item.description}</p>
-
-            <button className='h-8 w-48 bg-ttred text-white rounded-sm mt-5 px-5 flex justify-around items-center'>
-              <AiFillHeart className="mt-1 mr-1" size={20} color="#FFF" />
-              <p>Add to Wishlist</p>
-            </button>
+            <LoginSignupGeneric>
+              <button className='h-8 w-[170px] bg-ttred text-white rounded-sm mt-5 px-3 flex justify-around items-center'>
+                <AiFillHeart className="mr-2" size={25} color="#FFF" />
+                <p>Add to Wishlist</p>
+              </button>
+            </LoginSignupGeneric>
 
             <div id="Reviews-tag" className='border-t py-3 mt-4 flex flex-row justify-between'>
               <div className='flex flex-row'>
@@ -87,7 +89,7 @@ const ProductsPage = async ({ params }) => {
                   </div>
                 </div>
               </div>
-              <button id="FollowButton" className='h-7 w-24 bg-ttred text-white rounded-sm mt-5'> Follow</button>
+              {/* <button id="FollowButton" className='h-7 w-24 bg-ttred text-white rounded-sm mt-5'> Follow</button> */}
 
             </div>
             <div className='flex items-center border-t pt-4 mb-4'>
@@ -95,7 +97,7 @@ const ProductsPage = async ({ params }) => {
               <ReviewUploader itemId={itemId} />
             </div>
             <div className='flex flex-row flex-wrap mb-[40px]'>
-              <InfiniteScrollingReviews url={`http://localhost:3000/api/item/reviews?itemId=${itemId}`} parentWidth={490} reviewWidth={160} reviewHeight={224} username={username} itemId={itemId}/>
+              <InfiniteScrollingReviews url={`http://localhost:3000/api/item/reviews?itemId=${itemId}`} parentWidth={490} reviewWidth={160} reviewHeight={224} username={username} itemId={itemId} />
             </div>
           </div>
           <div className='ml-12 w-64 h-80 border-2 border-gray-300 rounded-md mt-[49px]'>

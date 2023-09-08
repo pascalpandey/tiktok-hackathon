@@ -34,7 +34,7 @@ export default function SearchBar() {
     e.preventDefault();
   };
   return (
-    <div className="fixed w-screen  h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
+    <div className="fixed w-screen  h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-20">
       <Link href="/" className="h-full w-[260px] py-2 flex items-center">
         <SiTiktok className="ml-7 mr-2" size={30} />
         <p className="font-bold text-3xl "> Shop</p>

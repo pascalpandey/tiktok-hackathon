@@ -10,6 +10,7 @@ import reviewSvg from "../../public/review.svg";
 import liveSvg from "../../public/live.svg";
 import heartSvg from "../../public/heart.svg";
 import LoginSignup from "../components/loginSignup";
+import LoginSignupGeneric from "./loginSignupGeneric";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -27,14 +28,14 @@ export default function Navbar() {
         <div className="container mx-auto px-4 h-full">
           <div className="flex justify-between items-start flex-col py-3 border-b border-b-slate-200 text-white">
             <ul className="gap-x-6 text-lg text-black font-bold">
-                <li className="py-3 px-3 inline-flex w-full hover:bg-gray-50">
-                  <span className="w-1/6">
-                    <Image src={shopSvg} alt="shop"/>
-                  </span>
-                  <Link href="/">
-                    <div className="pl-2">Shop</div>
-                  </Link>
-                </li>
+              <li className="py-3 px-3 inline-flex w-full hover:bg-gray-50">
+                <span className="w-1/6">
+                  <Image src={shopSvg} alt="shop" />
+                </span>
+                <Link href="/">
+                  <div className="pl-2">Shop</div>
+                </Link>
+              </li>
 
               <li className="py-3 px-3 inline-flex w-full hover:bg-gray-50">
                 <span className="w-1/6">
@@ -44,16 +45,18 @@ export default function Navbar() {
                   <div className="pl-2">Reviews</div>
                 </Link>
               </li>
+              <LoginSignupGeneric>
+                <li className="py-3 px-3 inline-flex w-full hover:bg-gray-50">
+                  <span className="w-1/6">
+                    <Image src={heartSvg} alt="live" />
+                  </span>
 
-              <li className="py-3 px-3 inline-flex w-full hover:bg-gray-50">
-                <span className="w-1/6">
-                  <Image src={heartSvg} alt="live" />
-                </span>
+                  <Link href="/wishlist">
+                    <div className="pl-2">Wishlist</div>
+                  </Link>
 
-                <Link href="/wishlist">
-                  <div className="pl-2">Wishlist</div>
-                </Link>
-              </li>
+                </li>
+              </LoginSignupGeneric>
             </ul>
           </div>
           {(!data || error) && (

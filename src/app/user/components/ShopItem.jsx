@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AiFillStar, AiOutlineStar, AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
-
+import LoginSignupGeneric from '../../../components/loginSignupGeneric'
 
 
 const ShopItem = ({ h, w, productName, price, rating, location, imageUrl, username, itemId, inWishlist }) => {
@@ -24,11 +24,13 @@ const ShopItem = ({ h, w, productName, price, rating, location, imageUrl, userna
               <p className='font-bold text-lg'>SGD {price}</p>
             </div>
 
-            <button onClick={(e) => { e.preventDefault(); setWishlist((prev) => !prev) }} className='mt-0.5 border-2 border-ttred w-8 h-8 rounded hover:bg-red-50 flex items-center z-10'>
-              {wishlist
-                ? <AiFillHeart className='mx-auto ' size={24} color="#FE2C55" />
-                : <AiOutlineHeart className='mx-auto ' size={24} color="#FE2C55" />}
-            </button>
+            <LoginSignupGeneric>
+              <button onClick={(e) => { e.preventDefault(); setWishlist((prev) => !prev) }} className='mt-0.5 border-2 border-ttred w-8 h-8 rounded hover:bg-red-50 flex items-center z-10'>
+                {wishlist
+                  ? <AiFillHeart className='mx-auto ' size={24} color="#FE2C55" />
+                  : <AiOutlineHeart className='mx-auto ' size={24} color="#FE2C55" />}
+              </button>
+            </LoginSignupGeneric>
 
 
 
