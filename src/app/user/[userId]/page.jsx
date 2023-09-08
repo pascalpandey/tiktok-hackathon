@@ -53,12 +53,59 @@ const UserPage = () => {
   const reviews = data?.data.reviews;
   const skeletonArray = Array.from({ length: 5 });
 
+  // DUMMY DATA FOR FOLLOWING LOGIC ---------------------------------------------------
+  const [dummyUser1, setDummyUser1] = useState({
+    userName: "noob_master_69",
+    followers: ["bebekjk_real"],
+    following: [],
+  })
+  const [dummyUser2, setDummyUser2] = useState({
+    userName: "bebekjk_real",
+    followers: [],
+    following: ["noob_master_69"],
+  })
+
+  // DUMMY DATA FOR SHOWING FRIEND WISHLIST ----------------------------------------------
+  const dummyItem = (
+    <ShopItem productName={"kucing hansohee"}
+      w={58}
+      h={72}
+      username={"bebekjk"}
+      itemId={69420}
+      imageUrl={""}
+      price={69420}
+      location="Seoul, Korea"
+      rating={5}
+    />
+  )
+  const tmpFollowing = [
+    {
+      username: "bebekjk",
+      wishlists: [dummyItem, dummyItem, dummyItem],
+      showWishlists: true,
+      imageUrl: ""
+    },
+    {
+      username: "bebekjkaa",
+      wishlists: [dummyItem, dummyItem],
+      showWishlists: true,
+      imageUrl: ""
+    },
+    {
+      username: "test",
+      wishlists: [dummyItem],
+      showWishlists: false,
+      imageUrl: ""
+    },
+    {
+      username: "AndrewDJ",
+      wishlists: [],
+      showWishlists: true,
+      imageUrl: ""
+    }
+  ];
   const isFollowing = followers?.some(obj => obj.username === LoginData?.data.username)
-  useEffect(() => {
-    console.log(followers)
-    console.log(followers?.some(obj => obj.username === LoginData?.data.username)
-    )
-  }, [followers])
+
   return (
     <div className='p-9 w-full'>
       <div className='w-590 h-fit flex flex-col mb-14'>
