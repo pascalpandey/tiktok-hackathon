@@ -60,14 +60,14 @@ const UserPage = () => {
                 <Skeleton variant='text' animation="wave" height={30} width={120} /> : (error) ? "User Not Found" : userName}</p>
               {isShop && <MdOutlineShoppingCart className="ml-2 mt-1" size={23} />}
             </div>
-            <p className='mb-2'>{isLoading ? <Skeleton className='-mt-1 -mb-1' animation="wave" variant='text' sx={{ fontSize: '4rem' }} height={30} width={70} /> : name}</p>
-
-            {LoginData?.data === path[path.length - 1] ?
-              <Link href={`/user/${userName}/editProfile`}
-                className='mt-4 w-44 h-8 transition flex items-center bg-ttred rounded hover:bg-[#e61942]'>
-                <p className=' text-white mx-auto'>Edit Profile</p>
-              </Link> :
-              <button className='mt-4 w-44 h-8 transition bg-ttred text-white rounded hover:bg-[#e61942]'>Follow</button>
+            <p className='mb-2'>{isLoading?<Skeleton className='-mt-1 -mb-1' animation="wave" variant='text' sx={{fontSize:'4rem'}} height={30} width={70}/>:name}</p>
+            
+            {LoginData?.data?.username===path[path.length-1]?
+            <Link href={`/user/${userName}/editProfile`} 
+            className='mt-4 w-44 h-8 transition flex items-center bg-ttred rounded hover:bg-[#e61942]'>
+              <p className=' text-white mx-auto'>Edit Profile</p>
+            </Link>:
+            <button className='mt-4 w-44 h-8 transition bg-ttred text-white rounded hover:bg-[#e61942]'>Follow</button>
             }
           </div>
         </div>
