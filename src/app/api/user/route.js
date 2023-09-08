@@ -48,6 +48,7 @@ export async function GET(req) {
         where: {
           username: userName,
         },
+<<<<<<< HEAD
         include:{
           following:{
             select:{
@@ -59,12 +60,15 @@ export async function GET(req) {
               username:true,
             }
           }
+=======
+        include: {
+          reviews: true
+>>>>>>> 07b34bc2e96a2f4fdbe7889d6edfc55fe4918a36
         }
       });
-      console.log(user);
 
       if (!user) return new Response("Username not found!", { status: 404 });
-      
+
       return new Response(JSON.stringify({
         "username":user.username,
         "name":user.name,
@@ -76,7 +80,7 @@ export async function GET(req) {
         "likes":user.likes,
         "shop":user.shop,
       }), { status: 200 }); 
-    
+
   } catch (err) {
     return new Response(err, { status: 500 });
   }

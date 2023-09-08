@@ -5,14 +5,13 @@ import axios from 'axios'
 import Image from 'next/image'
 import { MdOutlineShoppingCart } from 'react-icons/md'
 import ShopItem from '../components/ShopItem'
-import ReviewMini from './products/[products]/components/ReviewMini'
-import { useQuery, } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { usePathname } from 'next/navigation'
 import { Skeleton } from '@mui/material';
 import Follow from '../components/Follow';
 
 const UserPage = () => {
-  const [section, setSection] = useState("Videos")
+  const [section, setSection] = useState("Products")
   const setSectionFn = (args) => {
     setSection(args);
   }
@@ -105,8 +104,6 @@ const UserPage = () => {
         <p className='font-light'>{desc}</p>
       </div>
       <div className='flex flex-row'>
-        <button className={`${(section === "Videos") ? "border-b-2 text-gray-700 border-gray-700" : ""} hover:text-gray-700 text-gray-500 px-5 py-3`}
-          onClick={() => setSectionFn("Videos")}>Videos</button>
         <button className={`${(section === "Products") ? "border-b-2 text-gray-700 border-gray-700" : ""} hover:text-gray-700 text-gray-500 px-5 py-3`}
           onClick={() => setSectionFn("Products")}
         >Products</button>
@@ -119,32 +116,49 @@ const UserPage = () => {
 
       </div>
       <div className='border-b max-w-full w-full mb-1'></div>
-      {data?.data?.section === "Videos" && <div className='w-full flex-wrap max-w-full flex flex-row'>
-        <ReviewMini caption="Videos sample caption" />
-        <ReviewMini caption="Videos sample caption" />
-      </div>}
-      {productLoad ? section === "Products" && <div className='py-1 flex gap-2 flex-wrap'>{
+      {productLoad ? section === "Products" && <div className='py-3 flex gap-4 flex-wrap'>{
         skeletonArray.map((_, i) => (
           <Skeleton variant="rounded" animation="wave" width={224} height={288} />
         ))
       }</div>
-        : productData?.data?.shop?.items ? section === "Products" && <div className='w-full flex-wrap max-w-full flex gap-2 pt-1 flex-row'>
-          {productData?.data?.shop?.items.map((item) =>
-            <ShopItem productName={item.name}
-              w={58}
-              h={72}
-              username={userName}
-              itemId={item.itemId}
-              imageUrl={item.imageUrl}
-              price={item.price}
-              location="singapore, singapore"
-              rating={item.rating}
-            />)}
-        </div> : section === "Products" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} isn't selling anything right now...`}</p>}
-      {data?.data?.reviews ? section === "Reviews" && <div className='w-full flex-wrap max-w-full flex flex-row'>
-        <ReviewMini caption="Review sample caption" />
-        <ReviewMini caption="Review sample caption" />
-        <ReviewMini caption="Review sample caption" />
+        : productData?.data?.shop?.items ? section === "Products" &&
+          <div className='w-full flex-wrap max-w-full flex gap-4 pt-3 flex-row'>
+            {productData?.data?.shop?.items.map((item) =>
+              <ShopItem productName={item.name}
+                w={58}
+                h={72}
+                username={userName}
+                itemId={item.itemId}
+                imageUrl={item.imageUrl}
+                price={item.price}
+                location="singapore, singapore"
+                rating={item.rating}
+              />)}
+          </div> : section === "Products" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} isn't selling anything right now...`}</p>}
+      {reviews ? section === "Reviews" && <div className='w-full flex-wrap max-w-full flex flex-row pt-3 gap-4'>
+        {reviews.map((review, i) => {return <Link
+            href={`/user/${userName}/products/${review.itemId}/${review.reviewId}`}
+          >
+            <div
+              className={`rounded relative w-58 h-72 border`}
+            >
+              <video
+                autoPlay
+                muted
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                }}
+              >
+                <source src={review.videoUrl} />
+              </video>
+              <p className="text-light text-sm ml-1 truncate">
+                {review.description}
+              </p>
+            </div>
+          </Link>
+        })}
       </div> : section === "Reviews" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} hasn't reviewed anything yet...`}</p>}
 
       {section === "Wishlist" && <div className='w-full flex-wrap max-w-full flex flex-row'>

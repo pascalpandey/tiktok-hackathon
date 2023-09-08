@@ -38,7 +38,7 @@ export default function Avatar() {
         {() => (
           <>
             <Popover.Button>
-              <div className="rounded-full w-10 h-10 relative">
+              <div className="rounded-full w-10 h-10 relative border">
                 <Image
                   className="rounded-full w-10 h-10"
                   layout={'fill'} 

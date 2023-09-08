@@ -10,6 +10,7 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 
 import ProductForm from '../components/productForm';
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function ProductUploader(){
     // state for showing form
@@ -25,6 +26,7 @@ export default function ProductUploader(){
 
     // state for backend
     const [loading, setLoading] = useState(false);
+    const queryClient = useQueryClient()
 
 
     // unable scroll while form is open
@@ -76,6 +78,7 @@ export default function ProductUploader(){
         );
         toast.success("Successfully created item!");
         setLoading(false);
+        queryClient.invalidateQueries(['getItems'])
         resetForm();
     };
     
