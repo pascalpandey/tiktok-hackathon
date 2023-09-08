@@ -9,6 +9,7 @@ import ReviewMini from './products/[products]/components/ReviewMini'
 import { useQuery } from '@tanstack/react-query'
 import {usePathname} from 'next/navigation'
 import { Skeleton } from '@mui/material';
+import Follow from '../components/Follow';
 
 const UserPage = () => {
   const [section, setSection] = useState("Videos")
@@ -46,6 +47,17 @@ const UserPage = () => {
   const desc = data?.data.bio;
   const reviews=data?.data.reviews;
 
+  const [dummyUser1, setDummyUser1] = useState({
+    userName: "noob_master_69",
+    followers: ["bebekjk_real"],
+    following: [],
+  })
+  const [dummyUser2, setDummyUser2] = useState({
+    userName: "bebekjk_real",
+    followers: [],
+    following: ["noob_master_69"],
+  })
+  
   return (
     <div className='p-9 w-full'>
       <div className='w-590 h-fit flex flex-col mb-14'>
@@ -66,7 +78,9 @@ const UserPage = () => {
             className='mt-4 w-44 h-8 transition flex items-center bg-ttred rounded hover:bg-[#e61942]'>
               <p className=' text-white mx-auto'>Edit Profile</p>
             </Link>:
-            <button className='mt-4 w-44 h-8 transition bg-ttred text-white rounded hover:bg-[#e61942]'>Follow</button>
+            
+            // FOLLOW FOLLOWAN
+            <Follow currUser={dummyUser1} myUser={dummyUser2} setCurrUser={setDummyUser1} setMyUser={setDummyUser2}/>
             }
           </div>
         </div>
