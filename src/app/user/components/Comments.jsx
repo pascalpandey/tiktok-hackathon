@@ -74,7 +74,7 @@ const Comments = ({reviewId}) => {
             {
                 showComment &&
                 <div className='w-0 h-0'>
-                    <div className='relative bg-black w-[345px] h-[525px] right-[366px] bottom-[338px] rounded opacity-20'
+                    <div className='relative bg-black w-[345px] h-[525px] right-[366px] bottom-[338px] rounded opacity-10'
                         onClick={() => setShowComment(false)}>
                     </div>
                     <div className='relative bg-white w-[345px] h-[360px] right-[366px] bottom-[698px] rounded-md shadow-[0px_-10px_15px_-10px_rgba(0,0,0,0.3)] overflow-y-scroll px-2 pb-6'>

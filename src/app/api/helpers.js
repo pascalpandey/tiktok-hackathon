@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client';
-import jwt from 'jsonwebtoken';
+import { PrismaClient } from "@prisma/client";
+import jwt from "jsonwebtoken";
 
-export const generateToken = (data, expiresIn = '90d') => {
+export const generateToken = (data, expiresIn = "90d") => {
   const options = {
     expiresIn,
   };
@@ -12,10 +12,8 @@ export const verifyToken = (token) => {
   return jwt.verify(token, process.env.JWT_SECRET_KEY);
 };
 
-export const prisma = new PrismaClient()
-
 export const auth = async (token) => {
-  if (!token) return false
+  if (!token) return false;
 
   const userData = verifyToken(token);
 
@@ -25,14 +23,24 @@ export const auth = async (token) => {
         username: userData.username,
       },
       include: {
-        shop: true
-      }
+        shop: true,
+      },
     });
 
     if (!user) return false;
 
-    return user; 
+    return user;
   } else {
     return false;
   }
-}
+};
+
+const prismaClientSingleton = () => {
+  return new PrismaClient();
+};
+
+const globalForPrisma = globalThis;
+
+export const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
+
+globalForPrisma.prisma = prisma;
