@@ -14,9 +14,6 @@ export default function ShopNavbar() {
                     <Link href="#Reviews-tag" className="font-medium hover:text-gray-700  border-gray-700 text-gray-500 px-5 py-3 ">
                         Reviews
                     </Link>
-                    <Link href="#Recommended-tag" className="font-medium hover:text-gray-700  border-gray-700 text-gray-500 px-5 py-3 ">
-                        Recommended
-                    </Link>
                 </div>
             </div>
         </div>

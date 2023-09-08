@@ -49,6 +49,9 @@ export default function ProductUploader(){
         onUploadError: (err) => {
             toast.error(err.message);
         },
+        onClientUploadComplete: () => {
+          toast.success("Image upload successful! Uploading item data...", {duration: 4000})
+        }
     });
 
     const handleSubmit = async (e) => {
@@ -133,8 +136,8 @@ export default function ProductUploader(){
                                 <div className="h-[330px] w-full flex flex-col">
                                 <div className="w-full flex flex-row">
                                     <div className="w-32 h-32 border rounded flex justify-center items-center">
-                                    <div className="w-28 h-28 absolute ">
-                                        <Image fill={true} src={productImageUrl} />
+                                    <div className="w-28 h-28 relative ">
+                                        <Image layout={'fill'} objectFit={'contain'} alt="product image" src={productImageUrl} />
                                     </div>
                                     </div>
                                     <div className="mx-8">

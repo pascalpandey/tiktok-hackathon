@@ -90,6 +90,9 @@ const UserPage = () => {
         <button className={`${(section==="Reviews")?"border-b-2 text-gray-700 border-gray-700":""} hover:text-gray-700 text-gray-500 px-5 py-3`} 
         onClick={()=>setSectionFn("Reviews")}
         >Reviews</button>
+        <button className={`${(section==="Wishlist")?"border-b-2 text-gray-700 border-gray-700":""} hover:text-gray-700 text-gray-500 px-5 py-3`} 
+        onClick={()=>setSectionFn("Wishlist")}
+        >Wishlist</button>
 
       </div>
       <div className='border-b max-w-full w-full mb-1'></div>
@@ -115,10 +118,23 @@ const UserPage = () => {
         <ReviewMini caption="Review sample caption"/>
         <ReviewMini caption="Review sample caption"/>
         <ReviewMini caption="Review sample caption"/>
-      </div>:section==="Reviews" &&  <p className='mt-3 text-2xl text-gray-300'>{`${userName} hasn't reviewed anything yet...`}</p>}
-
-      
-
+        </div>:section==="Reviews" &&  <p className='mt-3 text-2xl text-gray-300'>{`${userName} hasn't reviewed anything yet...`}</p>}
+      {section==="Wishlist" && <div className='w-full flex-wrap max-w-full flex flex-row'>
+        <ShopItem productName="Ipad Screen Protector"
+          w={58}
+          h={72}
+          price={125}
+          location="singapore, singapore"
+          rating={0.5}
+          inWishlist={true}/>
+        <ShopItem productName="Ipad Air 5 Case"
+          w={58}
+          h={72}
+          price={10}
+          location="singapore, singapore"
+          rating={4.8} 
+          inWishlist={true}/>
+      </div>}
     </div>
   )
 }
