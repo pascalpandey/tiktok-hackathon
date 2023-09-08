@@ -16,7 +16,7 @@ model User {
   name      String?
   password  String
   bio       String?
-  imgUrl    String?
+  imgUrl    String?   @default("https://utfs.io/f/dc21e7aa-e118-4452-9540-dc5220ea476b_profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg")
   following User[]    @relation("following")
   followers User[]    @relation("following")
   comments  Comment[]

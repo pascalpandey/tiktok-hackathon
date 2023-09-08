@@ -29,10 +29,10 @@ export default function SearchBar() {
   const [searchValue, setSearchValue] = useState("");
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
-  }
+  };
   const searchItem = (e) => {
     e.preventDefault();
-  }
+  };
   return (
     <div className="fixed w-screen  h-16 bg-white border-b border-b-slate-200 flex justify-between top-0 overflow-hidden z-10">
       <Link href="/" className="h-full w-[260px] py-2 flex items-center">
@@ -63,13 +63,13 @@ export default function SearchBar() {
           <>
             <LoginSignupGeneric>
               <button
-                className="w-32 mx-1 border h-3/5 text-lg p-1 rounded hover:bg-gray-100"
+                className="w-28 mx-1 border h-3/5 text-lg p-1 rounded hover:bg-gray-100"
                 type="button"
               >
                 + Upload
               </button>
             </LoginSignupGeneric>
-            <div className="w-32">
+            <div className=" ml-2 w-28">
               <LoginSignup />
             </div>
           </>

@@ -11,6 +11,8 @@ import axios from "axios";
 import ReviewForm from "../components/reviewForm";
 import { useRouter } from "next/navigation";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import LoginSignupGeneric from "./loginSignupGeneric";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function ReviewUploader({ itemId }) {
   // state for showing form
@@ -28,6 +30,7 @@ export default function ReviewUploader({ itemId }) {
 
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const queryClient = useQueryClient();
 
   // unable scroll while form is open
   useEffect(() => {
@@ -82,18 +85,21 @@ export default function ReviewUploader({ itemId }) {
     startTransition(() => {
       router.refresh();
     });
+    queryClient.invalidateQueries([`getReviews${itemId}`])
     resetForm();
   };
 
   return (
     <>
-      <button
-        className="w-24 h-8 border text-sm px-4 rounded bg-ttred text-white hover:bg-rose-600 font-normal"
-        type="button"
-        onClick={() => setShowUploadForm(true)}
-      >
-        + Review
-      </button>
+      <LoginSignupGeneric>
+        <button
+          className="w-24 h-8 border text-sm px-4 rounded bg-ttred text-white hover:bg-rose-600 font-normal"
+          type="button"
+          onClick={() => setShowUploadForm(true)}
+        >
+          + Review
+        </button>
+      </LoginSignupGeneric>
       <Transition appear show={showUploadForm || showPreviewForm} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={() => resetForm()}>
           <Transition.Child
@@ -167,24 +173,24 @@ export default function ReviewUploader({ itemId }) {
                           <div className="mx-8 w-72">
                             <h2 className="text-md font-bold">Rating: </h2>
                             <div className="flex items-center justify-center mb-4">
-                            {Array(reviewRating)
-                              .fill(0)
-                              .map((_, i) => (
-                                <AiFillStar
-                                  className="mt-1 mr-1"
-                                  size={25}
-                                  color="#FE2C55"
-                                />
-                              ))}
-                            {Array(5 - reviewRating)
-                              .fill(0)
-                              .map((_, i) => (
-                                <AiOutlineStar
-                                  className="mt-1 mr-1"
-                                  color="#FE2C55"
-                                  size={25}
-                                />
-                              ))}
+                              {Array(reviewRating)
+                                .fill(0)
+                                .map((_, i) => (
+                                  <AiFillStar
+                                    className="mt-1 mr-1"
+                                    size={25}
+                                    color="#FE2C55"
+                                  />
+                                ))}
+                              {Array(5 - reviewRating)
+                                .fill(0)
+                                .map((_, i) => (
+                                  <AiOutlineStar
+                                    className="mt-1 mr-1"
+                                    color="#FE2C55"
+                                    size={25}
+                                  />
+                                ))}
                             </div>
                             <h2 className="text-md font-bold">Description: </h2>
                             <div className="text-sm italic mb-4">

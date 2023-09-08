@@ -1,6 +1,6 @@
 "use client";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -21,6 +21,18 @@ export default function LoginSignupGeneric({ children }) {
       document.body.style.overflow = "auto";
     }
   }, [show]);
+
+  const { data, isError } = useQuery({
+    queryFn: async () => {
+      const data = await axios.get(
+        `http://localhost:3000/api/user/login?token=${
+          localStorage?.getItem("JWT_TOKEN") ?? ""
+        }`
+      );
+      return data;
+    },
+    queryKey: ["checkLogIn"],
+  });
 
   const { mutate, isLoading } = useMutation({
     mutationFn: async (data) => {
@@ -57,11 +69,16 @@ export default function LoginSignupGeneric({ children }) {
     <>
       <a
         onClick={() => {
-          setShow(true);
-          setLogin(true);
+          if (!data || isError) {
+            setShow(true);
+            setLogin(true);
+          }
         }}
+        className="cursor-pointer"
       >
-        {children}
+        <div style={{ pointerEvents: !data || isError ? "none" : "auto" }}>
+          {children}
+        </div>
       </a>
       <Transition appear show={show} as={Fragment}>
         <Dialog

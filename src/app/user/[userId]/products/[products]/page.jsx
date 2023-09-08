@@ -1,13 +1,12 @@
 import React from 'react'
 import Image from 'next/image'
-import ShopNavbar from './components/ShopNavbar'
-import ReviewMini from './components/ReviewMini'
+import InfiniteScrollingReviews from './components/infiniteScrollingReviews'
 import { SlLocationPin } from 'react-icons/sl'
 import Link from 'next/link'
 import { AiFillStar, AiOutlineStar, AiFillHeart } from 'react-icons/ai'
-import ShopItem from '../../../components/ShopItem'
 import { prisma } from '../../../../api/helpers'
 import ReviewUploader from '../../../../../components/uploadReview'
+import Follow from '../../../components/Follow'
 
 const ProductsPage = async ({ params }) => {
   const username = params.userId
@@ -32,15 +31,21 @@ const ProductsPage = async ({ params }) => {
 
   return (
     <div className='w-full'>
-      <ShopNavbar />
       <div className='mx-auto'>
 
-        <div className='flex flex-row w-fit mx-auto mt-[49px] '>
-          <div className='mr-12 w-320 h-320 border rounded-md relative'>
+        <div className='flex flex-row w-fit mx-auto h-full'>
+          <div className='mr-12 w-320 h-320 border rounded-md relative mt-[49px]'>
             <Image src={item.imageUrl} layout={'fill'} objectFit={'contain'} alt="product image" />
           </div>
-          <div className='w-520 h-620'>
-
+          <div className='w-520 mb-36'>
+            <div className='flex'>
+              <Link href="#Details-tag" className="font-medium hover:text-gray-700 border-gray-700 pr-5 py-3 text-gray-500 ">
+                Details
+              </Link>
+              <Link href="#Reviews-tag" className="font-medium hover:text-gray-700  border-gray-700 text-gray-500 px-5 py-3 ">
+                Reviews
+              </Link>
+            </div>
             <div id="Details-tag" className='border-b mb-4 pb-1 border-t pt-4'>
               <p className='font-semibold text-xl'>{item.name}</p>
               <div className='flex flex-row'>
@@ -89,16 +94,11 @@ const ProductsPage = async ({ params }) => {
               <p className='font-bold mr-auto'>Reviews</p>
               <ReviewUploader itemId={itemId} />
             </div>
-            <div className='flex flex-row flex-wrap mb-4'>
-              <ReviewMini caption="test caption" />
-              <ReviewMini caption="test caption" />
-              <ReviewMini caption="test caption" />
-              <ReviewMini caption="test caption" />
-              <ReviewMini caption="test caption" />
-              <ReviewMini caption="test caption" />
+            <div className='flex flex-row flex-wrap mb-[40px]'>
+              <InfiniteScrollingReviews url={`http://localhost:3000/api/item/reviews?itemId=${itemId}`} parentWidth={490} reviewWidth={160} reviewHeight={224} username={username} itemId={itemId}/>
             </div>
           </div>
-          <div className='ml-12 w-64 h-80 border-2 border-gray-300 rounded-md'>
+          <div className='ml-12 w-64 h-80 border-2 border-gray-300 rounded-md mt-[49px]'>
           </div>
         </div>
       </div>

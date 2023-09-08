@@ -59,7 +59,7 @@ export default function Navbar() {
           {(!data || error) && (
             <div className="py-6 text-md border-b border-b-slate-200">
               <div className="pb-3 text-gray-400 font-light">
-                Login to view comments and get more personalised product reviews
+                Login to view wishlist, add reviews, buy products, and more!
               </div>
               <LoginSignup />
             </div>
