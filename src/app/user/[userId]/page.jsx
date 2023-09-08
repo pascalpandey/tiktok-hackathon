@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query'
 import { usePathname } from 'next/navigation'
 import { Skeleton } from '@mui/material';
 import Follow from '../components/Follow';
+import SubWishlist from '../components/subwishlist';
 
 const UserPage = () => {
   const [section, setSection] = useState("Videos")
@@ -43,6 +44,7 @@ const UserPage = () => {
   const desc = data?.data.bio;
   const reviews = data?.data.reviews;
 
+  // DUMMY DATA FOR FOLLOWING LOGIC ---------------------------------------------------
   const [dummyUser1, setDummyUser1] = useState({
     userName: "noob_master_69",
     followers: ["bebekjk_real"],
@@ -54,6 +56,49 @@ const UserPage = () => {
     following: ["noob_master_69"],
   })
   
+  const skeletonArray = Array.from({ length: 5 });
+
+
+  // DUMMY DATA FOR SHOWING FRIEND WISHLIST ----------------------------------------------
+  const dummyItem = (
+    <ShopItem productName={"kucing hansohee"}
+      w={58}
+      h={72}
+      username={"bebekjk"}
+      itemId={69420}
+      imageUrl={""}
+      price={69420}
+      location="Seoul, Korea"
+      rating={5}
+    />
+  )
+  const tmpFollowing = [
+    {
+      username: "bebekjk",
+      wishlists: [dummyItem, dummyItem, dummyItem],
+      showWishlists: true,
+      imageUrl: ""
+    },
+    {
+      username: "bebekjkaa",
+      wishlists: [dummyItem, dummyItem],
+      showWishlists: true,
+      imageUrl: ""
+    },
+    {
+      username: "test",
+      wishlists: [dummyItem],
+      showWishlists: false,
+      imageUrl: ""
+    },
+    {
+      username: "AndrewDJ",
+      wishlists: [],
+      showWishlists: true,
+      imageUrl: ""
+    }
+  ];
+
   return (
     <div className='p-9 w-full'>
       <div className='w-590 h-fit flex flex-col mb-14'>
@@ -139,21 +184,39 @@ const UserPage = () => {
         <ReviewMini caption="Review sample caption" />
         <ReviewMini caption="Review sample caption" />
       </div> : section === "Reviews" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} hasn't reviewed anything yet...`}</p>}
-      {section === "Wishlist" && <div className='w-full flex-wrap max-w-full flex flex-row'>
-        <ShopItem productName="Ipad Screen Protector"
-          w={58}
-          h={72}
-          price={125}
-          location="singapore, singapore"
-          rating={0.5}
-          inWishlist={true} />
-        <ShopItem productName="Ipad Air 5 Case"
-          w={58}
-          h={72}
-          price={10}
-          location="singapore, singapore"
-          rating={4.8}
-          inWishlist={true} />
+
+      {section === "Wishlist" && <div className='w-full max-w-full'>
+        <div className='w-full flex-wrap max-w-full flex flex-row'>
+          <ShopItem productName="Ipad Screen Protector"
+            w={58}
+            h={72}
+            price={125}
+            location="singapore, singapore"
+            rating={0.5}
+            inWishlist={true} />
+          <ShopItem productName="Ipad Air 5 Case"
+            w={58}
+            h={72}
+            price={10}
+            location="singapore, singapore"
+            rating={4.8}
+            inWishlist={true} />
+        </div>
+
+        {/* BAGIAN SHOW WISHLIST KE TEMEN TEMEN */}
+        { tmpFollowing.length && 
+          <div className='w-full h-auto mt-12'>
+            <h2 className='text-lg border-b font-bold'>Also checkout your friends's Wishlists: </h2>
+            {
+              tmpFollowing.filter((fw) => {
+                return fw.showWishlists && fw.wishlists.length > 0
+              }).map((fw) => {
+                return <SubWishlist user={fw}/>
+              })
+            }
+          </div>
+        }
+        
       </div>}
     </div>
   )
