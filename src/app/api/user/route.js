@@ -48,6 +48,19 @@ export async function GET(req) {
         where: {
           username: userName,
         },
+        include:{
+          following:{
+            select:{
+              username:true,
+            }
+          },
+          followers:{
+            select:{
+              username:true,
+            }
+          },
+          reviews:true
+        }
       });
       console.log(user);
 
