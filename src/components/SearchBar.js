@@ -10,6 +10,7 @@ import LoginSignup from "./loginSignup";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Avatar from "../components/avatar";
+import SearchBarDrop from "../components/SearchBarDrop";
 import Link from "next/link";
 import ProductUploader from "../components/uploader";
 import { useState } from "react";
@@ -39,25 +40,8 @@ export default function SearchBar() {
         <SiTiktok className="ml-7 mr-2" size={30} />
         <p className="font-bold text-3xl "> Shop</p>
       </Link>
-      <div className="h-full w-520 py-2">
-        <form className="h-full border-solid border-gray-100 border rounded-full bg-gray-100 flex justify-center items-center focus-within:border-gray-300">
-          <input
-            className="h-3/5 bg-transparent w-3/4 focus:outline-none ml-4"
-            type="text"
-            placeholder="TikTok is the best company"
-            onInput={(e) => {setSearchValue(e.target.value)}}
-            value={searchValue}
-          ></input>
-          <span className="mx-2 border-r-solid border-r border-r-slate-300 h-1/2 px-2">
-            <div onClick={() => setSearchValue("")}>
-              <Image src={deleteSvg} alt="del" />
-            </div>
-          </span>
-          <button type="submit" onClick={(e) => searchItem(e)}>
-            <Image src={searchSvg} alt="search" />
-          </button>
-        </form>
-      </div>
+
+      <SearchBarDrop />
       <div className="h-full flex items-center pr-5 w-[260px]">
         {!data || error ? (
           <>
