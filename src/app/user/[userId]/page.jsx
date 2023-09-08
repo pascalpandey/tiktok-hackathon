@@ -26,6 +26,15 @@ const UserPage = () => {
     queryKey: [""]
   })
 
+  const { data: productData, error: productError, isLoading: productLoad } = useQuery({
+    queryFn: async () => {
+      const data = await axios.get(`http://localhost:3000/api/user/products?userName=${path[path.length - 1]}`)
+      return data
+    },
+    queryKey: ["productKey"]
+  })
+
+
   const { data: LoginData, data: LoginError } = useQuery({
     queryFn: async () => {
       const data = await axios.get(`http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
@@ -43,6 +52,7 @@ const UserPage = () => {
   const likes = data?.data.likes;
   const desc = data?.data.bio;
   const reviews = data?.data.reviews;
+  const skeletonArray = Array.from({ length: 5 });
 
   // DUMMY DATA FOR FOLLOWING LOGIC ---------------------------------------------------
   const [dummyUser1, setDummyUser1] = useState({
@@ -55,9 +65,6 @@ const UserPage = () => {
     followers: [],
     following: ["noob_master_69"],
   })
-  
-  const skeletonArray = Array.from({ length: 5 });
-
 
   // DUMMY DATA FOR SHOWING FRIEND WISHLIST ----------------------------------------------
   const dummyItem = (
@@ -105,11 +112,11 @@ const UserPage = () => {
         <div className='flex flex-row'>
           {isLoading ? <Skeleton variant="circular" animation="wave" width={110} height={110} /> :
             <div className='w-28 h-28 rounded-full relative'>
-              <Image className='w-28 h-28 rounded-full' 
+              <Image className='w-28 h-28 rounded-full'
                 layout={'fill'}
                 objectFit={'contain'}
                 alt="profile image"
-                src={LoginData?.data?.imgUrl ?? ""} />
+                src={data?.data?.imgUrl ?? ""} />
             </div>}
           <div className='flex mx-6 flex-col'>
             <div className='flex flex-row'>
@@ -165,20 +172,24 @@ const UserPage = () => {
         <ReviewMini caption="Videos sample caption" />
         <ReviewMini caption="Videos sample caption" />
       </div>}
-      {data?.data?.shop?.items ? section === "Products" && <div className='w-full flex-wrap max-w-full flex flex-row'>
-        <ShopItem productName="2.0L water bote full metal al"
-          w={58}
-          h={72}
-          price={123}
-          location="singapore, singapore"
-          rating={4.5} />
-        <ShopItem productName="2.0L water bote full metal al"
-          w={58}
-          h={72}
-          price={123}
-          location="singapore, singapore"
-          rating={4.5} />
-      </div> : section === "Products" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} isn't selling anything right now...`}</p>}
+      {productLoad ? section === "Products" && <div className='py-1 flex gap-2 flex-wrap'>{
+        skeletonArray.map((_, i) => (
+          <Skeleton variant="rounded" animation="wave" width={224} height={288} />
+        ))
+      }</div>
+        : productData?.data?.shop?.items ? section === "Products" && <div className='w-full flex-wrap max-w-full flex gap-2 pt-1 flex-row'>
+          {productData?.data?.shop?.items.map((item) =>
+            <ShopItem productName={item.name}
+              w={58}
+              h={72}
+              username={userName}
+              itemId={item.itemId}
+              imageUrl={item.imageUrl}
+              price={item.price}
+              location="singapore, singapore"
+              rating={item.rating}
+            />)}
+        </div> : section === "Products" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} isn't selling anything right now...`}</p>}
       {data?.data?.reviews ? section === "Reviews" && <div className='w-full flex-wrap max-w-full flex flex-row'>
         <ReviewMini caption="Review sample caption" />
         <ReviewMini caption="Review sample caption" />

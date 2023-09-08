@@ -2,24 +2,27 @@ import React from 'react'
 import Image from "next/image"
 import Link from "next/link";
 import { PiShareFatFill } from 'react-icons/pi';
-import { AiFillHeart } from 'react-icons/ai';
+import { AiFillHeart, AiFillShopping, AiFillStar } from 'react-icons/ai';
+import { GiShoppingBag } from 'react-icons/gi';
 import { BsFillBookmarkFill } from 'react-icons/bs';
-import { FaCommentDots, FaItunesNote } from 'react-icons/fa';
+import shopSvg from "../../../../public/shop.svg"
 import Comments from './Comments';
 
-const Review = ({ username, shop, desc, audio, like, bm, comments, shared, reviewId, videoUrl, userImgUrl }) => {
+const Review = ({ username, shop, desc, itemName, like, bm, comments, shared, reviewId, videoUrl, userImgUrl, rating, itemId }) => {
   return (
 
     <div className="flex h-620 w-590 border-b pb-4 mt-6 mx-auto">
       <div className="h-full w-20">
         <div className="rounded-full w-14 h-14 relative">
-          <Image
-            className="rounded-full w-14 h-14"
-            layout={'fill'}
-            objectFit={'contain'}
-            alt="profile image"
-            src={userImgUrl ?? ""}
-          />
+          <Link href={`/user/${username}`}>
+            <Image
+              className="rounded-full w-14 h-14"
+              layout={'fill'}
+              objectFit={'contain'}
+              alt="profile image"
+              src={userImgUrl ?? ""}
+            />
+          </Link>
         </div>
       </div>
 
@@ -35,10 +38,15 @@ const Review = ({ username, shop, desc, audio, like, bm, comments, shared, revie
             <div className="max-w-sm">
               <p className="text-base font-light mx-1">{desc}</p>
             </div>
-            <div className="flex flex-row ">
 
-              <FaItunesNote className="mt-2 mr-1" size={14} />
-              <p className="text-sm font-light mx-1 my-1">{audio}</p>
+            <div className="flex flex-row ">
+              <Link href={`/user/${username}/products/${itemId}`} className='flex'>
+                <AiFillShopping className='mt-[6px]' color="#FE2C55" size={18}/>
+                <p className="text-sm font-light mx-1 my-1">{itemName}</p>
+              </Link>
+              {/* <p>{"|"}</p> */}
+              <AiFillStar className='mt-[5px] ml-1' color="#FE2C55" size={18}/>
+              <p className="text-sm font-light mx-1 my-1">{`${rating} / 5`}</p>
             </div>
 
           </div>

@@ -58,6 +58,7 @@ export async function POST(req) {
 
 export async function GET(req) {
   try {
+    // query page by page all reviews
     const reviewId = await req?.nextUrl?.searchParams?.get('reviewId');
 
     if (!reviewId) {
@@ -82,7 +83,38 @@ export async function GET(req) {
 
       return new Response(JSON.stringify(allReviews), { status: 200 });
     } else {
+      // query page by page all reviews made by the same user for a specific reviewId with the selected review on top
+      const skip = await req.nextUrl.searchParams.get("skip");
+      const take = await req.nextUrl.searchParams.get("take");
 
+      if (Number(skip) === 0) {
+        const currentReview = await prisma.review.findUnique({
+          where: {
+            reviewId: Number(reviewId)
+          }
+        })
+
+        return new Response(JSON.stringify(currentReview), { status: 200 });
+      } else {
+        const currentReview = await prisma.review.findUnique({
+          where: {
+            reviewId: Number(reviewId)
+          }
+        })
+
+        const restOfReviews = await prisma.review.findMany({
+          skip: Number(skip)-1,
+          take: Number(take),
+          where: {
+            NOT: {
+              reviewId: Number(reviewId)
+            },
+            userId: currentReview.userId
+          }
+        })
+
+        return new Response(JSON.stringify(restOfReviews), { status: 200 });
+      }
     }
 
   } catch(err) {
