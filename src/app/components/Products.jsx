@@ -20,8 +20,7 @@ export default function Products() {
       return pages.length + 1
     },
   })
-  console.log(isLoading);
-  
+
   const lastItemRef = useRef(null)
 
   const { ref, entry } = useIntersection({
@@ -37,42 +36,40 @@ export default function Products() {
   const skeletonArray = Array.from({ length: rowAmount });
   return (
     <div className='px-4 py-3 flex gap-4 flex-wrap'>
-      {isLoading?
-        skeletonArray.map((_, i)=>(
+      {isLoading ?
+        skeletonArray.map((_, i) => (
           <Skeleton variant="rounded" animation="wave" width={224} height={288} />
         ))
-        
-     
-      :items?.map((item, i) => {
-        if (i === items.length - 1) return (
-          <div ref={ref}>
-            <ShopItem
-              h={72}
-              w={56}
-              productName={item.name}
-              desc={item.description}
-              price={`$${item.price}`}
-              location="Singapore"
-              rating={item.rating}
-              imageUrl={item.imageUrl}
-              username={item.shop.user.username}
-              itemId={item.itemId}
-            />
-          </div>
-        )
-        return <ShopItem
-          h={72}
-          w={56}
-          productName={item.name}
-          desc={item.description}
-          price={`$${item.price}`}
-          location="Singapore"
-          rating={item.rating}
-          imageUrl={item.imageUrl}
-          username={item.shop.user.username}
-          itemId={item.itemId}
-        />
-      })}
+        : items?.map((item, i) => {
+          if (i === items.length - 1) return (
+            <div ref={ref}>
+              <ShopItem
+                h={72}
+                w={56}
+                productName={item.name}
+                desc={item.description}
+                price={`$${item.price}`}
+                location="Singapore"
+                rating={item.rating}
+                imageUrl={item.imageUrl}
+                username={item.shop.user.username}
+                itemId={item.itemId}
+              />
+            </div>
+          )
+          return <ShopItem
+            h={72}
+            w={56}
+            productName={item.name}
+            desc={item.description}
+            price={`$${item.price}`}
+            location="Singapore"
+            rating={item.rating}
+            imageUrl={item.imageUrl}
+            username={item.shop.user.username}
+            itemId={item.itemId}
+          />
+        })}
     </div>
   )
 }
