@@ -42,6 +42,7 @@ export default function LoginSignup() {
         login ? "Successfully logged in!" : "Successfully signed up!"
       );
       queryClient.invalidateQueries(['checkLogIn'])
+      queryClient.invalidateQueries(['getItems'])
       setShow(false);
     },
     onError: (err) => {

@@ -19,6 +19,7 @@ model User {
   imgUrl    String?   @default("https://utfs.io/f/dc21e7aa-e118-4452-9540-dc5220ea476b_profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg")
   following User[]    @relation("following")
   followers User[]    @relation("following")
+  wishlist  Item[]    @relation("wishlist")
   comments  Comment[]
   reviews   Review[]
   likes     Int       @default(0)
@@ -41,6 +42,7 @@ model Item {
   price       Float
   shopId      Int
   rating      Float?
+  listedBy    User[]   @relation("wishlist")
   shop        Shop     @relation(fields: [shopId], references: [shopId], onDelete: Cascade)
   reviews     Review[]
 }

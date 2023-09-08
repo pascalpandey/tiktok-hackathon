@@ -105,10 +105,7 @@ const UserPage = () => {
     }
   ];
   const isFollowing = followers?.some(obj => obj.username === LoginData?.data.username)
-  useEffect(() =>
-    {console.log(followers)
-    console.log(followers?.some(obj => obj.username === LoginData?.data.username)
-    )}, [followers])
+
   return (
     <div className='p-9 w-full'>
       <div className='w-590 h-fit flex flex-col mb-14'>
