@@ -48,11 +48,13 @@ export async function GET(req) {
         where: {
           username: userName,
         },
+        include: {
+          reviews: true
+        }
       });
-      console.log(user);
 
       if (!user) return new Response("Username not found!", { status: 404 });
-      
+
       return new Response(JSON.stringify({
         "username":user.username,
         "name":user.name,
@@ -64,7 +66,7 @@ export async function GET(req) {
         "likes":user.likes,
         "shop":user.shop,
       }), { status: 200 }); 
-    
+
   } catch (err) {
     return new Response(err, { status: 500 });
   }
