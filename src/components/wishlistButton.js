@@ -6,11 +6,13 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { Context } from "./disableProgressBarContext";
 import { toast } from "react-hot-toast";
+import { usePathname } from 'next/navigation'
 
 export default function WishlistButton({ itemId }) {
   const queryClient = useQueryClient()
   const [added, setAdded] = useState(false)
   const [ hideBar, setHideBar ] = useContext(Context);
+  const path = usePathname()
 
   const { data: alreadyAdded, isLoading } = useQuery({
     queryFn: async () => {
@@ -38,19 +40,25 @@ export default function WishlistButton({ itemId }) {
         });
       }
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries([`addRemoveWishlist${itemId}`]);
+    onSuccess: async () => {
+      queryClient.invalidateQueries([`addRemoveWishlist${itemId}${localStorage?.getItem("JWT_TOKEN") ?? ""}Query`]);
+      if (path === '/wishlist') {
+        await queryClient.invalidateQueries([`getSelfWishlist`]);
+        toast.success("Successfully removed from wishlist!")
+      }
     },
   });
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     setHideBar(true)
     setAdded(!added)
     mutate();
-    if (!added) {
-      toast.success("Successfully added to wishlist!")
-    } else {
-      toast.success("Successfully removed from wishlist!")
+    if (path !== '/wishlist') {
+      if (!added) {
+        toast.success("Successfully added to wishlist!")
+      } else {
+        toast.success("Successfully removed from wishlist!")
+      }
     }
     e.stopPropagation();
     e.preventDefault();

@@ -8,9 +8,7 @@ import WishlistButton from "../../../components/wishlistButton"
 
 
 
-const ShopItem = ({ h, w, productName, price, rating, location, imageUrl, username, itemId, inWishlist }) => {
-  const [wishlist, setWishlist] = useState(inWishlist ? true : false);
-
+const ShopItem = ({ h, w, productName, price, rating, location, imageUrl, username, itemId, }) => {
   const fullStar = new Array(Math.floor(rating ?? 0)).fill(0);
   const noStar = new Array(5 - Math.floor(rating ?? 0)).fill(0);
   return (
