@@ -14,7 +14,17 @@ export default function ReviewPage() {
                 comments={123}
                 like={5232}
                 bm={13}
-            />
+            /> <Review
+            username="Kevin JK"
+            shop="BigBallBrand"
+            desc="Good quality, definitely buy again!"
+            audio="Industry Baby"
+
+            shared={100}
+            comments={123}
+            like={5232}
+            bm={13}
+        />
           
         </main>
     )

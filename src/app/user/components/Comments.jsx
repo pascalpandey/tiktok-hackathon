@@ -3,6 +3,7 @@
 import { FaCommentDots } from 'react-icons/fa';
 import { useState } from 'react';
 import CommentItem from './CommentItem';
+import {IoSend} from 'react-icons/io5'
 
 const commentDummy = {
     username: 'BebekJK',
@@ -39,19 +40,19 @@ const Comments = () => {
     }
     return(
         <div className='w-12 h-12 mx-auto my-2'>
-            <button className={"bg-gray-100 w-12 h-12 rounded-full hover:bg-ttred " + (showComment && "bg-ttred")}
+            <button className={"bg-gray-100 w-12 h-12 rounded-full hover:bg-gray-300 " + (showComment && "bg-gray-200")}
                 onClick={() => setShowComment(!showComment)}>
                 <FaCommentDots className="m-auto" size={22} />
             </button> 
 
             {
                 showComment && 
-                <div className='w-[0px] h-[0px]'>
+                <div className='w-0 h-0'>
                     <div className='relative bg-black w-[345px] h-[525px] right-[366px] bottom-[338px] rounded opacity-20'
                         onClick={() => setShowComment(false)}>
                     </div>
                     <div className='relative bg-white w-[345px] h-[360px] right-[366px] bottom-[698px] rounded-md shadow-[0px_-10px_15px_-10px_rgba(0,0,0,0.3)] overflow-y-scroll px-2 pb-6'>
-                        <h2 className='text-center text-sm border-b py-1'>Comments</h2>
+                        <h2 className='text-center text-sm mt-1.5 border-b pt-1 pb-2'>Comments</h2>
                         {
                             commentList.map((commentItem) => {
                                 return (
@@ -61,10 +62,12 @@ const Comments = () => {
                         }
                     </div>
                     <div className='relative w-[345px] h-[40px] right-[366px] bottom-[738px] bg-white border-t rounded-s flex items-center px-2 shadow-[0px_-5px_15px_-10px_rgba(0,0,0,0.3)]'>
-                        <input className='w-5/6 mx-2 focus:outline-none text-[10px]' placeholder='Add comment' value={commentDesc}
+                        <input className='w-full mx-2 focus:outline-none text-sm ' placeholder='Add comment' value={commentDesc}
                             onInput={(e) => {setCommentDesc(e.target.value)}}></input>
-                        <button className='mx-auto bg-ttred text-white w-[24px] rounded-full hover:bg-rose-600' disabled={!commentDesc}
-                            onClick={() => {handleSubmit()}}>{'>'}</button>
+                        <button className=' bg-ttred rounded p-1 hover:bg-rose-600' disabled={!commentDesc}
+                            onClick={() => {handleSubmit()}}>
+                               <IoSend color="white" size={18}/>
+                        </button>
                     </div>
                 </div>
             }
