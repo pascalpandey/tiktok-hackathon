@@ -27,7 +27,7 @@ export async function GET(req) {
           itemId: Number(itemId)
         }
       })
-      console.log(allReviews, 'this')
+
       return new Response(JSON.stringify(allReviews), { status: 200 });
     } else {
       // query page by page all reviews on the same product for a specific reviewId with the selected review on top

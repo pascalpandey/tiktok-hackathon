@@ -9,7 +9,7 @@ import { useQuery } from '@tanstack/react-query'
 import { usePathname } from 'next/navigation'
 import { Skeleton } from '@mui/material';
 import Follow from '../components/Follow';
-import SubWishlist from '../components/subwishlist';
+import LoginSignupGeneric from '../../../components/loginSignupGeneric'
 
 const UserPage = () => {
   const [section, setSection] = useState("Products")
@@ -105,10 +105,7 @@ const UserPage = () => {
     }
   ];
   const isFollowing = followers?.some(obj => obj.username === LoginData?.data.username)
-  useEffect(() =>
-    {console.log(followers)
-    console.log(followers?.some(obj => obj.username === LoginData?.data.username)
-    )}, [followers])
+
   return (
     <div className='p-9 w-full'>
       <div className='w-590 h-fit flex flex-col mb-14'>
@@ -136,7 +133,10 @@ const UserPage = () => {
               </Link> :
 
               // FOLLOW FOLLOWAN
-              <Follow isFollowed={isFollowing} />
+              <LoginSignupGeneric>
+                <Follow isFollowed={isFollowing} />
+              </LoginSignupGeneric>
+
             }
           </div>
         </div>
@@ -189,7 +189,8 @@ const UserPage = () => {
               />)}
           </div> : section === "Products" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} isn't selling anything right now...`}</p>}
       {reviews ? section === "Reviews" && <div className='w-full flex-wrap max-w-full flex flex-row pt-3 gap-4'>
-        {reviews.map((review, i) => {return <Link
+        {reviews.map((review, i) => {
+          return <Link
             href={`/user/${userName}/products/${review.itemId}/${review.reviewId}`}
           >
             <div
@@ -233,19 +234,8 @@ const UserPage = () => {
         </div>
 
         {/* BAGIAN SHOW WISHLIST KE TEMEN TEMEN */}
-        { tmpFollowing.length && 
-          <div className='w-full h-auto mt-12'>
-            <h2 className='text-lg border-b font-bold'>Also checkout your friends's Wishlists: </h2>
-            {
-              tmpFollowing.filter((fw) => {
-                return fw.showWishlists && fw.wishlists.length > 0
-              }).map((fw) => {
-                return <SubWishlist user={fw}/>
-              })
-            }
-          </div>
-        }
-        
+
+
       </div>}
     </div>
   )

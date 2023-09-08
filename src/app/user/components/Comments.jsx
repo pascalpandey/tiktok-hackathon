@@ -7,24 +7,24 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useForm } from "react-hook-form";
 import CommentItem from './CommentItem';
 import axios from 'axios';
+import LoginSignupGeneric from '../../../components/loginSignupGeneric';
 
 
-
-const Comments = ({reviewId}) => {
+const Comments = ({ reviewId }) => {
     const [showComment, setShowComment] = useState(false);
     const [commentDesc, setCommentDesc] = useState("");
     const [commentList, setCommentList] = useState([]);
-
+    console.log("REVIEW", reviewId)
     const clientUpdate = (userData) => {
         const serverComment = {
-            reviewId:reviewId,
-            userId:userData?.data?.userId,
-            username:userData?.data?.username,
+            reviewId: reviewId,
+            userId: userData?.data?.userId,
+            username: userData?.data?.username,
             comment: commentDesc,
         }
-        const clientComment = { 
+        const clientComment = {
             comment: commentDesc,
-            user:{
+            user: {
                 imgUrl: userData?.data?.imgUrl,
                 username: userData?.data?.username,
             }
@@ -39,7 +39,7 @@ const Comments = ({reviewId}) => {
             return data
         },
 
-        queryKey: [""]
+        queryKey: [`commentKey${reviewId}`]
     })
 
     useEffect(() => {
@@ -61,7 +61,7 @@ const Comments = ({reviewId}) => {
             const res = await axios.post(`http://localhost:3000/api/comments`, { data })
             return res;
         },
-        mutationKey: [""]
+        mutationKey: ["mutateKeyComments"]
     })
 
     return (
@@ -93,12 +93,16 @@ const Comments = ({reviewId}) => {
                             className='w-full mx-2 focus:outline-none text-sm' placeholder='Add comment' value={commentDesc}
                             onInput={(e) => { setCommentDesc(e.target.value) }}
                         ></input>
-                        <button type="submit" className=' bg-ttred rounded p-1 hover:bg-rose-600' disabled={!commentDesc}
-                            onClick={() => { 
-                                clientUpdate(userData)
-                                setCommentDesc("") }}>
-                            <IoSend color="white" size={18} />
-                        </button>
+                        <LoginSignupGeneric>
+
+                            <button type="submit" className=' bg-ttred rounded p-1 hover:bg-rose-600' disabled={!commentDesc}
+                                onClick={() => {
+                                    clientUpdate(userData)
+                                    setCommentDesc("")
+                                }}>
+                                <IoSend color="white" size={18} />
+                            </button>
+                        </LoginSignupGeneric>
                     </div>
 
                 </div>

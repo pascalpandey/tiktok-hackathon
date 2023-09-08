@@ -3,12 +3,12 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AiFillStar, AiOutlineStar, AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
+import LoginSignupGeneric from '../../../components/loginSignupGeneric'
+import WishlistButton from "../../../components/wishlistButton"
 
 
 
-const ShopItem = ({ h, w, productName, price, rating, location, imageUrl, username, itemId, inWishlist }) => {
-  const [wishlist, setWishlist] = useState(inWishlist ? true : false);
-
+const ShopItem = ({ h, w, productName, price, rating, location, imageUrl, username, itemId, }) => {
   const fullStar = new Array(Math.floor(rating ?? 0)).fill(0);
   const noStar = new Array(5 - Math.floor(rating ?? 0)).fill(0);
   return (
@@ -23,12 +23,10 @@ const ShopItem = ({ h, w, productName, price, rating, location, imageUrl, userna
               <p className='text-sm leading-4 font-light mb-1 truncate w-[160px]'>{productName}</p>
               <p className='font-bold text-lg'>SGD {price}</p>
             </div>
+            <LoginSignupGeneric>
 
-            <button onClick={(e) => { e.preventDefault(); setWishlist((prev) => !prev) }} className='mt-0.5 border-2 border-ttred w-8 h-8 rounded hover:bg-red-50 flex items-center z-10'>
-              {wishlist
-                ? <AiFillHeart className='mx-auto ' size={24} color="#FE2C55" />
-                : <AiOutlineHeart className='mx-auto ' size={24} color="#FE2C55" />}
-            </button>
+              <WishlistButton itemId={itemId} />
+            </LoginSignupGeneric>
 
 
 
