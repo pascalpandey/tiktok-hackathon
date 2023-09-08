@@ -18,20 +18,28 @@ const Comments = () => {
     const clientUpdate = (userData) => {
 
         const newComment = {
-            username: userData?.data,
+            username: userData?.data?.username,
             comment: commentDesc,
         }
         mutate(newComment)
         setCommentList([...commentList, newComment]);
     }
-    const { data , error } = useQuery({
+    const { data: commentData, error } = useQuery({
         queryFn: async () => {
             const data = await axios.get(`http://localhost:3000/api/user/comments?reviewId=${reviewId}}`)
             return data
         },
+
         queryKey: [""]
     })
-    const { data: userData} = useQuery({
+
+    useEffect(() => {
+        if (commentData) {
+            setCommentList(commentData)
+        }
+    }, [commentData]);
+
+    const { data: userData } = useQuery({
         queryFn: async () => {
             const data = await axios.get(`http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
             return data
@@ -74,7 +82,7 @@ const Comments = () => {
                         <input type="text"
                             className='w-full mx-2 focus:outline-none text-sm' placeholder='Add comment' value={commentDesc}
                             onInput={(e) => { setCommentDesc(e.target.value) }}
-                            ></input>
+                        ></input>
                         <button type="submit" className=' bg-ttred rounded p-1 hover:bg-rose-600' disabled={!commentDesc}
                             onClick={() => { clientUpdate(userData) }}>
                             <IoSend color="white" size={18} />

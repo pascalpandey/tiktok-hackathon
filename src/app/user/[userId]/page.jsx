@@ -56,7 +56,7 @@ const UserPage = () => {
             </div>
             <p className='mb-2'>{isLoading?<Skeleton className='-mt-1 -mb-1' animation="wave" variant='text' sx={{fontSize:'4rem'}} height={30} width={70}/>:name}</p>
             
-            {LoginData?.data===path[path.length-1]?
+            {LoginData?.data?.username===path[path.length-1]?
             <Link href={`/user/${userName}/editProfile`} 
             className='mt-4 w-44 h-8 transition flex items-center bg-ttred rounded hover:bg-[#e61942]'>
               <p className=' text-white mx-auto'>Edit Profile</p>
