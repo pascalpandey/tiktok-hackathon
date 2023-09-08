@@ -8,7 +8,6 @@ export async function GET(req) {
                 username: username,
 
             },
-
             include: {
                 shop: {
                     include:{
@@ -18,7 +17,7 @@ export async function GET(req) {
             }
         });
 
-        console.log("ASDASDSD", userProducts);
+
         if (!username) return new Response("Username not found!", { status: 404 });
 
         return new Response(JSON.stringify(userProducts), { status: 200 });

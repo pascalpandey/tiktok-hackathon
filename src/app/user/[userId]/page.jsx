@@ -32,7 +32,7 @@ const UserPage = () => {
     queryKey: ["productKey"]
   })
 
-  console.log(productData?.data.shop.items)
+
   const { data: LoginData, data: LoginError } = useQuery({
     queryFn: async () => {
       const data = await axios.get(`http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
@@ -120,11 +120,13 @@ const UserPage = () => {
           <Skeleton variant="rounded" animation="wave" width={224} height={288} />
         ))
       }</div>
-        : productData ? section === "Products" && <div className='w-full flex-wrap max-w-full flex gap-2 pt-1 flex-row'>
+        : productData?.data?.shop?.items ? section === "Products" && <div className='w-full flex-wrap max-w-full flex gap-2 pt-1 flex-row'>
           {productData?.data?.shop?.items.map((item) =>
             <ShopItem productName={item.name}
               w={58}
               h={72}
+              username={userName}
+              itemId={item.itemId}
               imageUrl={item.imageUrl}
               price={item.price}
               location="singapore, singapore"
@@ -136,6 +138,7 @@ const UserPage = () => {
         <ReviewMini caption="Review sample caption" />
         <ReviewMini caption="Review sample caption" />
       </div> : section === "Reviews" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} hasn't reviewed anything yet...`}</p>}
+
       {section === "Wishlist" && <div className='w-full flex-wrap max-w-full flex flex-row'>
         <ShopItem productName="Ipad Screen Protector"
           w={58}
