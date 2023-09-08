@@ -57,6 +57,7 @@ export async function GET(req) {
         "username":user.username,
         "name":user.name,
         "bio":user.bio,
+        "imgUrl":user.imgUrl,
         "following":user.following,
         "followers":user.followers,
         "reviews":user.reviews,

@@ -39,7 +39,25 @@ export default function ReviewPage() {
       {isLoading ?
         skeletonArray.map((_, i) => (
           <div className="mt-4">
-            <Skeleton variant="rounded" animation="wave" width={430} height={600} />
+            <div className="h-620 w-590 flex flex-row">
+              <div className="h-full w-20">
+                <Skeleton variant="circular" animation="wave" width={56} height={56} />
+              </div>
+              <div className="flex flex-col">
+                <Skeleton variant="text" animation="wave" width={160} height={30} />
+                <Skeleton className="-mt-1" variant="text" animation="wave" width={90} height={23} />
+                <Skeleton className="-mt-1" variant="text" animation="wave" width={120} height={23} />
+                <Skeleton className="mt-2" variant="rounded" animation="wave" width={350} height={550} />
+              </div>
+              <div className="flex flex-col-reverse gap-4 mx-4 pb-4">
+                <Skeleton variant="circular" animation="wave" width={56} height={56} />
+                <Skeleton variant="circular" animation="wave" width={56} height={56} />
+                <Skeleton variant="circular" animation="wave" width={56} height={56} />
+                <Skeleton variant="circular" animation="wave" width={56} height={56} />
+              </div>
+
+            </div>
+
           </div>
         ))
         : reviews?.map((review, i) => {
@@ -61,15 +79,15 @@ export default function ReviewPage() {
             </div>
           )
           return <Review
-          username="Kevin JK"
-          shop="BigBallBrand"
-          desc="Good quality, definitely buy again!"
-          audio="Industry Baby"
-          shared={100}
-          comments={123}
-          like={5232}
-          bm={13}
-        />
+            username="Kevin JK"
+            shop="BigBallBrand"
+            desc="Good quality, definitely buy again!"
+            audio="Industry Baby"
+            shared={100}
+            comments={123}
+            like={5232}
+            bm={13}
+          />
         })}
     </main>
   )

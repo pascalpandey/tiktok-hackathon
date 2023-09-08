@@ -32,7 +32,7 @@ const UserPage = () => {
     queryKey: ["productKey"]
   })
 
-console.log(productData?.data.shop.items)
+  console.log(productData?.data.shop.items)
   const { data: LoginData, data: LoginError } = useQuery({
     queryFn: async () => {
       const data = await axios.get(`http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
@@ -50,7 +50,7 @@ console.log(productData?.data.shop.items)
   const likes = data?.data.likes;
   const desc = data?.data.bio;
   const reviews = data?.data.reviews;
-
+  const skeletonArray = Array.from({ length: 5 });
   return (
     <div className='p-9 w-full'>
       <div className='w-590 h-fit flex flex-col mb-14'>
@@ -61,7 +61,7 @@ console.log(productData?.data.shop.items)
                 layout={'fill'}
                 objectFit={'contain'}
                 alt="profile image"
-                src={LoginData?.data?.imgUrl ?? ""} />
+                src={data?.data?.imgUrl ?? ""} />
             </div>}
           <div className='flex mx-6 flex-col'>
             <div className='flex flex-row'>
@@ -115,17 +115,22 @@ console.log(productData?.data.shop.items)
         <ReviewMini caption="Videos sample caption" />
         <ReviewMini caption="Videos sample caption" />
       </div>}
-      {productData ? section === "Products" && <div className='w-full flex-wrap max-w-full flex gap-2 pt-1 flex-row'>
-        {productData?.data?.shop?.items.map((item) =>
-          <ShopItem productName={item.name}
-            w={58}
-            h={72}
-            imageUrl={item.imageUrl}
-            price={item.price}
-            location="singapore, singapore"
-            rating={item.rating}
-          />)}
-      </div> : section === "Products" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} isn't selling anything right now...`}</p>}
+      {productLoad ? section === "Products" && <div className='py-1 flex gap-2 flex-wrap'>{
+        skeletonArray.map((_, i) => (
+          <Skeleton variant="rounded" animation="wave" width={224} height={288} />
+        ))
+      }</div>
+        : productData ? section === "Products" && <div className='w-full flex-wrap max-w-full flex gap-2 pt-1 flex-row'>
+          {productData?.data?.shop?.items.map((item) =>
+            <ShopItem productName={item.name}
+              w={58}
+              h={72}
+              imageUrl={item.imageUrl}
+              price={item.price}
+              location="singapore, singapore"
+              rating={item.rating}
+            />)}
+        </div> : section === "Products" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} isn't selling anything right now...`}</p>}
       {data?.data?.reviews ? section === "Reviews" && <div className='w-full flex-wrap max-w-full flex flex-row'>
         <ReviewMini caption="Review sample caption" />
         <ReviewMini caption="Review sample caption" />
