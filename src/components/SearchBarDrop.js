@@ -20,7 +20,7 @@ export default function SearhBarDrop() {
   const { refetch } = useQuery({
     queryFn: async () => {
       const data = await axios.get(
-        `http://localhost:3000/api/search?query=${searchValue}`
+        `${process.env.DOMAIN}/api/search?query=${searchValue}`
       );
       return data.data;
     },

@@ -65,7 +65,7 @@ export default function ReviewUploader({ itemId }) {
     const res = await startUpload([reviewVideo]);
     const url = res[0].url;
     await axios.post(
-      "http://localhost:3000/api/review",
+      `${process.env.DOMAIN}/api/review`,
       {
         data: {
           videoUrl: url,

@@ -17,7 +17,7 @@ export default function WishlistButton({ itemId }) {
   const { data: alreadyAdded, isLoading } = useQuery({
     queryFn: async () => {
       const data = await axios.get(
-        `http://localhost:3000/api/wishlist/check?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}&itemId=${itemId}`
+        `${process.env.DOMAIN}/api/wishlist/check?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}&itemId=${itemId}`
       );
       return data.data;
     },
@@ -31,11 +31,11 @@ export default function WishlistButton({ itemId }) {
     mutationKey: [`addRemoveWishlist${itemId}${localStorage?.getItem("JWT_TOKEN") ?? ""}Mutation`],
     mutationFn: async () => {
       if (alreadyAdded) {
-        return await axios.patch("http://localhost:3000/api/wishlist/remove", {
+        return await axios.patch(`${process.env.DOMAIN}/api/wishlist/remove`, {
           data: { token: localStorage?.getItem("JWT_TOKEN") ?? "", itemId: itemId },
         });
       } else {
-        return await axios.patch("http://localhost:3000/api/wishlist/add", {
+        return await axios.patch(`${process.env.DOMAIN}/api/wishlist/add`, {
           data: { token: localStorage?.getItem("JWT_TOKEN") ?? "", itemId: itemId },
         });
       }

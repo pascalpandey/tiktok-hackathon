@@ -25,7 +25,7 @@ export default function LoginSignupGeneric({ children }) {
   const { data, isError } = useQuery({
     queryFn: async () => {
       const data = await axios.get(
-        `http://localhost:3000/api/user/login?token=${
+        `${process.env.DOMAIN}/api/user/login?token=${
           localStorage?.getItem("JWT_TOKEN") ?? ""
         }`
       );
@@ -37,11 +37,11 @@ export default function LoginSignupGeneric({ children }) {
   const { mutate, isLoading } = useMutation({
     mutationFn: async (data) => {
       if (login) {
-        return await axios.post("http://localhost:3000/api/user/login", {
+        return await axios.post(`${process.env.DOMAIN}/api/user/login`, {
           data,
         });
       } else {
-        return await axios.post("http://localhost:3000/api/user", {
+        return await axios.post(`${process.env.DOMAIN}/api/user`, {
           data,
         });
       }

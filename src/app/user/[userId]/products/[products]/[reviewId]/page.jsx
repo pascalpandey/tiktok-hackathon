@@ -14,7 +14,7 @@ export default function ReviewPage() {
   const { data, fetchNextPage, isLoading } = useInfiniteQuery(
     [`getItemReviews${path[5]}`],
     async ({ pageParam = 1 }) => {
-      const res = await axios.get(`http://localhost:3000/api/item/reviews?reviewId=${path[5]}&take=${1}&skip=${(pageParam - 1)}`)
+      const res = await axios.get(`${process.env.DOMAIN}/api/item/reviews?reviewId=${path[5]}&take=${1}&skip=${(pageParam - 1)}`)
       return res
     }, {
     getNextPageParam: (_, pages) => {

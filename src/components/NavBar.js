@@ -18,7 +18,7 @@ export default function Navbar() {
   const { data, error } = useQuery({
     queryFn: async () => {
       const data = await axios.get(
-        `http://localhost:3000/api/user/login?token=${
+        `${process.env.DOMAIN}/api/user/login?token=${
           localStorage?.getItem("JWT_TOKEN") ?? ""
         }`
       );

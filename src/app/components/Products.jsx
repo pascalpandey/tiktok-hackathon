@@ -13,7 +13,7 @@ export default function Products() {
   const { data, fetchNextPage, isLoading } = useInfiniteQuery(
     ['getItems'],
     async ({ pageParam = 1 }) => {
-      const res = await axios.get(`http://localhost:3000/api/item?take=${rowAmount}&skip=${(pageParam - 1) * rowAmount}`)
+      const res = await axios.get(`${process.env.DOMAIN}/api/item?take=${rowAmount}&skip=${(pageParam - 1) * rowAmount}`)
       return res
     }, {
     getNextPageParam: (_, pages) => {

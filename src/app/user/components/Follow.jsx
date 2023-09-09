@@ -11,7 +11,7 @@ const Follow = ({ isFollowed }) => {
     const [clientValue, setClientValue] = useState(null);
     const { mutate, isLoading: followLoading } = useMutation({
         mutationFn: async (data) => {
-            return await axios.patch(`http://localhost:3000/api/user/${isFollowed ? "un" : ""}follow`, { data });
+            return await axios.patch(`${process.env.DOMAIN}/api/user/${isFollowed ? "un" : ""}follow`, { data });
         },
         onSuccess: () => {
           queryClient.invalidateQueries(['getFriendsWishlist'])
@@ -19,7 +19,7 @@ const Follow = ({ isFollowed }) => {
     });
     const { data: LoginData, data: LoginError } = useQuery({
         queryFn: async () => {
-            const data = await axios.get(`http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
+            const data = await axios.get(`${process.env.DOMAIN}/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
             return data
         },
         queryKey: ["checkLogIn"]

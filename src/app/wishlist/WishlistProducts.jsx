@@ -14,7 +14,7 @@ export default function WishListProducts() {
 
   const { data: selfWishlist, isLoading: selfWishListLoading } = useQuery({
     queryFn: async () => {
-      const data = await axios.get(`http://localhost:3000/api/wishlist/getSelf?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
+      const data = await axios.get(`${process.env.DOMAIN}/api/wishlist/getSelf?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
       return data.data
     },
     queryKey: ["getSelfWishlist"]
@@ -23,7 +23,7 @@ export default function WishListProducts() {
   const { data, fetchNextPage, isLoading } = useInfiniteQuery(
     ['getFriendsWishlist'],
     async ({ pageParam = 1 }) => {
-      const res = await axios.get(`http://localhost:3000/api/wishlist?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}&take=${1}&skip=${(pageParam - 1)}&rowAmount=${rowAmount}`)
+      const res = await axios.get(`${process.env.DOMAIN}/api/wishlist?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}&take=${1}&skip=${(pageParam - 1)}&rowAmount=${rowAmount}`)
       return res
     }, {
     getNextPageParam: (_, pages) => {

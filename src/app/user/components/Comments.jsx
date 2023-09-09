@@ -35,7 +35,7 @@ const Comments = ({ reviewId }) => {
     }
     const { data: commentData, error } = useQuery({
         queryFn: async () => {
-            const data = await axios.get(`http://localhost:3000/api/comments?reviewId=${reviewId}`)
+            const data = await axios.get(`${process.env.DOMAIN}/api/comments?reviewId=${reviewId}`)
             return data
         },
 
@@ -51,14 +51,14 @@ const Comments = ({ reviewId }) => {
 
     const { data: userData } = useQuery({
         queryFn: async () => {
-            const data = await axios.get(`http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
+            const data = await axios.get(`${process.env.DOMAIN}/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
             return data;
         },
         queryKey: ["checkLogIn"]
     })
     const { mutate, isLoading } = useMutation({
         mutationFn: async (data) => {
-            const res = await axios.post(`http://localhost:3000/api/comments`, { data })
+            const res = await axios.post(`${process.env.DOMAIN}/api/comments`, { data })
             return res;
         },
         mutationKey: ["mutateKeyComments"]

@@ -61,7 +61,7 @@ export default function ProductUploader(){
         const res = await startUpload([productImage]);
         const url = res[0].url;
         await axios.post(
-          "http://localhost:3000/api/item",
+          `${process.env.DOMAIN}/api/item`,
           {
             data: {
               imageUrl: url,

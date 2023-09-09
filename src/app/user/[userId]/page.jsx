@@ -21,7 +21,7 @@ const UserPage = () => {
   
   const { data, error, isLoading } = useQuery({
     queryFn: async () => {
-      const data = await axios.get(`http://localhost:3000/api/user?userName=${path[path.length - 1].replace("%20", " ")}`)
+      const data = await axios.get(`${process.env.DOMAIN}/api/user?userName=${path[path.length - 1].replace("%20", " ")}`)
       return data
     },
     queryKey: ["checkFollow"]
@@ -29,7 +29,7 @@ const UserPage = () => {
 
   const { data: productData, error: productError, isLoading: productLoad } = useQuery({
     queryFn: async () => {
-      const data = await axios.get(`http://localhost:3000/api/user/products?userName=${path[path.length - 1].replace("%20", " ")}`)
+      const data = await axios.get(`${process.env.DOMAIN}/api/user/products?userName=${path[path.length - 1].replace("%20", " ")}`)
       return data
     },
     queryKey: ["productKey"]
@@ -38,7 +38,7 @@ const UserPage = () => {
 
   const { data: LoginData, data: LoginError } = useQuery({
     queryFn: async () => {
-      const data = await axios.get(`http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
+      const data = await axios.get(`${process.env.DOMAIN}/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
 
       return data
     },

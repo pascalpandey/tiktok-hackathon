@@ -48,7 +48,7 @@ const EditProfile = () => {
         const res = await startUpload([data.imgUrl]);
         url = res[0].url;
       }
-      return await axios.patch("http://localhost:3000/api/user/", {
+      return await axios.patch(`${process.env.DOMAIN}/api/user/`, {
         data: { ...data, imgUrl: url },
       });
     },
@@ -63,7 +63,7 @@ const EditProfile = () => {
   const { data } = useQuery({
     queryFn: async () => {
       const data = await axios.get(
-        `http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""
+        `${process.env.DOMAIN}/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""
         }`
       );
       return data;
