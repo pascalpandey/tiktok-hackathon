@@ -51,10 +51,11 @@ export default function WishListProducts() {
       <div className='px-4 py-3 flex gap-2 flex-wrap  '>
         {selfWishListLoading ?
           skeletonArray.map((_, i) => (
-            <Skeleton variant="rounded" animation="wave" width={224} height={288} />
+            <Skeleton variant="rounded" animation="wave" width={224} height={288}  key={i}/>
           ))
           : selfWishlist?.wishlist?.map((item, i) => (
             <ShopItem
+            key={i}
               h={72}
               w={56}
               productName={item.name}
@@ -76,16 +77,16 @@ export default function WishListProducts() {
           <div className='px-4 py-3 flex gap-2 flex-wrap flex-col'>
           {(isLoading ?
             skeletonArray.map((_, i) => (
-              <Skeleton variant="rounded" animation="wave" width={224} height={288} />
+              <Skeleton variant="rounded" animation="wave" width={224} height={288}  key={i}/>
             ))
             : items?.map((item, i) => {
               if (item.following.length > 0) {
                 if (i === items.length - 1) return (
-                  <div ref={ref}>
+                  <div ref={ref}  key={i}>
                     <SubWishlist wishlist={item.following[0]} maxLength={rowAmount} />
                   </div>
                 )
-                return <SubWishlist wishlist={item.following[0]} maxLength={rowAmount} />
+                return <SubWishlist wishlist={item.following[0]} maxLength={rowAmount}  key={i}/>
               }
             })
            ) || (

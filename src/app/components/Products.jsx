@@ -38,11 +38,11 @@ export default function Products() {
     <div className='px-4 py-3 flex gap-4 flex-wrap'>
       {isLoading ?
         skeletonArray.map((_, i) => (
-          <Skeleton variant="rounded" animation="wave" width={224} height={288} />
+          <Skeleton variant="rounded" animation="wave" width={224} height={288}  key={i}/>
         ))
         : items?.map((item, i) => {
           if (i === items.length - 1) return (
-            <div ref={ref}>
+            <div ref={ref} key={i}>
               <ShopItem
                 h={72}
                 w={56}
@@ -58,6 +58,7 @@ export default function Products() {
             </div>
           )
           return <ShopItem
+            key={i}
             h={72}
             w={56}
             productName={item.name}
