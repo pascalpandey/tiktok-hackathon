@@ -9,7 +9,7 @@ const SubWishlist = ({ wishlist, maxLength }) => {
       <div className=" h-96 flex flex-col">
         <div className="mt-4 w-1/2 h-10 flex flex-row">
           <div className="w-10 h-10 relative border rounded-full">
-            <Image layout={'fill'} objectFit={'contain'} alt="product image" src={wishlist.wishlist[0].item.shop.user.imgUrl} />
+            <Image layout={'fill'} objectFit={'contain'} alt="product image" src={wishlist.wishlist[0].shop.user.imgUrl} />
           </div>
           <Link className=" ml-2 pt-2 font-bold" href={`/user/${wishlist.username}`}>{wishlist.username}</Link>
         </div>
