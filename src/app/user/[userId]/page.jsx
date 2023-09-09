@@ -19,7 +19,7 @@ const UserPage = () => {
   const path = usePathname().split('/');
   const { data, error, isLoading } = useQuery({
     queryFn: async () => {
-      const data = await axios.get(`http://localhost:3000/api/user?userName=${path[path.length - 1]}`)
+      const data = await axios.get(`http://localhost:3000/api/user?userName=${path[path.length - 1].replace("%20", " ")}`)
       return data
     },
     queryKey: ["checkFollow"]
@@ -27,7 +27,7 @@ const UserPage = () => {
 
   const { data: productData, error: productError, isLoading: productLoad } = useQuery({
     queryFn: async () => {
-      const data = await axios.get(`http://localhost:3000/api/user/products?userName=${path[path.length - 1]}`)
+      const data = await axios.get(`http://localhost:3000/api/user/products?userName=${path[path.length - 1].replace("%20", " ")}`)
       return data
     },
     queryKey: ["productKey"]
@@ -76,7 +76,7 @@ const UserPage = () => {
             </div>
             <p className='mb-2'>{isLoading ? <Skeleton className='-mt-1 -mb-1' animation="wave" variant='text' sx={{ fontSize: '4rem' }} height={30} width={70} /> : name}</p>
 
-            {LoginData?.data?.username === path[path.length - 1] ?
+            {LoginData?.data?.username === path[path.length - 1].replace("%20", " ") ?
               <Link href={`/user/${userName}/editProfile`}
                 className='mt-4 w-44 h-8 transition flex items-center bg-ttred rounded hover:bg-[#e61942]'>
                 <p className=' text-white mx-auto'>Edit Profile</p>

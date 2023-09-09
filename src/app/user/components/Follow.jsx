@@ -37,7 +37,7 @@ const Follow = ({ isFollowed }) => {
     }
     const path = usePathname().split('/');
     const self = LoginData?.data?.username;
-    const target = path[path.length - 1];
+    const target = path[path.length - 1].replace("%20", " ");
 
     return (
         <div className='mt-4 w-44 h-8 transition rounded'>
