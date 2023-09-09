@@ -45,7 +45,7 @@ export async function GET(req) {
                 }
             }
         })
-        console.log(comments)
+
         return new Response(JSON.stringify(comments), { status: 200 })
 
     } catch (err) {

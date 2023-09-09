@@ -14,7 +14,6 @@ const Comments = ({ reviewId }) => {
     const [showComment, setShowComment] = useState(false);
     const [commentDesc, setCommentDesc] = useState("");
     const [commentList, setCommentList] = useState([]);
-    console.log("REVIEW", reviewId)
     const clientUpdate = (userData) => {
         const serverComment = {
             reviewId: reviewId,
@@ -29,7 +28,6 @@ const Comments = ({ reviewId }) => {
                 username: userData?.data?.username,
             }
         }
-        console.log(clientComment);
         mutate(serverComment);
         setCommentList([...commentList, clientComment]);
     }
@@ -44,7 +42,6 @@ const Comments = ({ reviewId }) => {
 
     useEffect(() => {
         if (commentData) {
-            console.log(commentData.data.comments)
             setCommentList(commentData.data.comments);
         }
     }, [commentData]);

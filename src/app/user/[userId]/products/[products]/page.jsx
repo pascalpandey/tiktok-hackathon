@@ -79,7 +79,6 @@ const ProductsPage = async ({ params }) => {
                     src={user?.imgUrl ?? ""} />
                 </div>
                 <div className='my-4 mx-3'>
-                  {console.log(user)}
                   <Link href={`/user/${user?.username}`} className='text-lg font-bold'>{user?.username}</Link>
                   <div className='flex flex-row'>
                     <SlLocationPin className='mt-0.5 mr-1' size={20} />

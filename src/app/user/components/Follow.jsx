@@ -31,8 +31,6 @@ const Follow = ({ isFollowed, targetUsername }) => {
         mutate({ self: self, target: target });
     }
     const clientView = () => {
-        console.log("client: ", clientValue);
-        console.log("isFOllowd", isFollowed);
         setClientValue(!clientValue);
     }
     const path = usePathname().split('/');

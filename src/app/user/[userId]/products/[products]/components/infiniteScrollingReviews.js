@@ -45,7 +45,7 @@ export default function InfiniteScrollingReviews({
 
   const reviews = data?.pages.flatMap((page) => page.data);
   const skeletonArray = Array.from({ length: 3 });
-  console.log(reviews);
+
   return (
     <main className={`w-[${parentWidth}px] gap-4 flex flex-wrap`}>
       {isLoading

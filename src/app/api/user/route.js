@@ -23,7 +23,6 @@ export async function POST(req) {
 export async function PATCH(req) {
   const { data } = await req.json();
 
-  console.log(data);
   const updateUser = await prisma.user.update({
     where:{
       username: data.sender,

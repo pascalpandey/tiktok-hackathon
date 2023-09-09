@@ -37,8 +37,6 @@ export async function PATCH(req) {
             },
         }
     })
-    console.log("self ", selfInfo)
-    console.log("target ", targetInfo)
 
     await prisma.user.update({
         where:{
