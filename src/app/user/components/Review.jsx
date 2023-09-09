@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import Image from "next/image"
 import Link from "next/link";
@@ -7,8 +9,23 @@ import { GiShoppingBag } from 'react-icons/gi';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 import shopSvg from "../../../../public/shop.svg"
 import Comments from './Comments';
+import { useQuery } from '@tanstack/react-query';
+import LoginSignupGeneric from '../../../components/loginSignupGeneric';
+import Follow from './Follow'
 
 const Review = ({ posterUsername, shop, desc, itemName, like, bm, comments, shared, reviewId, videoUrl, userImgUrl, rating, itemId, shopUsername }) => {
+  const { data: alreadyFollowed } = useQuery({
+    queryFn: async () => {
+      const data = await axios.get(
+        `https://tiktok-hackathon.vercel.app/api/user/checkFollow?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}&username=${posterUsername}`
+      );
+      return data.data;
+    },
+    onSuccess: (res) => {
+      setAdded(res)
+    },
+    queryKey: [`checkFollowed${posterUsername}${localStorage?.getItem("JWT_TOKEN") ?? ""}Query`],
+  });
   return (
 
     <div className="flex min-h-[620px] w-590 border-b pb-4 mt-6 mx-auto mb-12">
@@ -41,19 +58,19 @@ const Review = ({ posterUsername, shop, desc, itemName, like, bm, comments, shar
 
             <div className="flex flex-row ">
               <Link href={`/user/${shopUsername}/products/${itemId}`} className='flex'>
-                <AiFillShopping className='mt-[6px]' color="#FE2C55" size={18}/>
+                <AiFillShopping className='mt-[6px]' color="#FE2C55" size={18} />
                 <p className="text-sm font-light mx-1 my-1">{itemName}</p>
               </Link>
               {/* <p>{"|"}</p> */}
-              <AiFillStar className='mt-[5px] ml-1' color="#FE2C55" size={18}/>
+              <AiFillStar className='mt-[5px] ml-1' color="#FE2C55" size={18} />
               <p className="text-sm font-light mx-1 my-1">{`${rating} / 5`}</p>
             </div>
 
           </div>
 
-          <button className="absolute w-24 h-8 border-ttred hover:bg-red-100 border right-0 my-1 text-ttred rounded-sm">
-            Follow
-          </button>
+          <LoginSignupGeneric>
+            <Follow isFollowed={alreadyFollowed} />
+          </LoginSignupGeneric>
         </div>
         <div className="flex flex-row w-full h-full">
 

@@ -64,7 +64,11 @@ export default function LoginSignupGeneric({ children }) {
   });
 
   const handleLogInSignUp = async (data) => {
-    mutate(data);
+    if (watch("username").includes(" ")) {
+      toast.error("Username can't contain spaces!")
+    } else {
+      mutate(data);
+    }
   };
 
   return (

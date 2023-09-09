@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { AiFillStar, AiOutlineStar, AiFillHeart } from 'react-icons/ai'
 import { prisma } from '../../../../api/helpers'
 import ReviewUploader from '../../../../../components/uploadReview'
-import Follow from '../../../components/Follow'
 import WishlistButtonText from '../../../../../components/wishlistButtonText'
 import LoginSignupGeneric from '../../../../../components/loginSignupGeneric'
 
