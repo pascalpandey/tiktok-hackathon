@@ -12,6 +12,7 @@ import Comments from './Comments';
 import { useQuery } from '@tanstack/react-query';
 import LoginSignupGeneric from '../../../components/loginSignupGeneric';
 import Follow from './Follow'
+import axios from 'axios';
 
 const Review = ({ posterUsername, shop, desc, itemName, like, bm, comments, shared, reviewId, videoUrl, userImgUrl, rating, itemId, shopUsername }) => {
   const { data: alreadyFollowed } = useQuery({
@@ -20,9 +21,6 @@ const Review = ({ posterUsername, shop, desc, itemName, like, bm, comments, shar
         `https://tiktok-hackathon.vercel.app/api/user/checkFollow?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}&username=${posterUsername}`
       );
       return data.data;
-    },
-    onSuccess: (res) => {
-      setAdded(res)
     },
     queryKey: [`checkFollowed${posterUsername}${localStorage?.getItem("JWT_TOKEN") ?? ""}Query`],
   });
@@ -69,7 +67,9 @@ const Review = ({ posterUsername, shop, desc, itemName, like, bm, comments, shar
           </div>
 
           <LoginSignupGeneric>
-            <Follow isFollowed={alreadyFollowed} />
+            <div className='translate-x-10'>
+              <Follow isFollowed={alreadyFollowed} targetUsername={posterUsername} />
+            </div>
           </LoginSignupGeneric>
         </div>
         <div className="flex flex-row w-full h-full">

@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react';
 
 
-const Follow = ({ isFollowed }) => {
+const Follow = ({ isFollowed, targetUsername }) => {
   const queryClient = useQueryClient()
     const [clientValue, setClientValue] = useState(null);
     const { mutate, isLoading: followLoading } = useMutation({
@@ -37,10 +37,10 @@ const Follow = ({ isFollowed }) => {
     }
     const path = usePathname().split('/');
     const self = LoginData?.data?.username;
-    const target = path[path.length - 1].replace("%20", " ");
+    const target = targetUsername ? targetUsername : path[path.length - 1].replace("%20", " ");
 
     return (
-        <div className='mt-4 w-44 h-8 transition rounded'>
+        <div className='mt-4 w-32 h-8 transition rounded'>
 
             <button
                 className={'h-full w-full rounded ' + (clientValue? 'bg-gray-100 hover:bg-gray-200' : 'hover:bg-[#e61942] bg-ttred text-white')}

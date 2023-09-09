@@ -19,7 +19,7 @@ export async function GET(req) {
     }
   })
 
-  const followed = following.some(obj => obj.username === Number(username))
+  const followed = following.some(obj => obj.username === username)
 
   return new Response(followed, { status: 200 });
 }
