@@ -24,7 +24,7 @@ export default function SearhBarDrop() {
       );
       return data.data;
     },
-    queryKey: [`checkFollow${searchValue}`],
+    queryKey: [`searchQuery${searchValue}`],
     onSuccess: (data) => {
       setListRelevant(data);
     },

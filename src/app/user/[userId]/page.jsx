@@ -1,4 +1,5 @@
 "use client"
+
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
@@ -17,6 +18,7 @@ const UserPage = () => {
     setSection(args);
   }
   const path = usePathname().split('/');
+  
   const { data, error, isLoading } = useQuery({
     queryFn: async () => {
       const data = await axios.get(`http://localhost:3000/api/user?userName=${path[path.length - 1].replace("%20", " ")}`)
@@ -42,18 +44,16 @@ const UserPage = () => {
     },
     queryKey: ["checkLogIn"]
   })
-  console.log(data?.data)
-  const userName = data?.data.username;
-  const name = data?.data.name;
-  const isShop = data?.data.shop;
-  const followers = data?.data.followers;
-  const following = data?.data.following;
-  const likes = data?.data.likes;
-  const desc = data?.data.bio;
-  const reviews = data?.data.reviews;
-  const skeletonArray = Array.from({ length: 5 });
-  const wishlist = data?.data.wishlist
 
+  const userName = data?.data?.username;
+  const name = data?.data?.name;
+  const isShop = data?.data?.shop;
+  const followers = data?.data?.followers;
+  const following = data?.data?.following;
+  const desc = data?.data?.bio;
+  const reviews = data?.data?.reviews;
+  const skeletonArray = Array.from({ length: 5 });
+  const wishlist = data?.data?.wishlist
   const isFollowing = followers?.some(obj => obj.username === LoginData?.data.username)
 
   return (
@@ -62,6 +62,7 @@ const UserPage = () => {
         <div className='flex flex-row'>
           {isLoading ? <Skeleton variant="circular" animation="wave" width={110} height={110} /> :
             <div className='w-28 h-28 rounded-full relative'>
+              {console.log(data?.data?.imgUrl)}
               <Image className='w-28 h-28 rounded-full'
                 layout={'fill'}
                 objectFit={'contain'}
@@ -138,8 +139,8 @@ const UserPage = () => {
                 rating={item.rating}
               />)}
           </div> : section === "Products" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} isn't selling anything right now...`}</p>}
-      {reviews ? section === "Reviews" && <div className='w-full flex-wrap max-w-full flex flex-row pt-3 gap-4'>
-        {reviews.map((review, i) => {
+      {reviews?.length > 0 ? section === "Reviews" && <div className='w-full flex-wrap max-w-full flex flex-row pt-3 gap-4'>
+        {reviews?.map((review, i) => {
           return <Link
             href={`/user/${userName}/products/${review.itemId}/${review.reviewId}`}
           >
@@ -165,7 +166,7 @@ const UserPage = () => {
         })}
       </div> : section === "Reviews" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} hasn't reviewed anything yet...`}</p>}
 
-      {wishlist ? section === "Wishlist" && <div className='w-full flex-wrap max-w-full flex flex-row pt-3 gap-4'>
+      {wishlist?.length > 0 ? section === "Wishlist" && <div className='w-full flex-wrap max-w-full flex flex-row pt-3 gap-4'>
         {wishlist.map((item, i) => {
           return <ShopItem productName={item.name}
             w={58}
