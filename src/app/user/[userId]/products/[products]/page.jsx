@@ -80,7 +80,8 @@ const ProductsPage = async ({ params }) => {
                     src={user?.imgUrl ?? ""} />
                 </div>
                 <div className='my-4 mx-3'>
-                  <Link href={`/user/${user.username}`} className='text-lg font-bold'>{user.username}</Link>
+                  {console.log(user)}
+                  <Link href={`/user/${user?.username}`} className='text-lg font-bold'>{user?.username}</Link>
                   <div className='flex flex-row'>
                     <SlLocationPin className='mt-0.5 mr-1' size={20} />
                     <p className='font-light'> {user?.shop?.location ? user?.shop?.location : "Singapore, Singapore"}</p>
@@ -98,8 +99,7 @@ const ProductsPage = async ({ params }) => {
               <InfiniteScrollingReviews url={`http://localhost:3000/api/item/reviews?itemId=${itemId}`} parentWidth={490} reviewWidth={160} reviewHeight={224} username={username} itemId={itemId} />
             </div>
           </div>
-          <div className='ml-12 w-64 h-80 border-2 border-gray-300 rounded-md mt-[49px]'>
-          </div>
+          
         </div>
       </div>
     </div>
