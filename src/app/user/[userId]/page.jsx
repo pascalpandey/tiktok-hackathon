@@ -157,7 +157,7 @@ const UserPage = () => {
               >
                 <source src={review.videoUrl} />
               </video>
-              <p className="text-light text-sm ml-1 truncate">
+              <p className="text-md font-medium ml-1 truncate pt-2">
                 {review.description}
               </p>
             </div>

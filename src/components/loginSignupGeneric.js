@@ -7,10 +7,12 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export default function LoginSignupGeneric({ children }) {
   const [show, setShow] = useState(false);
   const [login, setLogin] = useState(true);
+  const [showPassword, setShowPassWord] = useState(false);
   const { register, handleSubmit, watch } = useForm();
   const queryClient = useQueryClient();
 
@@ -123,11 +125,15 @@ export default function LoginSignupGeneric({ children }) {
                       {...register("username")}
                     />
                     <input
-                      type="text"
+                      type={showPassword? "text" : "password"}
                       placeholder="Password"
                       className="p-2 bg-gray-200 text-black mb-4"
                       {...register("password")}
                     />
+                    <button className={"absolute top-[162px] left-80 w-[28px] h-[28px] border rounded-full flex justify-center items-center hover:bg-white"} type="button"
+                      onClick={() => {setShowPassWord(!showPassword)}}>
+                      {showPassword? <AiOutlineEyeInvisible/> : <AiOutlineEye />}
+                    </button>
                     {watch("username") && watch("password") ? (
                       <button
                         className={`bg-[#fe2c55] text-white p-2 font-bold`}
