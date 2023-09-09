@@ -43,7 +43,7 @@ export async function PATCH(req) {
 export async function GET(req) {
   try {
     const userName = await req.nextUrl.searchParams.get('userName');
-      
+
       const user = await prisma.user.findUnique({
         where: {
           username: userName,

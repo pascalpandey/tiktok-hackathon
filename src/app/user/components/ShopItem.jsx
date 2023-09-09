@@ -34,10 +34,10 @@ const ShopItem = ({ h, w, productName, price, rating, location, imageUrl, userna
           </div>
           <p className='font-light text-sm '>{location}</p>
           <div className='flex flex-row'>
-            {fullStar.map((i) =>
-              <AiFillStar className="mt-1 mr-1" size={15} color="#FE2C55" />
+            {fullStar.map((_, i) =>
+              <AiFillStar className="mt-1 mr-1" size={15} color="#FE2C55" key={i}/>
             )}
-            {noStar.map((i) => <AiOutlineStar className='mt-1 mr-1' color="#FE2C55" size={15} />)}
+            {noStar.map((_, i) => <AiOutlineStar className='mt-1 mr-1' color="#FE2C55" size={15} key={i}/>)}
             <p className='mt-0.5 ml-1.5 font-light text-sm'>{rating ? `${rating} / 5` : 'No rating'}</p>
           </div>
 

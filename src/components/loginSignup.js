@@ -27,11 +27,11 @@ export default function LoginSignup() {
   const { mutate, isLoading } = useMutation({
     mutationFn: async (data) => {
       if (login) {
-        return await axios.post("http://localhost:3000/api/user/login", {
+        return await axios.post(`https://tiktok-hackathon.vercel.app/api/user/login`, {
           data,
         });
       } else {
-        return await axios.post("http://localhost:3000/api/user", {
+        return await axios.post(`https://tiktok-hackathon.vercel.app/api/user`, {
           data,
         });
       }

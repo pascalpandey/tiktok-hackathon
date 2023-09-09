@@ -65,7 +65,7 @@ export default function ReviewUploader({ itemId }) {
     const res = await startUpload([reviewVideo]);
     const url = res[0].url;
     await axios.post(
-      "http://localhost:3000/api/review",
+      `https://tiktok-hackathon.vercel.app/api/review`,
       {
         data: {
           videoUrl: url,
@@ -177,6 +177,7 @@ export default function ReviewUploader({ itemId }) {
                                 .fill(0)
                                 .map((_, i) => (
                                   <AiFillStar
+                                    key={i}
                                     className="mt-1 mr-1"
                                     size={25}
                                     color="#FE2C55"
@@ -186,6 +187,7 @@ export default function ReviewUploader({ itemId }) {
                                 .fill(0)
                                 .map((_, i) => (
                                   <AiOutlineStar
+                                    key={i}
                                     className="mt-1 mr-1"
                                     color="#FE2C55"
                                     size={25}

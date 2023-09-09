@@ -14,7 +14,7 @@ export default function ReviewPage() {
   const { data, fetchNextPage, isLoading } = useInfiniteQuery(
     [`getItemReviews${path[5]}`],
     async ({ pageParam = 1 }) => {
-      const res = await axios.get(`http://localhost:3000/api/item/reviews?reviewId=${path[5]}&take=${1}&skip=${(pageParam - 1)}`)
+      const res = await axios.get(`https://tiktok-hackathon.vercel.app/api/item/reviews?reviewId=${path[5]}&take=${1}&skip=${(pageParam - 1)}`)
       return res
     }, {
     getNextPageParam: (_, pages) => {
@@ -40,14 +40,13 @@ export default function ReviewPage() {
     <main className="mx-auto pr-[170px] gap-4">
       {isLoading ?
         skeletonArray.map((_, i) => (
-          <div className="mt-4 pr-[65px]">
+          <div className="mt-4 pr-[65px]"  key={i}>
             <Skeleton variant="rounded" animation="wave" width={350} height={600} />
           </div>
         ))
         : reviews?.map((review, i) => {
           if (i === reviews.length - 1) return (
-            <div ref={ref}>
-              {console.log(review)}
+            <div ref={ref}  key={i}>
               <Review
                 posterUsername={review.user.username}
                 shopUsername={review.item.shop.user.username}
@@ -67,6 +66,7 @@ export default function ReviewPage() {
             </div>
           )
           return <Review
+            key={i}
             posterUsername={review.user.username}
             shopUsername={review.item.shop.user.username}
             shop={review?.user?.name ?? ""}

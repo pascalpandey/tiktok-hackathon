@@ -14,7 +14,7 @@ export default function WishListProducts() {
 
   const { data: selfWishlist, isLoading: selfWishListLoading } = useQuery({
     queryFn: async () => {
-      const data = await axios.get(`http://localhost:3000/api/wishlist/getSelf?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
+      const data = await axios.get(`https://tiktok-hackathon.vercel.app/api/wishlist/getSelf?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
       return data.data
     },
     queryKey: ["getSelfWishlist"]
@@ -23,7 +23,7 @@ export default function WishListProducts() {
   const { data, fetchNextPage, isLoading } = useInfiniteQuery(
     ['getFriendsWishlist'],
     async ({ pageParam = 1 }) => {
-      const res = await axios.get(`http://localhost:3000/api/wishlist?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}&take=${1}&skip=${(pageParam - 1)}&rowAmount=${rowAmount}`)
+      const res = await axios.get(`https://tiktok-hackathon.vercel.app/api/wishlist?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}&take=${1}&skip=${(pageParam - 1)}&rowAmount=${rowAmount}`)
       return res
     }, {
     getNextPageParam: (_, pages) => {
@@ -51,10 +51,11 @@ export default function WishListProducts() {
       <div className='px-4 py-3 flex gap-2 flex-wrap  '>
         {selfWishListLoading ?
           skeletonArray.map((_, i) => (
-            <Skeleton variant="rounded" animation="wave" width={224} height={288} />
+            <Skeleton variant="rounded" animation="wave" width={224} height={288}  key={i}/>
           ))
           : selfWishlist?.wishlist?.map((item, i) => (
             <ShopItem
+            key={i}
               h={72}
               w={56}
               productName={item.name}
@@ -76,16 +77,16 @@ export default function WishListProducts() {
           <div className='px-4 py-3 flex gap-2 flex-wrap flex-col'>
           {(isLoading ?
             skeletonArray.map((_, i) => (
-              <Skeleton variant="rounded" animation="wave" width={224} height={288} />
+              <Skeleton variant="rounded" animation="wave" width={224} height={288}  key={i}/>
             ))
             : items?.map((item, i) => {
               if (item.following.length > 0) {
                 if (i === items.length - 1) return (
-                  <div ref={ref}>
+                  <div ref={ref}  key={i}>
                     <SubWishlist wishlist={item.following[0]} maxLength={rowAmount} />
                   </div>
                 )
-                return <SubWishlist wishlist={item.following[0]} maxLength={rowAmount} />
+                return <SubWishlist wishlist={item.following[0]} maxLength={rowAmount}  key={i}/>
               }
             })
            ) || (

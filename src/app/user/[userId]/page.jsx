@@ -1,4 +1,5 @@
 "use client"
+
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
@@ -17,9 +18,10 @@ const UserPage = () => {
     setSection(args);
   }
   const path = usePathname().split('/');
+  
   const { data, error, isLoading } = useQuery({
     queryFn: async () => {
-      const data = await axios.get(`http://localhost:3000/api/user?userName=${path[path.length - 1].replace("%20", " ")}`)
+      const data = await axios.get(`https://tiktok-hackathon.vercel.app/api/user?userName=${path[path.length - 1].replace("%20", " ")}`)
       return data
     },
     queryKey: ["checkFollow"]
@@ -27,7 +29,7 @@ const UserPage = () => {
 
   const { data: productData, error: productError, isLoading: productLoad } = useQuery({
     queryFn: async () => {
-      const data = await axios.get(`http://localhost:3000/api/user/products?userName=${path[path.length - 1].replace("%20", " ")}`)
+      const data = await axios.get(`https://tiktok-hackathon.vercel.app/api/user/products?userName=${path[path.length - 1].replace("%20", " ")}`)
       return data
     },
     queryKey: ["productKey"]
@@ -36,24 +38,22 @@ const UserPage = () => {
 
   const { data: LoginData, data: LoginError } = useQuery({
     queryFn: async () => {
-      const data = await axios.get(`http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
+      const data = await axios.get(`https://tiktok-hackathon.vercel.app/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
 
       return data
     },
     queryKey: ["checkLogIn"]
   })
-  console.log(data?.data)
-  const userName = data?.data.username;
-  const name = data?.data.name;
-  const isShop = data?.data.shop;
-  const followers = data?.data.followers;
-  const following = data?.data.following;
-  const likes = data?.data.likes;
-  const desc = data?.data.bio;
-  const reviews = data?.data.reviews;
-  const skeletonArray = Array.from({ length: 5 });
-  const wishlist = data?.data.wishlist
 
+  const userName = data?.data?.username;
+  const name = data?.data?.name;
+  const isShop = data?.data?.shop;
+  const followers = data?.data?.followers;
+  const following = data?.data?.following;
+  const desc = data?.data?.bio;
+  const reviews = data?.data?.reviews;
+  const skeletonArray = Array.from({ length: 5 });
+  const wishlist = data?.data?.wishlist
   const isFollowing = followers?.some(obj => obj.username === LoginData?.data.username)
 
   return (
@@ -121,12 +121,12 @@ const UserPage = () => {
       <div className='border-b max-w-full w-full mb-1'></div>
       {productLoad ? section === "Products" && <div className='py-3 flex gap-4 flex-wrap'>{
         skeletonArray.map((_, i) => (
-          <Skeleton variant="rounded" animation="wave" width={224} height={288} />
+          <Skeleton variant="rounded" animation="wave" width={224} height={288} key={i}/>
         ))
       }</div>
         : productData?.data?.shop?.items ? section === "Products" &&
           <div className='w-full flex-wrap max-w-full flex gap-4 pt-3 flex-row'>
-            {productData?.data?.shop?.items.map((item) =>
+            {productData?.data?.shop?.items.map((item, i) =>
               <ShopItem productName={item.name}
                 w={58}
                 h={72}
@@ -136,15 +136,18 @@ const UserPage = () => {
                 price={item.price}
                 location="singapore, singapore"
                 rating={item.rating}
+                key={i}
               />)}
           </div> : section === "Products" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} isn't selling anything right now...`}</p>}
-      {reviews ? section === "Reviews" && <div className='w-full flex-wrap max-w-full flex flex-row pt-3 gap-4'>
-        {reviews.map((review, i) => {
+      {reviews?.length > 0 ? section === "Reviews" && <div className='w-full flex-wrap max-w-full flex flex-row pt-3 gap-4'>
+        {reviews?.map((review, i) => {
           return <Link
+            key={i}
             href={`/user/${userName}/products/${review.itemId}/${review.reviewId}`}
           >
             <div
               className={`rounded relative w-58 h-72 border`}
+              key={i}
             >
               <video
                 autoPlay
@@ -165,9 +168,9 @@ const UserPage = () => {
         })}
       </div> : section === "Reviews" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} hasn't reviewed anything yet...`}</p>}
 
-      {wishlist ? section === "Wishlist" && <div className='w-full flex-wrap max-w-full flex flex-row pt-3 gap-4'>
+      {wishlist?.length > 0 ? section === "Wishlist" && <div className='w-full flex-wrap max-w-full flex flex-row pt-3 gap-4'>
         {wishlist.map((item, i) => {
-          return <ShopItem productName={item.name}
+          return <ShopItem productName={item.name} key={i}
             w={58}
             h={72}
             username={item.shop.user.username}

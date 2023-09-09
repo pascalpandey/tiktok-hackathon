@@ -50,7 +50,7 @@ export default function InfiniteScrollingReviews({
     <main className={`w-[${parentWidth}px] gap-4 flex flex-wrap`}>
       {isLoading
         ? skeletonArray.map((_, i) => (
-            <div className="mt-4">
+            <div className="mt-4"  key={i}>
               <Skeleton
                 variant="rounded"
                 animation="wave"
@@ -62,7 +62,7 @@ export default function InfiniteScrollingReviews({
         : reviews?.map((review, i) => {
             if (i === reviews.length - 1)
               return (
-                <div ref={ref}>
+                <div ref={ref}  key={i}>
                   <Link
                     href={`/user/${username}/products/${itemId}/${review.reviewId}`}
                   >
@@ -90,6 +90,7 @@ export default function InfiniteScrollingReviews({
               );
             return (
               <Link
+              key={i}
                 href={`/user/${username}/products/${itemId}/${review.reviewId}`}
               >
                 <div

@@ -15,8 +15,9 @@ const SubWishlist = ({ wishlist, maxLength }) => {
         </div>
         <div className="w-fit  mt-2 h-auto border p-3 pr-1 rounded-md flex flex-row gap-2 overflow-x-auto">
           {
-            wishlist?.wishlist?.map((item) => {
+            wishlist?.wishlist?.map((item, i) => {
               return <ShopItem
+                key={i}
                 h={72}
                 w={56}
                 productName={item.name}
