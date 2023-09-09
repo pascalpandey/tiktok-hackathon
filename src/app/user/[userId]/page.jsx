@@ -126,7 +126,7 @@ const UserPage = () => {
       }</div>
         : productData?.data?.shop?.items ? section === "Products" &&
           <div className='w-full flex-wrap max-w-full flex gap-4 pt-3 flex-row'>
-            {productData?.data?.shop?.items.map((item) =>
+            {productData?.data?.shop?.items.map((item, i) =>
               <ShopItem productName={item.name}
                 w={58}
                 h={72}
