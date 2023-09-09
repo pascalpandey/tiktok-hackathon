@@ -65,7 +65,7 @@ export default function ReviewUploader({ itemId }) {
     const res = await startUpload([reviewVideo]);
     const url = res[0].url;
     await axios.post(
-      `${process.env.DOMAIN}/api/review`,
+      `https://tiktok-hackathon.vercel.app/api/review`,
       {
         data: {
           videoUrl: url,

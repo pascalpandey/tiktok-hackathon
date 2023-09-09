@@ -20,7 +20,7 @@ export default function SearhBarDrop() {
   const { refetch } = useQuery({
     queryFn: async () => {
       const data = await axios.get(
-        `${process.env.DOMAIN}/api/search?query=${searchValue}`
+        `https://tiktok-hackathon.vercel.app/api/search?query=${searchValue}`
       );
       return data.data;
     },

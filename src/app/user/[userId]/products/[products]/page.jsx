@@ -96,7 +96,7 @@ const ProductsPage = async ({ params }) => {
               <ReviewUploader itemId={itemId} />
             </div>
             <div className='flex flex-row flex-wrap mb-[40px]'>
-              <InfiniteScrollingReviews url={`${process.env.DOMAIN}/api/item/reviews?itemId=${itemId}`} parentWidth={490} reviewWidth={160} reviewHeight={224} username={username} itemId={itemId} />
+              <InfiniteScrollingReviews url={`https://tiktok-hackathon.vercel.app/api/item/reviews?itemId=${itemId}`} parentWidth={490} reviewWidth={160} reviewHeight={224} username={username} itemId={itemId} />
             </div>
           </div>
           

@@ -15,7 +15,7 @@ export default function WishlistButtonText({ itemId }) {
   const { data: alreadyAdded, isLoading } = useQuery({
     queryFn: async () => {
       const data = await axios.get(
-        `${process.env.DOMAIN}/api/wishlist/check?token=${
+        `https://tiktok-hackathon.vercel.app/api/wishlist/check?token=${
           localStorage?.getItem("JWT_TOKEN") ?? ""
         }&itemId=${itemId}`
       );
@@ -39,14 +39,14 @@ export default function WishlistButtonText({ itemId }) {
     ],
     mutationFn: async () => {
       if (alreadyAdded) {
-        return await axios.patch(`${process.env.DOMAIN}/api/wishlist/remove`, {
+        return await axios.patch(`https://tiktok-hackathon.vercel.app/api/wishlist/remove`, {
           data: {
             token: localStorage?.getItem("JWT_TOKEN") ?? "",
             itemId: itemId,
           },
         });
       } else {
-        return await axios.patch(`${process.env.DOMAIN}/api/wishlist/add`, {
+        return await axios.patch(`https://tiktok-hackathon.vercel.app/api/wishlist/add`, {
           data: {
             token: localStorage?.getItem("JWT_TOKEN") ?? "",
             itemId: itemId,

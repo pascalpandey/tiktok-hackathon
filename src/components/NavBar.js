@@ -18,7 +18,7 @@ export default function Navbar() {
   const { data, error } = useQuery({
     queryFn: async () => {
       const data = await axios.get(
-        `${process.env.DOMAIN}/api/user/login?token=${
+        `https://tiktok-hackathon.vercel.app/api/user/login?token=${
           localStorage?.getItem("JWT_TOKEN") ?? ""
         }`
       );
