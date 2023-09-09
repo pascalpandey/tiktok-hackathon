@@ -122,17 +122,11 @@ const EditProfile = () => {
                     type="text"
                     placeholder="Tell us something about yourself..."
                     defaultValue={data?.data?.bio ?? ""}
-                    className="p-2 bg-gray-50 h-32 text-black mb-4 rounded resize-0"
+                    className="p-2 bg-gray-50 h-32 text-black mb-4 rounded resize-none"
                     {...register("bio")}
                   />
                 </div>
 
-              </div>
-              <div className='flex flex-row items-center'>
-                <PinkSwitch {...label} defaultChecked />
-                <p className='ml-1'>Set </p>
-                <p className='font-semibold mx-1'>Wishlist </p>
-                <p>to public</p>
               </div>
             </div>
           </div>

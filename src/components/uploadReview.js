@@ -101,7 +101,7 @@ export default function ReviewUploader({ itemId }) {
         </button>
       </LoginSignupGeneric>
       <Transition appear show={showUploadForm || showPreviewForm} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={() => resetForm()}>
+        <Dialog as="div" className="relative z-20" onClose={() => resetForm()}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
