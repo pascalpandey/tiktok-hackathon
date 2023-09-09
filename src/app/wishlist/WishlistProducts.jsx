@@ -72,7 +72,7 @@ export default function WishListProducts() {
       {(items?.[0]?.following?.length > 0 || isLoading) &&
         <div className='w-full h-auto mt-12'>
           <h2 className='text-xl border-b text-gray-400 pb-3'>Also check out your friends' wishlists </h2>
-          <div className='px-4 py-3 flex gap-2 flex-wrap'>
+          <div className='px-4 py-3 flex gap-2 flex-wrap flex-col'>
           {(isLoading ?
             skeletonArray.map((_, i) => (
               <Skeleton variant="rounded" animation="wave" width={224} height={288} />

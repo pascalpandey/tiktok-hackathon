@@ -1,10 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import searchSvg from "../../public/search.svg";
-import deleteSvg from "../../public/delete.svg";
 import { SiTiktok } from "react-icons/si";
-import menuSvg from "../../public/menu.svg";
 import LoginSignupGeneric from "./loginSignupGeneric";
 import LoginSignup from "./loginSignup";
 import { useQuery } from "@tanstack/react-query";
