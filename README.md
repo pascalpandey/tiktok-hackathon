@@ -8,12 +8,12 @@ In addition to that, most applications do not have a feature where users can sha
 
 ## Our solution:
 We would like to introduce two new features to tackle such problems:
-1.	**Testimonies**  
-Testimonies is a section filled with short videos of user reviews with provided ratings and link to the shop. When looking into a product, users can view other users’ testimonies and reviews to understand their shopping experience better.   
+1.	**TikTok Reviews**  
+TikTok Reviews is a section filled with short videos of user reviews with provided ratings and link to the shop. When looking into a product, users can view other users’ experiences with the products and their reviews to understand their shopping experience better.   
 
     **Demonstration:**    
 a.	Users enters the item they are searching for.  
-b.	Users can either view all testimonies for different shops that sells such products,  
+b.	Users can either view all reviews for different shops that sells such products,  
 c.	Or view a certain product and watch all testimonies of that specific product.  
 
 2.	**Shared Wish List**  
