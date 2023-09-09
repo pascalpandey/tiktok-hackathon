@@ -142,6 +142,7 @@ const UserPage = () => {
       {reviews?.length > 0 ? section === "Reviews" && <div className='w-full flex-wrap max-w-full flex flex-row pt-3 gap-4'>
         {reviews?.map((review, i) => {
           return <Link
+            key={i}
             href={`/user/${userName}/products/${review.itemId}/${review.reviewId}`}
           >
             <div
