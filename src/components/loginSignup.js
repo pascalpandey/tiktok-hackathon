@@ -68,7 +68,7 @@ export default function LoginSignup() {
       <Transition appear show={show} as={Fragment}>
         <Dialog
           as="div"
-          className="relative z-10"
+          className="relative z-20"
           onClose={() => setShow(false)}
         >
           <Transition.Child
