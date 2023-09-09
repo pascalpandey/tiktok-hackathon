@@ -10,7 +10,7 @@ import { useIntersection } from "@mantine/hooks";
 
 export default function WishListProducts() {
   const rowAmount = Math.floor((window.innerWidth - 450) / 224)
-  console.log(rowAmount)
+  const skeletonRowAmount = Math.floor((window.innerWidth - 240) / 224)
 
   const { data: selfWishlist, isLoading: selfWishListLoading } = useQuery({
     queryFn: async () => {
@@ -43,7 +43,7 @@ export default function WishListProducts() {
   }, [entry])
 
   const items = data?.pages.flatMap((page) => page.data)
-  const skeletonArray = Array.from({ length: rowAmount });
+  const skeletonArray = Array.from({ length: skeletonRowAmount });
 
   return (
     <div className="pl-5 w-full mb-5">
@@ -69,11 +69,11 @@ export default function WishListProducts() {
           ))
         }
       </div>
-      {(items?.length || isLoading) &&
+      {(items?.[0]?.following?.length > 0 || isLoading) &&
         <div className='w-full h-auto mt-12'>
-          <h2 className='text-xl border-b text-gray-400 pb-3'>Also checkout your friends' wishlists </h2>
+          <h2 className='text-xl border-b text-gray-400 pb-3'>Also check out your friends' wishlists </h2>
           <div className='px-4 py-3 flex gap-2 flex-wrap'>
-          {isLoading ?
+          {(isLoading ?
             skeletonArray.map((_, i) => (
               <Skeleton variant="rounded" animation="wave" width={224} height={288} />
             ))
@@ -87,7 +87,9 @@ export default function WishListProducts() {
                 return <SubWishlist wishlist={item.following[0]} maxLength={rowAmount} />
               }
             })
-          }
+           ) || (
+            <div>Start following your friends!</div>
+          )}
           </div>
         </div>
       }

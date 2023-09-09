@@ -67,19 +67,19 @@ export default function LoginSignupGeneric({ children }) {
 
   return (
     <>
-      <a
-        onClick={() => {
-          if (!data || isError) {
-            setShow(true);
-            setLogin(true);
-          }
-        }}
-        className="cursor-pointer"
-      >
-        <div style={{ pointerEvents: !data || isError ? "none" : "auto" }}>
+      <div style={{ pointerEvents: !data || isError ? "none" : "auto" }}>
+        <div
+          onClick={() => {
+            if (!data || isError) {
+              setShow(true);
+              setLogin(true);
+            }
+          }}
+          className="cursor-pointer"
+        >
           {children}
         </div>
-      </a>
+      </div>
       <Transition appear show={show} as={Fragment}>
         <Dialog
           as="div"

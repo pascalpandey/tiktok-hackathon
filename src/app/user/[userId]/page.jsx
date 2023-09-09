@@ -22,7 +22,7 @@ const UserPage = () => {
       const data = await axios.get(`http://localhost:3000/api/user?userName=${path[path.length - 1]}`)
       return data
     },
-    queryKey: [""]
+    queryKey: ["checkFollow"]
   })
 
   const { data: productData, error: productError, isLoading: productLoad } = useQuery({
@@ -42,7 +42,7 @@ const UserPage = () => {
     },
     queryKey: ["checkLogIn"]
   })
-
+  console.log(data?.data)
   const userName = data?.data.username;
   const name = data?.data.name;
   const isShop = data?.data.shop;
@@ -52,58 +52,8 @@ const UserPage = () => {
   const desc = data?.data.bio;
   const reviews = data?.data.reviews;
   const skeletonArray = Array.from({ length: 5 });
+  const wishlist = data?.data.wishlist
 
-  // DUMMY DATA FOR FOLLOWING LOGIC ---------------------------------------------------
-  const [dummyUser1, setDummyUser1] = useState({
-    userName: "noob_master_69",
-    followers: ["bebekjk_real"],
-    following: [],
-  })
-  const [dummyUser2, setDummyUser2] = useState({
-    userName: "bebekjk_real",
-    followers: [],
-    following: ["noob_master_69"],
-  })
-
-  // DUMMY DATA FOR SHOWING FRIEND WISHLIST ----------------------------------------------
-  const dummyItem = (
-    <ShopItem productName={"kucing hansohee"}
-      w={58}
-      h={72}
-      username={"bebekjk"}
-      itemId={69420}
-      imageUrl={""}
-      price={69420}
-      location="Seoul, Korea"
-      rating={5}
-    />
-  )
-  const tmpFollowing = [
-    {
-      username: "bebekjk",
-      wishlists: [dummyItem, dummyItem, dummyItem],
-      showWishlists: true,
-      imageUrl: ""
-    },
-    {
-      username: "bebekjkaa",
-      wishlists: [dummyItem, dummyItem],
-      showWishlists: true,
-      imageUrl: ""
-    },
-    {
-      username: "test",
-      wishlists: [dummyItem],
-      showWishlists: false,
-      imageUrl: ""
-    },
-    {
-      username: "AndrewDJ",
-      wishlists: [],
-      showWishlists: true,
-      imageUrl: ""
-    }
-  ];
   const isFollowing = followers?.some(obj => obj.username === LoginData?.data.username)
 
   return (
@@ -150,8 +100,8 @@ const UserPage = () => {
             <p className='mx-1 mr-5 text-gray-500 font-light'>Followers</p>
           </div>
           <div className='flex flex-row items-baseline'>
-            <p className='text-lg font-bold'>{likes ? likes : 0}</p>
-            <p className='mx-1 text-gray-500 font-light'>Likes</p>
+            <p className='text-lg font-bold'>{wishlist ? wishlist.length : 0}</p>
+            <p className='mx-1 text-gray-500 font-light'>Wishes</p>
           </div>
         </div>
         <p className='font-light'>{desc}</p>
@@ -215,28 +165,20 @@ const UserPage = () => {
         })}
       </div> : section === "Reviews" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} hasn't reviewed anything yet...`}</p>}
 
-      {section === "Wishlist" && <div className='w-full max-w-full'>
-        <div className='w-full flex-wrap max-w-full flex flex-row'>
-          <ShopItem productName="Ipad Screen Protector"
+      {wishlist ? section === "Wishlist" && <div className='w-full flex-wrap max-w-full flex flex-row pt-3 gap-4'>
+        {wishlist.map((item, i) => {
+          return <ShopItem productName={item.name}
             w={58}
             h={72}
-            price={125}
+            username={item.shop.user.username}
+            itemId={item.itemId}
+            imageUrl={item.imageUrl}
+            price={item.price}
             location="singapore, singapore"
-            rating={0.5}
-            inWishlist={true} />
-          <ShopItem productName="Ipad Air 5 Case"
-            w={58}
-            h={72}
-            price={10}
-            location="singapore, singapore"
-            rating={4.8}
-            inWishlist={true} />
-        </div>
-
-        {/* BAGIAN SHOW WISHLIST KE TEMEN TEMEN */}
-
-
-      </div>}
+            rating={item.rating}
+          />
+        })}
+      </div> : section === "Wishlist" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} doesn't have anything on their wishlist right now...`}</p>}
     </div>
   )
 }

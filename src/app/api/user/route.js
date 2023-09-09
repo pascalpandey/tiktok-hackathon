@@ -59,10 +59,22 @@ export async function GET(req) {
               username:true,
             }
           },
-          reviews:true
+          reviews:true,
+          wishlist: {
+            include: {
+              shop: {
+                include: {
+                  user: {
+                    select: {
+                      username: true
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       });
-      console.log(user);
 
       if (!user) return new Response("Username not found!", { status: 404 });
       
@@ -76,6 +88,7 @@ export async function GET(req) {
         "reviews":user.reviews,
         "likes":user.likes,
         "shop":user.shop,
+        "wishlist": user.wishlist
       }), { status: 200 }); 
     
   } catch (err) {

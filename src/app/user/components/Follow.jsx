@@ -1,17 +1,21 @@
 "use client"
 
 import axios from 'axios'
-import { useQuery, useMutation } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react';
 
 
 const Follow = ({ isFollowed }) => {
+  const queryClient = useQueryClient()
     const [clientValue, setClientValue] = useState(null);
     const { mutate, isLoading: followLoading } = useMutation({
         mutationFn: async (data) => {
             return await axios.patch(`http://localhost:3000/api/user/${isFollowed ? "un" : ""}follow`, { data });
         },
+        onSuccess: () => {
+          queryClient.invalidateQueries(['getFriendsWishlist'])
+        }
     });
     const { data: LoginData, data: LoginError } = useQuery({
         queryFn: async () => {

@@ -17,11 +17,15 @@ import axios from "axios";
 export default function Navbar() {
   const { data, error } = useQuery({
     queryFn: async () => {
-      const data = await axios.get(`http://localhost:3000/api/user/login?token=${localStorage?.getItem("JWT_TOKEN") ?? ""}`)
-      return data
+      const data = await axios.get(
+        `http://localhost:3000/api/user/login?token=${
+          localStorage?.getItem("JWT_TOKEN") ?? ""
+        }`
+      );
+      return data;
     },
-    queryKey: ["checkLogIn"]
-  })
+    queryKey: ["checkLogIn"],
+  });
   return (
     <div>
       <div className="h-screen w-60 bg-transparent fixed top-16 left-0">
@@ -50,11 +54,9 @@ export default function Navbar() {
                   <span className="w-1/6">
                     <Image src={heartSvg} alt="live" />
                   </span>
-
-                  <Link href="/wishlist">
-                    <div className="pl-2">Wishlist</div>
-                  </Link>
-
+                  <div className="pl-2">
+                    <Link href="/wishlist">Wishlist</Link>
+                  </div>
                 </li>
               </LoginSignupGeneric>
             </ul>
