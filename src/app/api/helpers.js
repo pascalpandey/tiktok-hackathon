@@ -35,4 +35,12 @@ export const auth = async (token) => {
   }
 };
 
-export const prisma = new PrismaClient()
+const prismaClientSingleton = () => {
+  return new PrismaClient();
+};
+
+const globalForPrisma = globalThis;
+
+export const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
+
+globalForPrisma.prisma = prisma;
