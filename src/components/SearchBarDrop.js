@@ -88,6 +88,7 @@ export default function SearhBarDrop() {
           <div className="h-auto w-full flex flex-col">
             {listRelevant?.products?.length ? (
               listRelevant?.products?.map((product) => {
+                console.log(product)
                 return (
                   <Link
                     className="text-sm flex flex-row hover:bg-gray-100"

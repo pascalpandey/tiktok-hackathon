@@ -33,6 +33,17 @@ export async function GET(req) {
           mode: 'insensitive'
         },
       },
+      include: {
+        shop: {
+          include: {
+            user: {
+              select: {
+                username: true
+              }
+            }
+          }
+        }
+      },
       take: 5
     });
 
@@ -42,6 +53,17 @@ export async function GET(req) {
           contains: query.replace("%20", " "),
           mode: 'insensitive'
         },
+      },
+      include: {
+        shop: {
+          include: {
+            user: {
+              select: {
+                username: true
+              }
+            }
+          }
+        }
       },
       take: 5
     });
