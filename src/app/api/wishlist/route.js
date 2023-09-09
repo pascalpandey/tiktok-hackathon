@@ -26,6 +26,7 @@ export async function GET(req) {
                   user: {
                     select: {
                       username: true,
+                      imgUrl: true,
                     },
                   },
                 },
