@@ -1,34 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TikTok Hackathon
+**Problem Statement 3 – Social E-commerce**
 
-## Getting Started
+## Identified Social Challenges:
+As online shoppers, we would like to know what previous shoppers think or feel about a certain product before committing ourselves to making a purchase. This is a problem in most e-commerce applications today since there isn’t an explicit channel where we can share or watch people’s testimonies on their shopping experience.
 
-First, run the development server:
+In addition to that, most applications do not have a feature where users can share their wish list among close friends due to privacy issues. However, some users might find this beneficial as they can understand their friends’ shopping interests and may gift what they wish for on special occasions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Our solution:
+We would like to introduce two new features to tackle such problems:
+1.	**Testimonies**  
+Testimonies is a section filled with short videos of user reviews with provided ratings and link to the shop. When looking into a product, users can view other users’ testimonies and reviews to understand their shopping experience better.   
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    **Demonstration:**    
+a.	Users enters the item they are searching for.  
+b.	Users can either view all testimonies for different shops that sells such products,  
+c.	Or view a certain product and watch all testimonies of that specific product.  
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+2.	**Shared Wish List**  
+This feature allows users (out of their consent) to share their wish list among their close friends.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    **Demonstration:**  
+a.	Users can check out the wish list section to view their wish list and other wish lists shared to them.  
+b.	Users can also view their friends shared wish by clicking into their profile.  
