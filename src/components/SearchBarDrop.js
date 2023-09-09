@@ -62,17 +62,21 @@ const dummyProducts = [
 // Assume ini complete list of usersnya
 const dummyUsers = [
     {
-        userName: "MatrixTy",
+        userName: "MetaTech Vision X1 - 512GB",
         name: "MatrixTy"
     }, 
     {
-        userName: "bebekjk",
+        userName: "MetaTech Vision X1 - 512GB",
         name: ""
     },
     {
-        userName: "bebekjk_real",
+        userName: "MetaTech Vision X1 - 512GB",
         name: "Han So Hee"
-    }
+    },
+    {
+      userName: "MetaTech Vision X1 - 512GB",
+      name: "Han So Hee"
+  }
 ]
 export default function SearhBarDrop() {
     const [searchValue, setSearchValue] = useState("");
@@ -123,7 +127,7 @@ export default function SearhBarDrop() {
             <input
                 className="h-3/5 bg-transparent w-3/4 focus:outline-none ml-4"
                 type="text"
-                placeholder="TikTok is the best company"
+                placeholder="Search users or products"
                 value={searchValue}
                 onInput={(e) => {handleSearch(e)}}
                 onFocus={(e) => {setShowDropDown(true);}}

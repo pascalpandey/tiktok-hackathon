@@ -21,7 +21,19 @@ export async function GET(req) {
               name: true,
             }
           },
-          item: true
+          item: {
+            include: {
+              shop: {
+                include: {
+                  user: {
+                    select: {
+                      username: true
+                    }
+                  }
+                }
+              }
+            }
+          }
         },
         where: {
           itemId: Number(itemId)
@@ -46,7 +58,19 @@ export async function GET(req) {
                 name: true,
               }
             },
-            item: true
+            item: {
+              include: {
+                shop: {
+                  include: {
+                    user: {
+                      select: {
+                        username: true
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }); 
 
@@ -76,7 +100,19 @@ export async function GET(req) {
                 name: true,
               }
             },
-            item: true
+            item: {
+              include: {
+                shop: {
+                  include: {
+                    user: {
+                      select: {
+                        username: true
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         });
   

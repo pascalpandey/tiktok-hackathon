@@ -77,7 +77,19 @@ export async function GET(req) {
               name: true,
             }
           },
-          item: true
+          item: {
+            include: {
+              shop: {
+                include: {
+                  user: {
+                    select: {
+                      username: true
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       })
 
@@ -91,6 +103,29 @@ export async function GET(req) {
         const currentReview = await prisma.review.findUnique({
           where: {
             reviewId: Number(reviewId)
+          },
+          include: {
+            user: {
+              select: {
+                username: true,
+                imgUrl: true,
+                userId: true,
+                name: true,
+              }
+            },
+            item: {
+              include: {
+                shop: {
+                  include: {
+                    user: {
+                      select: {
+                        username: true
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         })
 
@@ -110,6 +145,29 @@ export async function GET(req) {
               reviewId: Number(reviewId)
             },
             userId: currentReview.userId
+          },
+          include: {
+            user: {
+              select: {
+                username: true,
+                imgUrl: true,
+                userId: true,
+                name: true,
+              }
+            },
+            item: {
+              include: {
+                shop: {
+                  include: {
+                    user: {
+                      select: {
+                        username: true
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         })
 
