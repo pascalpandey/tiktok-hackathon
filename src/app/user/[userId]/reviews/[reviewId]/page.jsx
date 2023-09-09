@@ -48,7 +48,8 @@ export default function ReviewPage() {
           if (i === reviews.length - 1) return (
             <div ref={ref}>
               <Review
-                username={review.user.username}
+                posterUsername={review.user.username}
+                shopUsername={review.item.shop.user.username}
                 shop={review?.user?.name ?? ""}
                 desc={review.description}
                 itemName={review.item.name}
@@ -65,7 +66,8 @@ export default function ReviewPage() {
             </div>
           )
           return <Review
-            username={review.user.username}
+            posterUsername={review.user.username}
+            shopUsername={review.item.shop.user.username}
             shop={review?.user?.name ?? ""}
             desc={review.description}
             itemName={review.item.name}

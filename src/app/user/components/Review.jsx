@@ -8,13 +8,13 @@ import { BsFillBookmarkFill } from 'react-icons/bs';
 import shopSvg from "../../../../public/shop.svg"
 import Comments from './Comments';
 
-const Review = ({ username, shop, desc, itemName, like, bm, comments, shared, reviewId, videoUrl, userImgUrl, rating, itemId }) => {
+const Review = ({ posterUsername, shop, desc, itemName, like, bm, comments, shared, reviewId, videoUrl, userImgUrl, rating, itemId, shopUsername }) => {
   return (
 
-    <div className="flex h-620 w-590 border-b pb-4 mt-6 mx-auto">
+    <div className="flex min-h-[620px] w-590 border-b pb-4 mt-6 mx-auto mb-12">
       <div className="h-full w-20">
         <div className="rounded-full w-14 h-14 relative">
-          <Link href={`/user/${username}`}>
+          <Link href={`/user/${posterUsername}`}>
             <Image
               className="rounded-full w-14 h-14"
               layout={'fill'}
@@ -31,7 +31,7 @@ const Review = ({ username, shop, desc, itemName, like, bm, comments, shared, re
           <div className="flex flex-col">
 
             <div className="flex items-baseline">
-              <Link href={`/user/${username}`} className="font-semibold mx-1">{username}</Link>
+              <Link href={`/user/${posterUsername}`} className="font-semibold mx-1">{posterUsername}</Link>
               <p className="font-light text-sm mx-1">{shop}</p>
             </div>
 
@@ -40,7 +40,7 @@ const Review = ({ username, shop, desc, itemName, like, bm, comments, shared, re
             </div>
 
             <div className="flex flex-row ">
-              <Link href={`/user/${username}/products/${itemId}`} className='flex'>
+              <Link href={`/user/${shopUsername}/products/${itemId}`} className='flex'>
                 <AiFillShopping className='mt-[6px]' color="#FE2C55" size={18}/>
                 <p className="text-sm font-light mx-1 my-1">{itemName}</p>
               </Link>

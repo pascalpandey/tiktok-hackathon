@@ -83,7 +83,7 @@ const ProductsPage = async ({ params }) => {
                   <Link href={`/user/${user.username}`} className='text-lg font-bold'>{user.username}</Link>
                   <div className='flex flex-row'>
                     <SlLocationPin className='mt-0.5 mr-1' size={20} />
-                    <p className='font-light'> {user.shop.location ? user.shop.location : "Singapore, Singapore"}</p>
+                    <p className='font-light'> {user?.shop?.location ? user?.shop?.location : "Singapore, Singapore"}</p>
                   </div>
                 </div>
               </div>
