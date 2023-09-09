@@ -34,6 +34,8 @@ export default function ReviewPage() {
   const reviews = data?.pages.flatMap((page) => page.data)
   const skeletonArray = Array.from({ length: 1 });
 
+  
+
   return (
     <main className="mx-auto pr-[170px] gap-4">
       {isLoading ?
@@ -61,6 +63,10 @@ export default function ReviewPage() {
           </div>
         ))
         : reviews?.map((review, i) => {
+          const shared = Math.floor(Math.random() * 10);
+          const like = Math.floor(Math.random() * 10);
+          const comments = Math.floor(Math.random() * 10);
+          const bm = Math.floor(Math.random() * 10);
           if (i === reviews.length - 1) return (
             <div ref={ref}>
               <Review
@@ -74,10 +80,10 @@ export default function ReviewPage() {
                 videoUrl={review.videoUrl}
                 userImgUrl={review.user?.imgUrl ?? ""}
                 itemId={review.item.itemId}
-                shared={100}
-                comments={123}
-                like={5232}
-                bm={13}
+                shared={shared}
+                comments={comments}
+                like={like}
+                bm={bm}
               />
             </div>
           )
@@ -92,10 +98,10 @@ export default function ReviewPage() {
             videoUrl={review.videoUrl}
             userImgUrl={review.user?.imgUrl ?? ""}
             itemId={review.item.itemId}
-            shared={100}
-            comments={123}
-            like={5232}
-            bm={13}
+            shared={shared}
+            comments={comments}
+            like={like}
+            bm={bm}
           />
         })}
     </main>
