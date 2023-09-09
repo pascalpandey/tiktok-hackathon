@@ -62,7 +62,6 @@ const UserPage = () => {
         <div className='flex flex-row'>
           {isLoading ? <Skeleton variant="circular" animation="wave" width={110} height={110} /> :
             <div className='w-28 h-28 rounded-full relative'>
-              {console.log(data?.data?.imgUrl)}
               <Image className='w-28 h-28 rounded-full'
                 layout={'fill'}
                 objectFit={'contain'}
@@ -122,7 +121,7 @@ const UserPage = () => {
       <div className='border-b max-w-full w-full mb-1'></div>
       {productLoad ? section === "Products" && <div className='py-3 flex gap-4 flex-wrap'>{
         skeletonArray.map((_, i) => (
-          <Skeleton variant="rounded" animation="wave" width={224} height={288} />
+          <Skeleton variant="rounded" animation="wave" width={224} height={288} key={i}/>
         ))
       }</div>
         : productData?.data?.shop?.items ? section === "Products" &&
@@ -137,6 +136,7 @@ const UserPage = () => {
                 price={item.price}
                 location="singapore, singapore"
                 rating={item.rating}
+                key={i}
               />)}
           </div> : section === "Products" && <p className='mt-3 text-2xl text-gray-300'>{`${userName} isn't selling anything right now...`}</p>}
       {reviews?.length > 0 ? section === "Reviews" && <div className='w-full flex-wrap max-w-full flex flex-row pt-3 gap-4'>
@@ -146,6 +146,7 @@ const UserPage = () => {
           >
             <div
               className={`rounded relative w-58 h-72 border`}
+              key={i}
             >
               <video
                 autoPlay
@@ -168,7 +169,7 @@ const UserPage = () => {
 
       {wishlist?.length > 0 ? section === "Wishlist" && <div className='w-full flex-wrap max-w-full flex flex-row pt-3 gap-4'>
         {wishlist.map((item, i) => {
-          return <ShopItem productName={item.name}
+          return <ShopItem productName={item.name} key={i}
             w={58}
             h={72}
             username={item.shop.user.username}

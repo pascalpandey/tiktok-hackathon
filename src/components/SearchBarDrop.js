@@ -87,10 +87,11 @@ export default function SearhBarDrop() {
           )}
           <div className="h-auto w-full flex flex-col">
             {listRelevant?.products?.length ? (
-              listRelevant?.products?.map((product) => {
+              listRelevant?.products?.map((product, i) => {
                 console.log(product)
                 return (
                   <Link
+                    key={i}
                     className="text-sm flex flex-row hover:bg-gray-100"
                     href={`/user/${product?.shop?.user?.username}/products/${product?.itemId}`}
                   >
@@ -120,9 +121,10 @@ export default function SearhBarDrop() {
                 Accounts
               </h2>
               <div className="h-auto w-full flex flex-col">
-                {listRelevant.users.map((user) => {
+                {listRelevant.users.map((user, i) => {
                   return (
                     <Link
+                      key={i}
                       className="flex flex-row hover:bg-gray-100"
                       href={`/user/${user.username}`}
                     >

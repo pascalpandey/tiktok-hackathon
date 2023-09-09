@@ -29,6 +29,7 @@ const ReviewForm = ({
                 size={25}
                 color="#FE2C55"
                 onClick={() => setReviewRating(i + 1)}
+                key={i}
               />
             ))}
           {Array(5 - reviewRating)
@@ -39,6 +40,7 @@ const ReviewForm = ({
                 color="#FE2C55"
                 size={25}
                 onClick={() => setReviewRating(reviewRating + i + 1)}
+                key={i}
               />
             ))}
         </div>

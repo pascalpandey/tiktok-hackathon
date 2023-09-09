@@ -80,9 +80,9 @@ const Comments = ({ reviewId }) => {
                     <div className='relative bg-white w-[345px] h-[360px] right-[366px] bottom-[698px] rounded-md shadow-[0px_-10px_15px_-10px_rgba(0,0,0,0.3)] overflow-y-scroll px-2 pb-6'>
                         <h2 className='text-center text-sm mt-1.5 border-b pt-1 pb-2'>Comments</h2>
                         {
-                            commentList?.map((commentItem) => {
+                            commentList?.map((commentItem, i) => {
                                 return (
-                                    <CommentItem comment={commentItem} />
+                                    <CommentItem comment={commentItem} key={i} />
                                 )
                             })
                         }

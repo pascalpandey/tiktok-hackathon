@@ -53,10 +53,10 @@ const ProductsPage = async ({ params }) => {
               <div className='flex flex-row'>
 
                 <div className='flex flex-row mr-1 mt-0.5'>
-                  {fullStar.map((i) =>
-                    <AiFillStar className="mt-1 mr-1" size={15} color="#FE2C55" />
+                  {fullStar.map((_, i) =>
+                    <AiFillStar className="mt-1 mr-1" size={15} color="#FE2C55" key={i} />
                   )}
-                  {noStar.map((i) => <AiOutlineStar className='mt-1 mr-1' color="#FE2C55" size={15} />)}
+                  {noStar.map((_, i) => <AiOutlineStar className='mt-1 mr-1' color="#FE2C55" size={15} key={i} />)}
                   <p className='mt-0.5 ml-0.5 font-light text-sm'>{item.rating ? `${item.rating} / 5` : 'No rating'}</p>
                 </div>
               </div>
